@@ -30,7 +30,7 @@ public class PrescriptionController {
     }};
     
     private static int prescriptionCounter = 0;
-    private static final String AUDIT_FILE = "C:\\hospital\\prescriptions.log";
+//    private static final String AUDIT_FILE = System.getProperty("") + "\\hospital\\prescriptions.log";
     
     
     @Autowired
@@ -64,10 +64,10 @@ public class PrescriptionController {
             prescriptionDao.save(prescription);
             
             
-            new FileWriter(AUDIT_FILE, true)
-                .append(new Date().toString() + " - " + prescriptionId + "\n")
-                .close();
-            
+//            new FileWriter(AUDIT_FILE, true)
+//                .append(new Date().toString() + " - " + prescriptionId + "\n")
+//                .close();
+//
             
             List<String> currentPrescriptions = patientPrescriptions.getOrDefault(patientId, new ArrayList<>());
             currentPrescriptions.add(prescriptionId);

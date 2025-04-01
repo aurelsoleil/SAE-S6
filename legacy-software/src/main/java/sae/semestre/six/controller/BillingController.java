@@ -92,9 +92,9 @@ public class BillingController {
             bill.setTotalAmount(total);
             bill.setBillDetails(details);
             
-            try (FileWriter fw = new FileWriter("C:\\hospital\\billing.txt", true)) {
-                fw.write(bill.getBillNumber() + ": $" + total + "\n");
-            }
+//            try (FileWriter fw = new FileWriter("C:\\hospital\\billing.txt", true)) {
+//                fw.write(bill.getBillNumber() + ": $" + total + "\n");
+//            }
             
             totalRevenue += total;
             billDao.save(bill);
