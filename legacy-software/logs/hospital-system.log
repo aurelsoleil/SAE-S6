@@ -129,7 +129,7 @@ Caused by: java.lang.reflect.InaccessibleObjectException: Unable to make protect
 	...]
 2025-01-29 20:16:30.708  INFO 13092 --- [main] org.hibernate.Version                    : HHH000412: Hibernate Core {5.2.17.Final}
 2025-01-29 20:16:30.711  INFO 13092 --- [main] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
-2025-01-29 20:16:30.721  WARN 13092 --- [main] ationConfigEmbeddedWebApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'appointmentDaoImpl': Unsatisfied dependency expressed through field 'sessionFactory'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sessionFactory' defined in class path resource [com/example/demo/config/HibernateConfig.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.hibernate.SessionFactory]: Factory method 'sessionFactory' threw exception; nested exception is java.lang.NoClassDefFoundError: javax/xml/bind/JAXBException
+2025-01-29 20:16:30.721  WARN 13092 --- [main] ationConfigEmbeddedWebApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'appointmentDaoImpl': Unsatisfied dependency expressed through field 'sessionFactory'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sessionFactory' defined in class path resource [com/example/demo/config/HibernateConfig.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.hibernate.SessionFactory]: Factory method 'sessionFactory' threw exception; nested exception is java.lang.NoClassDefFoundError: jakarta/xml/bind/JAXBException
 2025-01-29 20:16:30.725  INFO 13092 --- [main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
 2025-01-29 20:16:30.749  WARN 13092 --- [localhost-startStop-1] o.a.c.loader.WebappClassLoaderBase       : Failed to clear soft references from ObjectStreamClass$Caches for web application [hospital]
 
@@ -154,7 +154,7 @@ java.lang.ClassCastException: class java.io.ObjectStreamClass$Caches$1 cannot be
 Error starting ApplicationContext. To display the auto-configuration report re-run your application with 'debug' enabled.
 2025-01-29 20:16:30.769 ERROR 13092 --- [main] o.s.boot.SpringApplication               : Application startup failed
 
-org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'appointmentDaoImpl': Unsatisfied dependency expressed through field 'sessionFactory'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sessionFactory' defined in class path resource [com/example/demo/config/HibernateConfig.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.hibernate.SessionFactory]: Factory method 'sessionFactory' threw exception; nested exception is java.lang.NoClassDefFoundError: javax/xml/bind/JAXBException
+org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'appointmentDaoImpl': Unsatisfied dependency expressed through field 'sessionFactory'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sessionFactory' defined in class path resource [com/example/demo/config/HibernateConfig.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.hibernate.SessionFactory]: Factory method 'sessionFactory' threw exception; nested exception is java.lang.NoClassDefFoundError: jakarta/xml/bind/JAXBException
 	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:586) ~[spring-beans-4.3.25.RELEASE.jar:4.3.25.RELEASE]
 	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:87) ~[spring-beans-4.3.25.RELEASE.jar:4.3.25.RELEASE]
 	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessPropertyValues(AutowiredAnnotationBeanPostProcessor.java:364) ~[spring-beans-4.3.25.RELEASE.jar:4.3.25.RELEASE]
@@ -175,7 +175,7 @@ org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1082) ~[spring-boot-1.5.22.RELEASE.jar:1.5.22.RELEASE]
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1071) ~[spring-boot-1.5.22.RELEASE.jar:1.5.22.RELEASE]
 	at demo.sae.semestre.DemoApplication.main(DemoApplication.java:14) ~[classes/:na]
-Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sessionFactory' defined in class path resource [com/example/demo/config/HibernateConfig.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.hibernate.SessionFactory]: Factory method 'sessionFactory' threw exception; nested exception is java.lang.NoClassDefFoundError: javax/xml/bind/JAXBException
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sessionFactory' defined in class path resource [com/example/demo/config/HibernateConfig.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.hibernate.SessionFactory]: Factory method 'sessionFactory' threw exception; nested exception is java.lang.NoClassDefFoundError: jakarta/xml/bind/JAXBException
 	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:599) ~[spring-beans-4.3.25.RELEASE.jar:4.3.25.RELEASE]
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1177) ~[spring-beans-4.3.25.RELEASE.jar:4.3.25.RELEASE]
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1072) ~[spring-beans-4.3.25.RELEASE.jar:4.3.25.RELEASE]
@@ -190,11 +190,11 @@ Caused by: org.springframework.beans.factory.BeanCreationException: Error creati
 	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1059) ~[spring-beans-4.3.25.RELEASE.jar:4.3.25.RELEASE]
 	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:583) ~[spring-beans-4.3.25.RELEASE.jar:4.3.25.RELEASE]
 	... 19 common frames omitted
-Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.hibernate.SessionFactory]: Factory method 'sessionFactory' threw exception; nested exception is java.lang.NoClassDefFoundError: javax/xml/bind/JAXBException
+Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.hibernate.SessionFactory]: Factory method 'sessionFactory' threw exception; nested exception is java.lang.NoClassDefFoundError: jakarta/xml/bind/JAXBException
 	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:189) ~[spring-beans-4.3.25.RELEASE.jar:4.3.25.RELEASE]
 	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:588) ~[spring-beans-4.3.25.RELEASE.jar:4.3.25.RELEASE]
 	... 31 common frames omitted
-Caused by: java.lang.NoClassDefFoundError: javax/xml/bind/JAXBException
+Caused by: java.lang.NoClassDefFoundError: jakarta/xml/bind/JAXBException
 	at org.hibernate.boot.spi.XmlMappingBinderAccess.<init>(XmlMappingBinderAccess.java:43) ~[hibernate-core-5.2.17.Final.jar:5.2.17.Final]
 	at org.hibernate.boot.MetadataSources.<init>(MetadataSources.java:87) ~[hibernate-core-5.2.17.Final.jar:5.2.17.Final]
 	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.<init>(EntityManagerFactoryBuilderImpl.java:209) ~[hibernate-core-5.2.17.Final.jar:5.2.17.Final]
@@ -204,8 +204,8 @@ Caused by: java.lang.NoClassDefFoundError: javax/xml/bind/JAXBException
 	at org.hibernate.jpa.HibernatePersistenceProvider.getEntityManagerFactoryBuilderOrNull(HibernatePersistenceProvider.java:129) ~[hibernate-core-5.2.17.Final.jar:5.2.17.Final]
 	at org.hibernate.jpa.HibernatePersistenceProvider.getEntityManagerFactoryBuilderOrNull(HibernatePersistenceProvider.java:71) ~[hibernate-core-5.2.17.Final.jar:5.2.17.Final]
 	at org.hibernate.jpa.HibernatePersistenceProvider.createEntityManagerFactory(HibernatePersistenceProvider.java:52) ~[hibernate-core-5.2.17.Final.jar:5.2.17.Final]
-	at javax.persistence.Persistence.createEntityManagerFactory(Persistence.java:55) ~[hibernate-jpa-2.1-api-1.0.0.Final.jar:1.0.0.Final]
-	at javax.persistence.Persistence.createEntityManagerFactory(Persistence.java:39) ~[hibernate-jpa-2.1-api-1.0.0.Final.jar:1.0.0.Final]
+	at jakarta.persistence.Persistence.createEntityManagerFactory(Persistence.java:55) ~[hibernate-jpa-2.1-api-1.0.0.Final.jar:1.0.0.Final]
+	at jakarta.persistence.Persistence.createEntityManagerFactory(Persistence.java:39) ~[hibernate-jpa-2.1-api-1.0.0.Final.jar:1.0.0.Final]
 	at config.demo.sae.semestre.HibernateConfig.sessionFactory(HibernateConfig.java:16) ~[classes/:na]
 	at config.demo.sae.semestre.HibernateConfig$$EnhancerBySpringCGLIB$$96098af0.CGLIB$sessionFactory$0(<generated>) ~[classes/:na]
 	at config.demo.sae.semestre.HibernateConfig$$EnhancerBySpringCGLIB$$96098af0$$FastClassBySpringCGLIB$$c5761d70.invoke(<generated>) ~[classes/:na]
@@ -218,7 +218,7 @@ Caused by: java.lang.NoClassDefFoundError: javax/xml/bind/JAXBException
 	at java.base/java.lang.reflect.Method.invoke(Method.java:566) ~[na:na]
 	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:162) ~[spring-beans-4.3.25.RELEASE.jar:4.3.25.RELEASE]
 	... 32 common frames omitted
-Caused by: java.lang.ClassNotFoundException: javax.xml.bind.JAXBException
+Caused by: java.lang.ClassNotFoundException: jakarta.xml.bind.JAXBException
 	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:581) ~[na:na]
 	at java.base/jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:178) ~[na:na]
 	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:521) ~[na:na]
@@ -252,8 +252,8 @@ Caused by: java.lang.ClassNotFoundException: javax.xml.bind.JAXBException
 2025-01-29 20:17:08.120  INFO 11928 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
 2025-01-29 20:17:08.562  INFO 11928 --- [main] org.hibernate.orm.connections.access     : HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@22686ddb] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
 2025-01-29 20:17:09.007  INFO 11928 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@3e78b6a5: startup date [Wed Jan 29 20:17:05 CET 2025]; root of context hierarchy
-2025-01-29 20:17:09.055  INFO 11928 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
-2025-01-29 20:17:09.056  INFO 11928 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2025-01-29 20:17:09.055  INFO 11928 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(jakarta.servlet.http.HttpServletRequest)
+2025-01-29 20:17:09.056  INFO 11928 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(jakarta.servlet.http.HttpServletRequest,jakarta.servlet.http.HttpServletResponse)
 2025-01-29 20:17:09.086  INFO 11928 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
 2025-01-29 20:17:09.086  INFO 11928 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
 2025-01-29 20:17:09.135  INFO 11928 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
@@ -451,7 +451,7 @@ Caused by: java.lang.Error: Unresolved compilation problems:
 2025-01-29 20:29:55.742  INFO 21100 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
 2025-01-29 20:29:55.742  INFO 21100 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
 2025-01-29 20:29:55.743  INFO 21100 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
-2025-01-29 20:29:55.775  WARN 21100 --- [main] ationConfigEmbeddedWebApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'billingController' defined in file [C:\Users\a.caubel\Desktop\sae06\projet-sae6\target\classes\com\example\demo\controller\BillingController.class]: Instantiation of bean failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [controller.demo.sae.semestre.BillingController]: Constructor threw exception; nested exception is java.lang.NoClassDefFoundError: javax/mail/Authenticator
+2025-01-29 20:29:55.775  WARN 21100 --- [main] ationConfigEmbeddedWebApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'billingController' defined in file [C:\Users\a.caubel\Desktop\sae06\projet-sae6\target\classes\com\example\demo\controller\BillingController.class]: Instantiation of bean failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [controller.demo.sae.semestre.BillingController]: Constructor threw exception; nested exception is java.lang.NoClassDefFoundError: jakarta/mail/Authenticator
 2025-01-29 20:29:55.779  INFO 21100 --- [main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
 2025-01-29 20:29:55.814  WARN 21100 --- [localhost-startStop-1] o.a.c.loader.WebappClassLoaderBase       : Failed to clear soft references from ObjectStreamClass$Caches for web application [hospital]
 
@@ -476,7 +476,7 @@ java.lang.ClassCastException: class java.io.ObjectStreamClass$Caches$1 cannot be
 Error starting ApplicationContext. To display the auto-configuration report re-run your application with 'debug' enabled.
 2025-01-29 20:29:55.831 ERROR 21100 --- [main] o.s.boot.SpringApplication               : Application startup failed
 
-org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'billingController' defined in file [C:\Users\a.caubel\Desktop\sae06\projet-sae6\target\classes\com\example\demo\controller\BillingController.class]: Instantiation of bean failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [controller.demo.sae.semestre.BillingController]: Constructor threw exception; nested exception is java.lang.NoClassDefFoundError: javax/mail/Authenticator
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'billingController' defined in file [C:\Users\a.caubel\Desktop\sae06\projet-sae6\target\classes\com\example\demo\controller\BillingController.class]: Instantiation of bean failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [controller.demo.sae.semestre.BillingController]: Constructor threw exception; nested exception is java.lang.NoClassDefFoundError: jakarta/mail/Authenticator
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateBean(AbstractAutowireCapableBeanFactory.java:1159) ~[spring-beans-4.3.25.RELEASE.jar:4.3.25.RELEASE]
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1103) ~[spring-beans-4.3.25.RELEASE.jar:4.3.25.RELEASE]
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:511) ~[spring-beans-4.3.25.RELEASE.jar:4.3.25.RELEASE]
@@ -495,12 +495,12 @@ org.springframework.beans.factory.BeanCreationException: Error creating bean wit
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1082) ~[spring-boot-1.5.22.RELEASE.jar:1.5.22.RELEASE]
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1071) ~[spring-boot-1.5.22.RELEASE.jar:1.5.22.RELEASE]
 	at demo.sae.semestre.DemoApplication.main(DemoApplication.java:14) ~[classes/:na]
-Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [controller.demo.sae.semestre.BillingController]: Constructor threw exception; nested exception is java.lang.NoClassDefFoundError: javax/mail/Authenticator
+Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [controller.demo.sae.semestre.BillingController]: Constructor threw exception; nested exception is java.lang.NoClassDefFoundError: jakarta/mail/Authenticator
 	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:154) ~[spring-beans-4.3.25.RELEASE.jar:4.3.25.RELEASE]
 	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:89) ~[spring-beans-4.3.25.RELEASE.jar:4.3.25.RELEASE]
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateBean(AbstractAutowireCapableBeanFactory.java:1151) ~[spring-beans-4.3.25.RELEASE.jar:4.3.25.RELEASE]
 	... 17 common frames omitted
-Caused by: java.lang.NoClassDefFoundError: javax/mail/Authenticator
+Caused by: java.lang.NoClassDefFoundError: jakarta/mail/Authenticator
 	at controller.demo.sae.semestre.BillingController.<init>(BillingController.java:43) ~[classes/:na]
 	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method) ~[na:na]
 	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62) ~[na:na]
@@ -508,7 +508,7 @@ Caused by: java.lang.NoClassDefFoundError: javax/mail/Authenticator
 	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:490) ~[na:na]
 	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:142) ~[spring-beans-4.3.25.RELEASE.jar:4.3.25.RELEASE]
 	... 19 common frames omitted
-Caused by: java.lang.ClassNotFoundException: javax.mail.Authenticator
+Caused by: java.lang.ClassNotFoundException: jakarta.mail.Authenticator
 	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:581) ~[na:na]
 	at java.base/jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:178) ~[na:na]
 	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:521) ~[na:na]
@@ -528,7 +528,7 @@ Caused by: java.lang.ClassNotFoundException: javax.mail.Authenticator
 2025-01-29 20:31:22.764  INFO 17392 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
 2025-01-29 20:31:22.765  INFO 17392 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
 2025-01-29 20:31:22.766  INFO 17392 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
-2025-01-29 20:31:22.813  WARN 17392 --- [main] ationConfigEmbeddedWebApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'billingController' defined in file [C:\Users\a.caubel\Desktop\sae06\projet-sae6\target\classes\com\example\demo\controller\BillingController.class]: Instantiation of bean failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [controller.demo.sae.semestre.BillingController]: Constructor threw exception; nested exception is java.lang.NoClassDefFoundError: javax/mail/Authenticator
+2025-01-29 20:31:22.813  WARN 17392 --- [main] ationConfigEmbeddedWebApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'billingController' defined in file [C:\Users\a.caubel\Desktop\sae06\projet-sae6\target\classes\com\example\demo\controller\BillingController.class]: Instantiation of bean failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [controller.demo.sae.semestre.BillingController]: Constructor threw exception; nested exception is java.lang.NoClassDefFoundError: jakarta/mail/Authenticator
 2025-01-29 20:31:22.816  INFO 17392 --- [main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
 2025-01-29 20:31:22.831  WARN 17392 --- [localhost-startStop-1] o.a.c.loader.WebappClassLoaderBase       : Failed to clear soft references from ObjectStreamClass$Caches for web application [hospital]
 
@@ -553,7 +553,7 @@ java.lang.ClassCastException: class java.io.ObjectStreamClass$Caches$1 cannot be
 Error starting ApplicationContext. To display the auto-configuration report re-run your application with 'debug' enabled.
 2025-01-29 20:31:22.853 ERROR 17392 --- [main] o.s.boot.SpringApplication               : Application startup failed
 
-org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'billingController' defined in file [C:\Users\a.caubel\Desktop\sae06\projet-sae6\target\classes\com\example\demo\controller\BillingController.class]: Instantiation of bean failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [controller.demo.sae.semestre.BillingController]: Constructor threw exception; nested exception is java.lang.NoClassDefFoundError: javax/mail/Authenticator
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'billingController' defined in file [C:\Users\a.caubel\Desktop\sae06\projet-sae6\target\classes\com\example\demo\controller\BillingController.class]: Instantiation of bean failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [controller.demo.sae.semestre.BillingController]: Constructor threw exception; nested exception is java.lang.NoClassDefFoundError: jakarta/mail/Authenticator
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateBean(AbstractAutowireCapableBeanFactory.java:1159) ~[spring-beans-4.3.25.RELEASE.jar:4.3.25.RELEASE]
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1103) ~[spring-beans-4.3.25.RELEASE.jar:4.3.25.RELEASE]
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:511) ~[spring-beans-4.3.25.RELEASE.jar:4.3.25.RELEASE]
@@ -572,12 +572,12 @@ org.springframework.beans.factory.BeanCreationException: Error creating bean wit
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1082) ~[spring-boot-1.5.22.RELEASE.jar:1.5.22.RELEASE]
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1071) ~[spring-boot-1.5.22.RELEASE.jar:1.5.22.RELEASE]
 	at demo.sae.semestre.DemoApplication.main(DemoApplication.java:14) ~[classes/:na]
-Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [controller.demo.sae.semestre.BillingController]: Constructor threw exception; nested exception is java.lang.NoClassDefFoundError: javax/mail/Authenticator
+Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [controller.demo.sae.semestre.BillingController]: Constructor threw exception; nested exception is java.lang.NoClassDefFoundError: jakarta/mail/Authenticator
 	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:154) ~[spring-beans-4.3.25.RELEASE.jar:4.3.25.RELEASE]
 	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:89) ~[spring-beans-4.3.25.RELEASE.jar:4.3.25.RELEASE]
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateBean(AbstractAutowireCapableBeanFactory.java:1151) ~[spring-beans-4.3.25.RELEASE.jar:4.3.25.RELEASE]
 	... 17 common frames omitted
-Caused by: java.lang.NoClassDefFoundError: javax/mail/Authenticator
+Caused by: java.lang.NoClassDefFoundError: jakarta/mail/Authenticator
 	at controller.demo.sae.semestre.BillingController.<init>(BillingController.java:43) ~[classes/:na]
 	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method) ~[na:na]
 	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62) ~[na:na]
@@ -585,7 +585,7 @@ Caused by: java.lang.NoClassDefFoundError: javax/mail/Authenticator
 	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:490) ~[na:na]
 	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:142) ~[spring-beans-4.3.25.RELEASE.jar:4.3.25.RELEASE]
 	... 19 common frames omitted
-Caused by: java.lang.ClassNotFoundException: javax.mail.Authenticator
+Caused by: java.lang.ClassNotFoundException: jakarta.mail.Authenticator
 	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:581) ~[na:na]
 	at java.base/jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:178) ~[na:na]
 	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:521) ~[na:na]
@@ -708,8 +708,8 @@ Caused by: java.lang.ClassNotFoundException: org.springframework.mail.javamail.J
 2025-01-29 20:33:20.062  INFO 21308 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/prescriptions/refill],methods=[POST]}" onto public java.lang.String controller.demo.sae.semestre.PrescriptionController.refillMedicine(java.lang.String,int)
 2025-01-29 20:33:20.063  INFO 21308 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/prescriptions/clear],methods=[DELETE]}" onto public void controller.demo.sae.semestre.PrescriptionController.clearAllData()
 2025-01-29 20:33:20.064  INFO 21308 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/prescriptions/inventory],methods=[GET]}" onto public java.util.Map<java.lang.String, java.lang.Integer> controller.demo.sae.semestre.PrescriptionController.getInventory()
-2025-01-29 20:33:20.067  INFO 21308 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
-2025-01-29 20:33:20.068  INFO 21308 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2025-01-29 20:33:20.067  INFO 21308 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(jakarta.servlet.http.HttpServletRequest)
+2025-01-29 20:33:20.068  INFO 21308 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(jakarta.servlet.http.HttpServletRequest,jakarta.servlet.http.HttpServletResponse)
 2025-01-29 20:33:20.095  INFO 21308 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
 2025-01-29 20:33:20.096  INFO 21308 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
 2025-01-29 20:33:20.131  INFO 21308 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
@@ -834,7 +834,7 @@ Caused by: org.hibernate.service.spi.ServiceException: Unable to create requeste
 	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.metadata(EntityManagerFactoryBuilderImpl.java:861) ~[hibernate-core-5.2.17.Final.jar:5.2.17.Final]
 	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:888) ~[hibernate-core-5.2.17.Final.jar:5.2.17.Final]
 	at org.hibernate.jpa.HibernatePersistenceProvider.createEntityManagerFactory(HibernatePersistenceProvider.java:58) ~[hibernate-core-5.2.17.Final.jar:5.2.17.Final]
-	at javax.persistence.Persistence.createEntityManagerFactory(Persistence.java:55) ~[hibernate-jpa-2.1-api-1.0.0.Final.jar:1.0.0.Final]
+	at jakarta.persistence.Persistence.createEntityManagerFactory(Persistence.java:55) ~[hibernate-jpa-2.1-api-1.0.0.Final.jar:1.0.0.Final]
 	at org.springframework.orm.jpa.LocalEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalEntityManagerFactoryBean.java:96) ~[spring-orm-4.3.25.RELEASE.jar:4.3.25.RELEASE]
 	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:384) ~[spring-orm-4.3.25.RELEASE.jar:4.3.25.RELEASE]
 	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:371) ~[spring-orm-4.3.25.RELEASE.jar:4.3.25.RELEASE]
@@ -1013,7 +1013,7 @@ Caused by: org.hibernate.AnnotationException: mappedBy reference an unknown targ
 	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.metadata(EntityManagerFactoryBuilderImpl.java:861) ~[hibernate-core-5.2.17.Final.jar:5.2.17.Final]
 	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:888) ~[hibernate-core-5.2.17.Final.jar:5.2.17.Final]
 	at org.hibernate.jpa.HibernatePersistenceProvider.createEntityManagerFactory(HibernatePersistenceProvider.java:58) ~[hibernate-core-5.2.17.Final.jar:5.2.17.Final]
-	at javax.persistence.Persistence.createEntityManagerFactory(Persistence.java:55) ~[hibernate-jpa-2.1-api-1.0.0.Final.jar:1.0.0.Final]
+	at jakarta.persistence.Persistence.createEntityManagerFactory(Persistence.java:55) ~[hibernate-jpa-2.1-api-1.0.0.Final.jar:1.0.0.Final]
 	at org.springframework.orm.jpa.LocalEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalEntityManagerFactoryBean.java:96) ~[spring-orm-4.3.25.RELEASE.jar:4.3.25.RELEASE]
 	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:384) ~[spring-orm-4.3.25.RELEASE.jar:4.3.25.RELEASE]
 	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:371) ~[spring-orm-4.3.25.RELEASE.jar:4.3.25.RELEASE]
@@ -1136,7 +1136,7 @@ Caused by: org.hibernate.AnnotationException: mappedBy reference an unknown targ
 	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.metadata(EntityManagerFactoryBuilderImpl.java:861) ~[hibernate-core-5.2.17.Final.jar:5.2.17.Final]
 	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:888) ~[hibernate-core-5.2.17.Final.jar:5.2.17.Final]
 	at org.hibernate.jpa.HibernatePersistenceProvider.createEntityManagerFactory(HibernatePersistenceProvider.java:58) ~[hibernate-core-5.2.17.Final.jar:5.2.17.Final]
-	at javax.persistence.Persistence.createEntityManagerFactory(Persistence.java:55) ~[hibernate-jpa-2.1-api-1.0.0.Final.jar:1.0.0.Final]
+	at jakarta.persistence.Persistence.createEntityManagerFactory(Persistence.java:55) ~[hibernate-jpa-2.1-api-1.0.0.Final.jar:1.0.0.Final]
 	at org.springframework.orm.jpa.LocalEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalEntityManagerFactoryBean.java:96) ~[spring-orm-4.3.25.RELEASE.jar:4.3.25.RELEASE]
 	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:384) ~[spring-orm-4.3.25.RELEASE.jar:4.3.25.RELEASE]
 	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:371) ~[spring-orm-4.3.25.RELEASE.jar:4.3.25.RELEASE]
@@ -1259,7 +1259,7 @@ Caused by: org.hibernate.AnnotationException: mappedBy reference an unknown targ
 	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.metadata(EntityManagerFactoryBuilderImpl.java:861) ~[hibernate-core-5.2.17.Final.jar:5.2.17.Final]
 	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:888) ~[hibernate-core-5.2.17.Final.jar:5.2.17.Final]
 	at org.hibernate.jpa.HibernatePersistenceProvider.createEntityManagerFactory(HibernatePersistenceProvider.java:58) ~[hibernate-core-5.2.17.Final.jar:5.2.17.Final]
-	at javax.persistence.Persistence.createEntityManagerFactory(Persistence.java:55) ~[hibernate-jpa-2.1-api-1.0.0.Final.jar:1.0.0.Final]
+	at jakarta.persistence.Persistence.createEntityManagerFactory(Persistence.java:55) ~[hibernate-jpa-2.1-api-1.0.0.Final.jar:1.0.0.Final]
 	at org.springframework.orm.jpa.LocalEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalEntityManagerFactoryBean.java:96) ~[spring-orm-4.3.25.RELEASE.jar:4.3.25.RELEASE]
 	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:384) ~[spring-orm-4.3.25.RELEASE.jar:4.3.25.RELEASE]
 	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:371) ~[spring-orm-4.3.25.RELEASE.jar:4.3.25.RELEASE]
@@ -1382,7 +1382,7 @@ Caused by: org.hibernate.AnnotationException: mappedBy reference an unknown targ
 	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.metadata(EntityManagerFactoryBuilderImpl.java:861) ~[hibernate-core-5.2.17.Final.jar:5.2.17.Final]
 	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:888) ~[hibernate-core-5.2.17.Final.jar:5.2.17.Final]
 	at org.hibernate.jpa.HibernatePersistenceProvider.createEntityManagerFactory(HibernatePersistenceProvider.java:58) ~[hibernate-core-5.2.17.Final.jar:5.2.17.Final]
-	at javax.persistence.Persistence.createEntityManagerFactory(Persistence.java:55) ~[hibernate-jpa-2.1-api-1.0.0.Final.jar:1.0.0.Final]
+	at jakarta.persistence.Persistence.createEntityManagerFactory(Persistence.java:55) ~[hibernate-jpa-2.1-api-1.0.0.Final.jar:1.0.0.Final]
 	at org.springframework.orm.jpa.LocalEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalEntityManagerFactoryBean.java:96) ~[spring-orm-4.3.25.RELEASE.jar:4.3.25.RELEASE]
 	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:384) ~[spring-orm-4.3.25.RELEASE.jar:4.3.25.RELEASE]
 	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:371) ~[spring-orm-4.3.25.RELEASE.jar:4.3.25.RELEASE]
@@ -1441,13 +1441,13 @@ Caused by: org.hibernate.AnnotationException: mappedBy reference an unknown targ
 2025-02-05 19:44:05.836  INFO 12080 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/rooms/availability],methods=[GET]}" onto public java.util.Map<java.lang.String, java.lang.Object> controller.demo.sae.semestre.RoomController.getRoomAvailability(java.lang.String)
 2025-02-05 19:44:05.839  INFO 12080 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/scheduling/available-slots],methods=[GET]}" onto public java.util.List<java.util.Date> controller.demo.sae.semestre.SchedulingController.getAvailableSlots(java.lang.Long,java.util.Date)
 2025-02-05 19:44:05.841  INFO 12080 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/scheduling/appointment],methods=[POST]}" onto public java.lang.String controller.demo.sae.semestre.SchedulingController.scheduleAppointment(java.lang.Long,java.lang.Long,java.util.Date)
-2025-02-05 19:44:05.843  INFO 12080 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
-2025-02-05 19:44:05.845  INFO 12080 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2025-02-05 19:44:05.843  INFO 12080 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(jakarta.servlet.http.HttpServletRequest)
+2025-02-05 19:44:05.845  INFO 12080 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(jakarta.servlet.http.HttpServletRequest,jakarta.servlet.http.HttpServletResponse)
 2025-02-05 19:44:05.918  INFO 12080 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
 2025-02-05 19:44:05.919  INFO 12080 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
 2025-02-05 19:44:05.981  INFO 12080 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
 2025-02-05 19:44:06.034  WARN 12080 --- [main] .t.AbstractTemplateResolverConfiguration : Cannot find template location: classpath:/templates/ (please add some templates or check your Thymeleaf configuration)
-2025-02-05 19:44:06.486  WARN 12080 --- [main] ationConfigEmbeddedWebApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration': Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'javax.sql.DataSource' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+2025-02-05 19:44:06.486  WARN 12080 --- [main] ationConfigEmbeddedWebApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration': Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'jakarta.sql.DataSource' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
 2025-02-05 19:44:06.487  INFO 12080 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
 2025-02-05 19:44:06.488  INFO 12080 --- [main] o.s.o.jpa.LocalEntityManagerFactoryBean  : Closing JPA EntityManagerFactory for persistence unit 'hospitalPU'
 2025-02-05 19:44:06.489  INFO 12080 --- [main] org.hibernate.orm.connections.pooling    : HHH10001008: Cleaning up connection pool [jdbc:mysql://localhost:7878/hospital_db?useSSL=false]
@@ -1481,14 +1481,14 @@ APPLICATION FAILED TO START
 
 Description:
 
-Parameter 0 of constructor in org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration required a bean of type 'javax.sql.DataSource' that could not be found.
+Parameter 0 of constructor in org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration required a bean of type 'jakarta.sql.DataSource' that could not be found.
 	- Bean method 'dataSource' not loaded because @ConditionalOnProperty (spring.datasource.jndi-name) did not find property 'jndi-name'
 	- Bean method 'dataSource' not loaded because @ConditionalOnBean (types: org.springframework.boot.jta.XADataSourceWrapper; SearchStrategy: all) did not find any beans
 
 
 Action:
 
-Consider revisiting the conditions above or defining a bean of type 'javax.sql.DataSource' in your configuration.
+Consider revisiting the conditions above or defining a bean of type 'jakarta.sql.DataSource' in your configuration.
 
 2025-02-05 19:46:27.968  INFO 20084 --- [main] demo.sae.semestre.DemoApplication         : Starting DemoApplication on PP-00356 with PID 20084 (C:\Users\a.caubel\Desktop\sae06\projet-sae6\target\classes started by a.caubel in C:\Users\a.caubel\Desktop\sae06\projet-sae6)
 2025-02-05 19:46:27.973 DEBUG 20084 --- [main] demo.sae.semestre.DemoApplication         : Running with Spring Boot v1.5.22.RELEASE, Spring v4.3.25.RELEASE
@@ -1504,7 +1504,7 @@ Consider revisiting the conditions above or defining a bean of type 'javax.sql.D
 2025-02-05 19:46:30.497  INFO 20084 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
 2025-02-05 19:46:30.499  INFO 20084 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
 2025-02-05 19:46:30.500  INFO 20084 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
-2025-02-05 19:46:30.553  WARN 20084 --- [main] ationConfigEmbeddedWebApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration': Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'javax.sql.DataSource' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+2025-02-05 19:46:30.553  WARN 20084 --- [main] ationConfigEmbeddedWebApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration': Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'jakarta.sql.DataSource' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
 2025-02-05 19:46:30.556  INFO 20084 --- [main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
 2025-02-05 19:46:30.580  WARN 20084 --- [localhost-startStop-1] o.a.c.loader.WebappClassLoaderBase       : Failed to clear soft references from ObjectStreamClass$Caches for web application [hospital]
 
@@ -1535,14 +1535,14 @@ APPLICATION FAILED TO START
 
 Description:
 
-Parameter 0 of constructor in org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration required a bean of type 'javax.sql.DataSource' that could not be found.
+Parameter 0 of constructor in org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration required a bean of type 'jakarta.sql.DataSource' that could not be found.
 	- Bean method 'dataSource' not loaded because @ConditionalOnProperty (spring.datasource.jndi-name) did not find property 'jndi-name'
 	- Bean method 'dataSource' not loaded because @ConditionalOnBean (types: org.springframework.boot.jta.XADataSourceWrapper; SearchStrategy: all) did not find any beans
 
 
 Action:
 
-Consider revisiting the conditions above or defining a bean of type 'javax.sql.DataSource' in your configuration.
+Consider revisiting the conditions above or defining a bean of type 'jakarta.sql.DataSource' in your configuration.
 
 2025-02-05 19:46:56.106  INFO 26824 --- [main] demo.sae.semestre.DemoApplication         : Starting DemoApplication on PP-00356 with PID 26824 (C:\Users\a.caubel\Desktop\sae06\projet-sae6\target\classes started by a.caubel in C:\Users\a.caubel\Desktop\sae06\projet-sae6)
 2025-02-05 19:46:56.110 DEBUG 26824 --- [main] demo.sae.semestre.DemoApplication         : Running with Spring Boot v1.5.22.RELEASE, Spring v4.3.25.RELEASE
@@ -1595,13 +1595,13 @@ Consider revisiting the conditions above or defining a bean of type 'javax.sql.D
 2025-02-05 19:47:00.836  INFO 26824 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/rooms/availability],methods=[GET]}" onto public java.util.Map<java.lang.String, java.lang.Object> controller.demo.sae.semestre.RoomController.getRoomAvailability(java.lang.String)
 2025-02-05 19:47:00.840  INFO 26824 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/scheduling/available-slots],methods=[GET]}" onto public java.util.List<java.util.Date> controller.demo.sae.semestre.SchedulingController.getAvailableSlots(java.lang.Long,java.util.Date)
 2025-02-05 19:47:00.844  INFO 26824 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/scheduling/appointment],methods=[POST]}" onto public java.lang.String controller.demo.sae.semestre.SchedulingController.scheduleAppointment(java.lang.Long,java.lang.Long,java.util.Date)
-2025-02-05 19:47:00.851  INFO 26824 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
-2025-02-05 19:47:00.853  INFO 26824 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2025-02-05 19:47:00.851  INFO 26824 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(jakarta.servlet.http.HttpServletRequest)
+2025-02-05 19:47:00.853  INFO 26824 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(jakarta.servlet.http.HttpServletRequest,jakarta.servlet.http.HttpServletResponse)
 2025-02-05 19:47:00.905  INFO 26824 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
 2025-02-05 19:47:00.905  INFO 26824 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
 2025-02-05 19:47:00.955  INFO 26824 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
 2025-02-05 19:47:01.004  WARN 26824 --- [main] .t.AbstractTemplateResolverConfiguration : Cannot find template location: classpath:/templates/ (please add some templates or check your Thymeleaf configuration)
-2025-02-05 19:47:01.332  WARN 26824 --- [main] ationConfigEmbeddedWebApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration': Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'javax.sql.DataSource' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+2025-02-05 19:47:01.332  WARN 26824 --- [main] ationConfigEmbeddedWebApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration': Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'jakarta.sql.DataSource' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
 2025-02-05 19:47:01.333  INFO 26824 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
 2025-02-05 19:47:01.334  INFO 26824 --- [main] o.s.o.jpa.LocalEntityManagerFactoryBean  : Closing JPA EntityManagerFactory for persistence unit 'hospitalPU'
 2025-02-05 19:47:01.336  INFO 26824 --- [main] org.hibernate.orm.connections.pooling    : HHH10001008: Cleaning up connection pool [jdbc:mysql://localhost:7878/hospital_db?useSSL=false]
@@ -1635,14 +1635,14 @@ APPLICATION FAILED TO START
 
 Description:
 
-Parameter 0 of constructor in org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration required a bean of type 'javax.sql.DataSource' that could not be found.
+Parameter 0 of constructor in org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration required a bean of type 'jakarta.sql.DataSource' that could not be found.
 	- Bean method 'dataSource' not loaded because @ConditionalOnProperty (spring.datasource.jndi-name) did not find property 'jndi-name'
 	- Bean method 'dataSource' not loaded because @ConditionalOnBean (types: org.springframework.boot.jta.XADataSourceWrapper; SearchStrategy: all) did not find any beans
 
 
 Action:
 
-Consider revisiting the conditions above or defining a bean of type 'javax.sql.DataSource' in your configuration.
+Consider revisiting the conditions above or defining a bean of type 'jakarta.sql.DataSource' in your configuration.
 
 2025-02-05 19:48:12.688  INFO 5676 --- [main] demo.sae.semestre.DemoApplication         : Starting DemoApplication on PP-00356 with PID 5676 (C:\Users\a.caubel\Desktop\sae06\projet-sae6\target\classes started by a.caubel in C:\Users\a.caubel\Desktop\sae06\projet-sae6)
 2025-02-05 19:48:12.691 DEBUG 5676 --- [main] demo.sae.semestre.DemoApplication         : Running with Spring Boot v1.5.22.RELEASE, Spring v4.3.25.RELEASE
@@ -1761,7 +1761,7 @@ Caused by: org.hibernate.service.spi.ServiceException: Unable to create requeste
 	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.metadata(EntityManagerFactoryBuilderImpl.java:861) ~[hibernate-core-5.2.17.Final.jar:5.2.17.Final]
 	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:888) ~[hibernate-core-5.2.17.Final.jar:5.2.17.Final]
 	at org.hibernate.jpa.HibernatePersistenceProvider.createEntityManagerFactory(HibernatePersistenceProvider.java:58) ~[hibernate-core-5.2.17.Final.jar:5.2.17.Final]
-	at javax.persistence.Persistence.createEntityManagerFactory(Persistence.java:55) ~[hibernate-jpa-2.1-api-1.0.0.Final.jar:1.0.0.Final]
+	at jakarta.persistence.Persistence.createEntityManagerFactory(Persistence.java:55) ~[hibernate-jpa-2.1-api-1.0.0.Final.jar:1.0.0.Final]
 	at org.springframework.orm.jpa.LocalEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalEntityManagerFactoryBean.java:96) ~[spring-orm-4.3.25.RELEASE.jar:4.3.25.RELEASE]
 	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:384) ~[spring-orm-4.3.25.RELEASE.jar:4.3.25.RELEASE]
 	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:371) ~[spring-orm-4.3.25.RELEASE.jar:4.3.25.RELEASE]
@@ -1934,7 +1934,7 @@ Caused by: org.hibernate.service.spi.ServiceException: Unable to create requeste
 	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.metadata(EntityManagerFactoryBuilderImpl.java:861) ~[hibernate-core-5.2.17.Final.jar:5.2.17.Final]
 	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:888) ~[hibernate-core-5.2.17.Final.jar:5.2.17.Final]
 	at org.hibernate.jpa.HibernatePersistenceProvider.createEntityManagerFactory(HibernatePersistenceProvider.java:58) ~[hibernate-core-5.2.17.Final.jar:5.2.17.Final]
-	at javax.persistence.Persistence.createEntityManagerFactory(Persistence.java:55) ~[hibernate-jpa-2.1-api-1.0.0.Final.jar:1.0.0.Final]
+	at jakarta.persistence.Persistence.createEntityManagerFactory(Persistence.java:55) ~[hibernate-jpa-2.1-api-1.0.0.Final.jar:1.0.0.Final]
 	at org.springframework.orm.jpa.LocalEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalEntityManagerFactoryBean.java:96) ~[spring-orm-4.3.25.RELEASE.jar:4.3.25.RELEASE]
 	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:384) ~[spring-orm-4.3.25.RELEASE.jar:4.3.25.RELEASE]
 	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:371) ~[spring-orm-4.3.25.RELEASE.jar:4.3.25.RELEASE]
@@ -1989,7 +1989,7 @@ The last packet successfully received from the server was 109 milliseconds ago. 
 	at com.mysql.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:323) ~[mysql-connector-java-5.1.48.jar:5.1.48]
 	at org.hibernate.engine.jdbc.connections.internal.DriverConnectionCreator.makeConnection(DriverConnectionCreator.java:38) ~[hibernate-core-5.2.17.Final.jar:5.2.17.Final]
 	... 77 common frames omitted
-Caused by: javax.net.ssl.SSLHandshakeException: No appropriate protocol (protocol is disabled or cipher suites are inappropriate)
+Caused by: jakarta.net.ssl.SSLHandshakeException: No appropriate protocol (protocol is disabled or cipher suites are inappropriate)
 	at java.base/sun.security.ssl.HandshakeContext.<init>(HandshakeContext.java:170) ~[na:na]
 	at java.base/sun.security.ssl.ClientHandshakeContext.<init>(ClientHandshakeContext.java:103) ~[na:na]
 	at java.base/sun.security.ssl.TransportContext.kickstart(TransportContext.java:238) ~[na:na]
@@ -2115,7 +2115,7 @@ Caused by: org.hibernate.service.spi.ServiceException: Unable to create requeste
 	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.metadata(EntityManagerFactoryBuilderImpl.java:861) ~[hibernate-core-5.2.17.Final.jar:5.2.17.Final]
 	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:888) ~[hibernate-core-5.2.17.Final.jar:5.2.17.Final]
 	at org.hibernate.jpa.HibernatePersistenceProvider.createEntityManagerFactory(HibernatePersistenceProvider.java:58) ~[hibernate-core-5.2.17.Final.jar:5.2.17.Final]
-	at javax.persistence.Persistence.createEntityManagerFactory(Persistence.java:55) ~[hibernate-jpa-2.1-api-1.0.0.Final.jar:1.0.0.Final]
+	at jakarta.persistence.Persistence.createEntityManagerFactory(Persistence.java:55) ~[hibernate-jpa-2.1-api-1.0.0.Final.jar:1.0.0.Final]
 	at org.springframework.orm.jpa.LocalEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalEntityManagerFactoryBean.java:96) ~[spring-orm-4.3.25.RELEASE.jar:4.3.25.RELEASE]
 	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:384) ~[spring-orm-4.3.25.RELEASE.jar:4.3.25.RELEASE]
 	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:371) ~[spring-orm-4.3.25.RELEASE.jar:4.3.25.RELEASE]
@@ -2170,7 +2170,7 @@ The last packet successfully received from the server was 136 milliseconds ago. 
 	at com.mysql.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:323) ~[mysql-connector-java-5.1.48.jar:5.1.48]
 	at org.hibernate.engine.jdbc.connections.internal.DriverConnectionCreator.makeConnection(DriverConnectionCreator.java:38) ~[hibernate-core-5.2.17.Final.jar:5.2.17.Final]
 	... 77 common frames omitted
-Caused by: javax.net.ssl.SSLHandshakeException: No appropriate protocol (protocol is disabled or cipher suites are inappropriate)
+Caused by: jakarta.net.ssl.SSLHandshakeException: No appropriate protocol (protocol is disabled or cipher suites are inappropriate)
 	at java.base/sun.security.ssl.HandshakeContext.<init>(HandshakeContext.java:170) ~[na:na]
 	at java.base/sun.security.ssl.ClientHandshakeContext.<init>(ClientHandshakeContext.java:103) ~[na:na]
 	at java.base/sun.security.ssl.TransportContext.kickstart(TransportContext.java:238) ~[na:na]
@@ -2230,13 +2230,13 @@ Caused by: javax.net.ssl.SSLHandshakeException: No appropriate protocol (protoco
 2025-02-05 19:52:04.087  INFO 30064 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/rooms/assign],methods=[POST]}" onto public java.lang.String controller.demo.sae.semestre.RoomController.assignRoom(java.lang.Long,java.lang.String)
 2025-02-05 19:52:04.089  INFO 30064 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/scheduling/appointment],methods=[POST]}" onto public java.lang.String controller.demo.sae.semestre.SchedulingController.scheduleAppointment(java.lang.Long,java.lang.Long,java.util.Date)
 2025-02-05 19:52:04.091  INFO 30064 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/scheduling/available-slots],methods=[GET]}" onto public java.util.List<java.util.Date> controller.demo.sae.semestre.SchedulingController.getAvailableSlots(java.lang.Long,java.util.Date)
-2025-02-05 19:52:04.099  INFO 30064 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
-2025-02-05 19:52:04.101  INFO 30064 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2025-02-05 19:52:04.099  INFO 30064 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(jakarta.servlet.http.HttpServletRequest)
+2025-02-05 19:52:04.101  INFO 30064 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(jakarta.servlet.http.HttpServletRequest,jakarta.servlet.http.HttpServletResponse)
 2025-02-05 19:52:04.152  INFO 30064 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
 2025-02-05 19:52:04.153  INFO 30064 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
 2025-02-05 19:52:04.215  INFO 30064 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
 2025-02-05 19:52:04.277  WARN 30064 --- [main] .t.AbstractTemplateResolverConfiguration : Cannot find template location: classpath:/templates/ (please add some templates or check your Thymeleaf configuration)
-2025-02-05 19:52:04.628  WARN 30064 --- [main] ationConfigEmbeddedWebApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration': Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'javax.sql.DataSource' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+2025-02-05 19:52:04.628  WARN 30064 --- [main] ationConfigEmbeddedWebApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration': Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'jakarta.sql.DataSource' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
 2025-02-05 19:52:04.630  INFO 30064 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
 2025-02-05 19:52:04.631  INFO 30064 --- [main] o.s.o.jpa.LocalEntityManagerFactoryBean  : Closing JPA EntityManagerFactory for persistence unit 'hospitalPU'
 2025-02-05 19:52:04.632  INFO 30064 --- [main] org.hibernate.orm.connections.pooling    : HHH10001008: Cleaning up connection pool [jdbc:mysql://localhost:7878/hospital_db?useSSL=false]
@@ -2270,14 +2270,14 @@ APPLICATION FAILED TO START
 
 Description:
 
-Parameter 0 of constructor in org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration required a bean of type 'javax.sql.DataSource' that could not be found.
+Parameter 0 of constructor in org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration required a bean of type 'jakarta.sql.DataSource' that could not be found.
 	- Bean method 'dataSource' not loaded because @ConditionalOnProperty (spring.datasource.jndi-name) did not find property 'jndi-name'
 	- Bean method 'dataSource' not loaded because @ConditionalOnBean (types: org.springframework.boot.jta.XADataSourceWrapper; SearchStrategy: all) did not find any beans
 
 
 Action:
 
-Consider revisiting the conditions above or defining a bean of type 'javax.sql.DataSource' in your configuration.
+Consider revisiting the conditions above or defining a bean of type 'jakarta.sql.DataSource' in your configuration.
 
 2025-02-05 19:52:38.992  INFO 30028 --- [main] demo.sae.semestre.DemoApplication         : Starting DemoApplication on PP-00356 with PID 30028 (C:\Users\a.caubel\Desktop\sae06\projet-sae6\target\classes started by a.caubel in C:\Users\a.caubel\Desktop\sae06\projet-sae6)
 2025-02-05 19:52:38.998 DEBUG 30028 --- [main] demo.sae.semestre.DemoApplication         : Running with Spring Boot v1.5.22.RELEASE, Spring v4.3.25.RELEASE
@@ -2331,8 +2331,8 @@ Consider revisiting the conditions above or defining a bean of type 'javax.sql.D
 2025-02-05 19:52:43.966  INFO 30028 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/rooms/assign],methods=[POST]}" onto public java.lang.String controller.demo.sae.semestre.RoomController.assignRoom(java.lang.Long,java.lang.String)
 2025-02-05 19:52:43.969  INFO 30028 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/scheduling/appointment],methods=[POST]}" onto public java.lang.String controller.demo.sae.semestre.SchedulingController.scheduleAppointment(java.lang.Long,java.lang.Long,java.util.Date)
 2025-02-05 19:52:43.970  INFO 30028 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/scheduling/available-slots],methods=[GET]}" onto public java.util.List<java.util.Date> controller.demo.sae.semestre.SchedulingController.getAvailableSlots(java.lang.Long,java.util.Date)
-2025-02-05 19:52:43.972  INFO 30028 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
-2025-02-05 19:52:43.974  INFO 30028 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2025-02-05 19:52:43.972  INFO 30028 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(jakarta.servlet.http.HttpServletRequest,jakarta.servlet.http.HttpServletResponse)
+2025-02-05 19:52:43.974  INFO 30028 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(jakarta.servlet.http.HttpServletRequest)
 2025-02-05 19:52:44.026  INFO 30028 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
 2025-02-05 19:52:44.027  INFO 30028 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
 2025-02-05 19:52:44.087  INFO 30028 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
@@ -2366,7 +2366,7 @@ Consider revisiting the conditions above or defining a bean of type 'javax.sql.D
 2025-02-05 19:54:07.382  INFO 14240 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
 2025-02-05 19:54:07.395  INFO 14240 --- [main] o.h.e.j.e.i.LobCreatorBuilderImpl        : HHH000422: Disabling contextual LOB creation as connection was null
 2025-02-05 19:54:07.566  WARN 14240 --- [main] o.h.b.i.SessionFactoryBuilderImpl        : Unrecognized hbm2ddl_auto value : drop-and-create.  Supported values include 'create', 'create-drop', 'update', 'none' and 'validate'.  Ignoring
-2025-02-05 19:54:07.920  WARN 14240 --- [main] ationConfigEmbeddedWebApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'billingController': Unsatisfied dependency expressed through field 'billDao'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'billDaoImpl': Injection of persistence dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [com/example/demo/config/HibernateConfig.class]: Invocation of init method failed; nested exception is javax.persistence.PersistenceException: [PersistenceUnit: hospitalPU] Unable to build Hibernate SessionFactory; nested exception is java.lang.UnsupportedOperationException: The application must supply JDBC connections
+2025-02-05 19:54:07.920  WARN 14240 --- [main] ationConfigEmbeddedWebApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'billingController': Unsatisfied dependency expressed through field 'billDao'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'billDaoImpl': Injection of persistence dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [com/example/demo/config/HibernateConfig.class]: Invocation of init method failed; nested exception is jakarta.persistence.PersistenceException: [PersistenceUnit: hospitalPU] Unable to build Hibernate SessionFactory; nested exception is java.lang.UnsupportedOperationException: The application must supply JDBC connections
 2025-02-05 19:54:07.923  INFO 14240 --- [main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
 2025-02-05 19:54:07.950  WARN 14240 --- [localhost-startStop-1] o.a.c.loader.WebappClassLoaderBase       : Failed to clear soft references from ObjectStreamClass$Caches for web application [hospital]
 
@@ -2391,7 +2391,7 @@ java.lang.ClassCastException: class java.io.ObjectStreamClass$Caches$1 cannot be
 Error starting ApplicationContext. To display the auto-configuration report re-run your application with 'debug' enabled.
 2025-02-05 19:54:07.968 ERROR 14240 --- [main] o.s.boot.SpringApplication               : Application startup failed
 
-org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'billingController': Unsatisfied dependency expressed through field 'billDao'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'billDaoImpl': Injection of persistence dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [com/example/demo/config/HibernateConfig.class]: Invocation of init method failed; nested exception is javax.persistence.PersistenceException: [PersistenceUnit: hospitalPU] Unable to build Hibernate SessionFactory; nested exception is java.lang.UnsupportedOperationException: The application must supply JDBC connections
+org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'billingController': Unsatisfied dependency expressed through field 'billDao'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'billDaoImpl': Injection of persistence dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [com/example/demo/config/HibernateConfig.class]: Invocation of init method failed; nested exception is jakarta.persistence.PersistenceException: [PersistenceUnit: hospitalPU] Unable to build Hibernate SessionFactory; nested exception is java.lang.UnsupportedOperationException: The application must supply JDBC connections
 	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:586) ~[spring-beans-4.3.25.RELEASE.jar:4.3.25.RELEASE]
 	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:87) ~[spring-beans-4.3.25.RELEASE.jar:4.3.25.RELEASE]
 	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessPropertyValues(AutowiredAnnotationBeanPostProcessor.java:364) ~[spring-beans-4.3.25.RELEASE.jar:4.3.25.RELEASE]
@@ -2412,7 +2412,7 @@ org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1082) ~[spring-boot-1.5.22.RELEASE.jar:1.5.22.RELEASE]
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1071) ~[spring-boot-1.5.22.RELEASE.jar:1.5.22.RELEASE]
 	at demo.sae.semestre.DemoApplication.main(DemoApplication.java:14) ~[classes/:na]
-Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'billDaoImpl': Injection of persistence dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [com/example/demo/config/HibernateConfig.class]: Invocation of init method failed; nested exception is javax.persistence.PersistenceException: [PersistenceUnit: hospitalPU] Unable to build Hibernate SessionFactory; nested exception is java.lang.UnsupportedOperationException: The application must supply JDBC connections
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'billDaoImpl': Injection of persistence dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [com/example/demo/config/HibernateConfig.class]: Invocation of init method failed; nested exception is jakarta.persistence.PersistenceException: [PersistenceUnit: hospitalPU] Unable to build Hibernate SessionFactory; nested exception is java.lang.UnsupportedOperationException: The application must supply JDBC connections
 	at org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor.postProcessPropertyValues(PersistenceAnnotationBeanPostProcessor.java:357) ~[spring-orm-4.3.25.RELEASE.jar:4.3.25.RELEASE]
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1268) ~[spring-beans-4.3.25.RELEASE.jar:4.3.25.RELEASE]
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:551) ~[spring-beans-4.3.25.RELEASE.jar:4.3.25.RELEASE]
@@ -2426,7 +2426,7 @@ Caused by: org.springframework.beans.factory.BeanCreationException: Error creati
 	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1059) ~[spring-beans-4.3.25.RELEASE.jar:4.3.25.RELEASE]
 	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:583) ~[spring-beans-4.3.25.RELEASE.jar:4.3.25.RELEASE]
 	... 19 common frames omitted
-Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [com/example/demo/config/HibernateConfig.class]: Invocation of init method failed; nested exception is javax.persistence.PersistenceException: [PersistenceUnit: hospitalPU] Unable to build Hibernate SessionFactory; nested exception is java.lang.UnsupportedOperationException: The application must supply JDBC connections
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [com/example/demo/config/HibernateConfig.class]: Invocation of init method failed; nested exception is jakarta.persistence.PersistenceException: [PersistenceUnit: hospitalPU] Unable to build Hibernate SessionFactory; nested exception is java.lang.UnsupportedOperationException: The application must supply JDBC connections
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1630) ~[spring-beans-4.3.25.RELEASE.jar:4.3.25.RELEASE]
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:553) ~[spring-beans-4.3.25.RELEASE.jar:4.3.25.RELEASE]
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:481) ~[spring-beans-4.3.25.RELEASE.jar:4.3.25.RELEASE]
@@ -2444,7 +2444,7 @@ Caused by: org.springframework.beans.factory.BeanCreationException: Error creati
 	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:87) ~[spring-beans-4.3.25.RELEASE.jar:4.3.25.RELEASE]
 	at org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor.postProcessPropertyValues(PersistenceAnnotationBeanPostProcessor.java:354) ~[spring-orm-4.3.25.RELEASE.jar:4.3.25.RELEASE]
 	... 30 common frames omitted
-Caused by: javax.persistence.PersistenceException: [PersistenceUnit: hospitalPU] Unable to build Hibernate SessionFactory; nested exception is java.lang.UnsupportedOperationException: The application must supply JDBC connections
+Caused by: jakarta.persistence.PersistenceException: [PersistenceUnit: hospitalPU] Unable to build Hibernate SessionFactory; nested exception is java.lang.UnsupportedOperationException: The application must supply JDBC connections
 	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:396) ~[spring-orm-4.3.25.RELEASE.jar:4.3.25.RELEASE]
 	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:371) ~[spring-orm-4.3.25.RELEASE.jar:4.3.25.RELEASE]
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1688) ~[spring-beans-4.3.25.RELEASE.jar:4.3.25.RELEASE]
@@ -2468,7 +2468,7 @@ Caused by: java.lang.UnsupportedOperationException: The application must supply 
 	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:462) ~[hibernate-core-5.2.17.Final.jar:5.2.17.Final]
 	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:892) ~[hibernate-core-5.2.17.Final.jar:5.2.17.Final]
 	at org.hibernate.jpa.HibernatePersistenceProvider.createEntityManagerFactory(HibernatePersistenceProvider.java:58) ~[hibernate-core-5.2.17.Final.jar:5.2.17.Final]
-	at javax.persistence.Persistence.createEntityManagerFactory(Persistence.java:55) ~[hibernate-jpa-2.1-api-1.0.0.Final.jar:1.0.0.Final]
+	at jakarta.persistence.Persistence.createEntityManagerFactory(Persistence.java:55) ~[hibernate-jpa-2.1-api-1.0.0.Final.jar:1.0.0.Final]
 	at org.springframework.orm.jpa.LocalEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalEntityManagerFactoryBean.java:96) ~[spring-orm-4.3.25.RELEASE.jar:4.3.25.RELEASE]
 	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:384) ~[spring-orm-4.3.25.RELEASE.jar:4.3.25.RELEASE]
 	... 48 common frames omitted
@@ -2518,8 +2518,8 @@ Caused by: java.lang.UnsupportedOperationException: The application must supply 
 2025-02-05 19:54:32.248  INFO 2192 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/rooms/availability],methods=[GET]}" onto public java.util.Map<java.lang.String, java.lang.Object> controller.demo.sae.semestre.RoomController.getRoomAvailability(java.lang.String)
 2025-02-05 19:54:32.249  INFO 2192 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/scheduling/available-slots],methods=[GET]}" onto public java.util.List<java.util.Date> controller.demo.sae.semestre.SchedulingController.getAvailableSlots(java.lang.Long,java.util.Date)
 2025-02-05 19:54:32.250  INFO 2192 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/scheduling/appointment],methods=[POST]}" onto public java.lang.String controller.demo.sae.semestre.SchedulingController.scheduleAppointment(java.lang.Long,java.lang.Long,java.util.Date)
-2025-02-05 19:54:32.253  INFO 2192 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
-2025-02-05 19:54:32.253  INFO 2192 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2025-02-05 19:54:32.253  INFO 2192 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(jakarta.servlet.http.HttpServletRequest)
+2025-02-05 19:54:32.253  INFO 2192 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(jakarta.servlet.http.HttpServletRequest,jakarta.servlet.http.HttpServletResponse)
 2025-02-05 19:54:32.302  INFO 2192 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
 2025-02-05 19:54:32.302  INFO 2192 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
 2025-02-05 19:54:32.369  INFO 2192 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
@@ -2583,8 +2583,8 @@ Caused by: java.lang.UnsupportedOperationException: The application must supply 
 2025-02-05 19:54:45.969  INFO 32376 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/rooms/availability],methods=[GET]}" onto public java.util.Map<java.lang.String, java.lang.Object> controller.demo.sae.semestre.RoomController.getRoomAvailability(java.lang.String)
 2025-02-05 19:54:45.972  INFO 32376 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/scheduling/available-slots],methods=[GET]}" onto public java.util.List<java.util.Date> controller.demo.sae.semestre.SchedulingController.getAvailableSlots(java.lang.Long,java.util.Date)
 2025-02-05 19:54:45.974  INFO 32376 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/scheduling/appointment],methods=[POST]}" onto public java.lang.String controller.demo.sae.semestre.SchedulingController.scheduleAppointment(java.lang.Long,java.lang.Long,java.util.Date)
-2025-02-05 19:54:45.979  INFO 32376 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
-2025-02-05 19:54:45.981  INFO 32376 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2025-02-05 19:54:45.979  INFO 32376 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(jakarta.servlet.http.HttpServletRequest,jakarta.servlet.http.HttpServletResponse)
+2025-02-05 19:54:45.981  INFO 32376 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(jakarta.servlet.http.HttpServletRequest)
 2025-02-05 19:54:46.033  INFO 32376 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
 2025-02-05 19:54:46.035  INFO 32376 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
 2025-02-05 19:54:46.091  INFO 32376 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
@@ -2709,7 +2709,7 @@ Caused by: org.hibernate.service.spi.ServiceException: Unable to create requeste
 	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.metadata(EntityManagerFactoryBuilderImpl.java:861) ~[hibernate-core-5.2.17.Final.jar:5.2.17.Final]
 	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:888) ~[hibernate-core-5.2.17.Final.jar:5.2.17.Final]
 	at org.hibernate.jpa.HibernatePersistenceProvider.createEntityManagerFactory(HibernatePersistenceProvider.java:58) ~[hibernate-core-5.2.17.Final.jar:5.2.17.Final]
-	at javax.persistence.Persistence.createEntityManagerFactory(Persistence.java:55) ~[hibernate-jpa-2.1-api-1.0.0.Final.jar:1.0.0.Final]
+	at jakarta.persistence.Persistence.createEntityManagerFactory(Persistence.java:55) ~[hibernate-jpa-2.1-api-1.0.0.Final.jar:1.0.0.Final]
 	at org.springframework.orm.jpa.LocalEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalEntityManagerFactoryBean.java:96) ~[spring-orm-4.3.25.RELEASE.jar:4.3.25.RELEASE]
 	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:384) ~[spring-orm-4.3.25.RELEASE.jar:4.3.25.RELEASE]
 	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:371) ~[spring-orm-4.3.25.RELEASE.jar:4.3.25.RELEASE]
@@ -2835,8 +2835,8 @@ Caused by: java.net.ConnectException: Connection refused: connect
 2025-03-07 20:09:29.989  INFO 25568 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/rooms/availability],methods=[GET]}" onto public java.util.Map<java.lang.String, java.lang.Object> controller.demo.sae.semestre.RoomController.getRoomAvailability(java.lang.String)
 2025-03-07 20:09:29.991  INFO 25568 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/scheduling/available-slots],methods=[GET]}" onto public java.util.List<java.util.Date> controller.demo.sae.semestre.SchedulingController.getAvailableSlots(java.lang.Long,java.util.Date)
 2025-03-07 20:09:29.992  INFO 25568 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/scheduling/appointment],methods=[POST]}" onto public java.lang.String controller.demo.sae.semestre.SchedulingController.scheduleAppointment(java.lang.Long,java.lang.Long,java.util.Date)
-2025-03-07 20:09:29.995  INFO 25568 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
-2025-03-07 20:09:29.996  INFO 25568 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2025-03-07 20:09:29.995  INFO 25568 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(jakarta.servlet.http.HttpServletRequest)
+2025-03-07 20:09:29.996  INFO 25568 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(jakarta.servlet.http.HttpServletRequest,jakarta.servlet.http.HttpServletResponse)
 2025-03-07 20:09:30.069  INFO 25568 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
 2025-03-07 20:09:30.069  INFO 25568 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
 2025-03-07 20:09:30.133  INFO 25568 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
@@ -2877,8 +2877,8 @@ Caused by: java.net.ConnectException: Connection refused: connect
 2025-03-07 20:09:35.288  INFO 3568 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/rooms/availability],methods=[GET]}" onto public java.util.Map<java.lang.String, java.lang.Object> controller.demo.sae.semestre.RoomController.getRoomAvailability(java.lang.String)
 2025-03-07 20:09:35.290  INFO 3568 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/scheduling/available-slots],methods=[GET]}" onto public java.util.List<java.util.Date> controller.demo.sae.semestre.SchedulingController.getAvailableSlots(java.lang.Long,java.util.Date)
 2025-03-07 20:09:35.291  INFO 3568 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/scheduling/appointment],methods=[POST]}" onto public java.lang.String controller.demo.sae.semestre.SchedulingController.scheduleAppointment(java.lang.Long,java.lang.Long,java.util.Date)
-2025-03-07 20:09:35.308  INFO 3568 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
-2025-03-07 20:09:35.311  INFO 3568 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2025-03-07 20:09:35.308  INFO 3568 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(jakarta.servlet.http.HttpServletRequest,jakarta.servlet.http.HttpServletResponse)
+2025-03-07 20:09:35.311  INFO 3568 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(jakarta.servlet.http.HttpServletRequest)
 2025-03-07 20:09:35.390  INFO 3568 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
 2025-03-07 20:09:35.391  INFO 3568 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
 2025-03-07 20:09:35.471  INFO 3568 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
@@ -2938,8 +2938,8 @@ Caused by: java.net.ConnectException: Connection refused: connect
 2025-03-07 20:09:39.889  INFO 22904 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/rooms/assign],methods=[POST]}" onto public java.lang.String controller.demo.sae.semestre.RoomController.assignRoom(java.lang.Long,java.lang.String)
 2025-03-07 20:09:39.891  INFO 22904 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/scheduling/appointment],methods=[POST]}" onto public java.lang.String controller.demo.sae.semestre.SchedulingController.scheduleAppointment(java.lang.Long,java.lang.Long,java.util.Date)
 2025-03-07 20:09:39.893  INFO 22904 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/scheduling/available-slots],methods=[GET]}" onto public java.util.List<java.util.Date> controller.demo.sae.semestre.SchedulingController.getAvailableSlots(java.lang.Long,java.util.Date)
-2025-03-07 20:09:39.899  INFO 22904 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
-2025-03-07 20:09:39.901  INFO 22904 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2025-03-07 20:09:39.899  INFO 22904 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(jakarta.servlet.http.HttpServletRequest)
+2025-03-07 20:09:39.901  INFO 22904 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(jakarta.servlet.http.HttpServletRequest,jakarta.servlet.http.HttpServletResponse)
 2025-03-07 20:09:39.954  INFO 22904 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
 2025-03-07 20:09:39.956  INFO 22904 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
 2025-03-07 20:09:40.023  INFO 22904 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
@@ -3073,8 +3073,8 @@ Verify the connector's configuration, identify and stop any process that's liste
 2025-03-07 20:10:03.183  INFO 19108 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/rooms/assign],methods=[POST]}" onto public java.lang.String controller.demo.sae.semestre.RoomController.assignRoom(java.lang.Long,java.lang.String)
 2025-03-07 20:10:03.187  INFO 19108 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/scheduling/appointment],methods=[POST]}" onto public java.lang.String controller.demo.sae.semestre.SchedulingController.scheduleAppointment(java.lang.Long,java.lang.Long,java.util.Date)
 2025-03-07 20:10:03.189  INFO 19108 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/scheduling/available-slots],methods=[GET]}" onto public java.util.List<java.util.Date> controller.demo.sae.semestre.SchedulingController.getAvailableSlots(java.lang.Long,java.util.Date)
-2025-03-07 20:10:03.193  INFO 19108 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
-2025-03-07 20:10:03.194  INFO 19108 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2025-03-07 20:10:03.193  INFO 19108 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(jakarta.servlet.http.HttpServletRequest)
+2025-03-07 20:10:03.194  INFO 19108 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(jakarta.servlet.http.HttpServletRequest,jakarta.servlet.http.HttpServletResponse)
 2025-03-07 20:10:03.237  INFO 19108 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
 2025-03-07 20:10:03.239  INFO 19108 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
 2025-03-07 20:10:03.289  INFO 19108 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
@@ -3139,10 +3139,10 @@ Verify the connector's configuration, identify and stop any process that's liste
 2025-03-07 20:39:16.905  INFO 24408 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/swagger-resources/configuration/security]}" onto public org.springframework.http.ResponseEntity<springfox.documentation.swagger.web.SecurityConfiguration> springfox.documentation.swagger.web.ApiResourceController.securityConfiguration()
 2025-03-07 20:39:16.910  INFO 24408 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/swagger-resources/configuration/ui]}" onto public org.springframework.http.ResponseEntity<springfox.documentation.swagger.web.UiConfiguration> springfox.documentation.swagger.web.ApiResourceController.uiConfiguration()
 2025-03-07 20:39:16.913  INFO 24408 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/swagger-resources]}" onto public org.springframework.http.ResponseEntity<java.util.List<springfox.documentation.swagger.web.SwaggerResource>> springfox.documentation.swagger.web.ApiResourceController.swaggerResources()
-2025-03-07 20:39:16.921  INFO 24408 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
-2025-03-07 20:39:16.924  INFO 24408 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2025-03-07 20:39:16.921  INFO 24408 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(jakarta.servlet.http.HttpServletRequest)
+2025-03-07 20:39:16.924  INFO 24408 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(jakarta.servlet.http.HttpServletRequest,jakarta.servlet.http.HttpServletResponse)
 2025-03-07 20:39:17.121  INFO 24408 --- [main] o.s.j.d.DriverManagerDataSource          : Loaded JDBC driver: com.mysql.jdbc.Driver
-2025-03-07 20:39:17.222  INFO 24408 --- [main] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [public org.springframework.http.ResponseEntity<springfox.documentation.spring.web.json.Json> springfox.documentation.swagger2.web.Swagger2Controller.getDocumentation(java.lang.String,javax.servlet.http.HttpServletRequest)]
+2025-03-07 20:39:17.222  INFO 24408 --- [main] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [public org.springframework.http.ResponseEntity<springfox.documentation.spring.web.json.Json> springfox.documentation.swagger2.web.Swagger2Controller.getDocumentation(java.lang.String,jakarta.servlet.http.HttpServletRequest)]
 2025-03-07 20:39:17.425  INFO 24408 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@16612a51: startup date [Fri Mar 07 20:39:11 CET 2025]; root of context hierarchy
 2025-03-07 20:39:17.490  INFO 24408 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
 2025-03-07 20:39:17.491  INFO 24408 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
@@ -3212,10 +3212,10 @@ Verify the connector's configuration, identify and stop any process that's liste
 2025-03-07 20:42:05.505  INFO 17512 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/swagger-resources/configuration/security]}" onto public org.springframework.http.ResponseEntity<springfox.documentation.swagger.web.SecurityConfiguration> springfox.documentation.swagger.web.ApiResourceController.securityConfiguration()
 2025-03-07 20:42:05.510  INFO 17512 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/swagger-resources/configuration/ui]}" onto public org.springframework.http.ResponseEntity<springfox.documentation.swagger.web.UiConfiguration> springfox.documentation.swagger.web.ApiResourceController.uiConfiguration()
 2025-03-07 20:42:05.515  INFO 17512 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/swagger-resources]}" onto public org.springframework.http.ResponseEntity<java.util.List<springfox.documentation.swagger.web.SwaggerResource>> springfox.documentation.swagger.web.ApiResourceController.swaggerResources()
-2025-03-07 20:42:05.533  INFO 17512 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
-2025-03-07 20:42:05.540  INFO 17512 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2025-03-07 20:42:05.533  INFO 17512 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(jakarta.servlet.http.HttpServletRequest)
+2025-03-07 20:42:05.540  INFO 17512 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(jakarta.servlet.http.HttpServletRequest,jakarta.servlet.http.HttpServletResponse)
 2025-03-07 20:42:05.798  INFO 17512 --- [main] o.s.j.d.DriverManagerDataSource          : Loaded JDBC driver: com.mysql.jdbc.Driver
-2025-03-07 20:42:05.901  INFO 17512 --- [main] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [public org.springframework.http.ResponseEntity<springfox.documentation.spring.web.json.Json> springfox.documentation.swagger2.web.Swagger2Controller.getDocumentation(java.lang.String,javax.servlet.http.HttpServletRequest)]
+2025-03-07 20:42:05.901  INFO 17512 --- [main] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [public org.springframework.http.ResponseEntity<springfox.documentation.spring.web.json.Json> springfox.documentation.swagger2.web.Swagger2Controller.getDocumentation(java.lang.String,jakarta.servlet.http.HttpServletRequest)]
 2025-03-07 20:42:06.106  INFO 17512 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@16612a51: startup date [Fri Mar 07 20:41:59 CET 2025]; root of context hierarchy
 2025-03-07 20:42:06.179  INFO 17512 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
 2025-03-07 20:42:06.181  INFO 17512 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
@@ -3357,10 +3357,10 @@ Verify the connector's configuration, identify and stop any process that's liste
 2025-03-07 20:42:30.961  INFO 20816 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/swagger-resources/configuration/security]}" onto public org.springframework.http.ResponseEntity<springfox.documentation.swagger.web.SecurityConfiguration> springfox.documentation.swagger.web.ApiResourceController.securityConfiguration()
 2025-03-07 20:42:30.984  INFO 20816 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/swagger-resources/configuration/ui]}" onto public org.springframework.http.ResponseEntity<springfox.documentation.swagger.web.UiConfiguration> springfox.documentation.swagger.web.ApiResourceController.uiConfiguration()
 2025-03-07 20:42:30.992  INFO 20816 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/swagger-resources]}" onto public org.springframework.http.ResponseEntity<java.util.List<springfox.documentation.swagger.web.SwaggerResource>> springfox.documentation.swagger.web.ApiResourceController.swaggerResources()
-2025-03-07 20:42:31.003  INFO 20816 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
-2025-03-07 20:42:31.005  INFO 20816 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2025-03-07 20:42:31.003  INFO 20816 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(jakarta.servlet.http.HttpServletRequest)
+2025-03-07 20:42:31.005  INFO 20816 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(jakarta.servlet.http.HttpServletRequest,jakarta.servlet.http.HttpServletResponse)
 2025-03-07 20:42:31.252  INFO 20816 --- [main] o.s.j.d.DriverManagerDataSource          : Loaded JDBC driver: com.mysql.jdbc.Driver
-2025-03-07 20:42:31.404  INFO 20816 --- [main] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [public org.springframework.http.ResponseEntity<springfox.documentation.spring.web.json.Json> springfox.documentation.swagger2.web.Swagger2Controller.getDocumentation(java.lang.String,javax.servlet.http.HttpServletRequest)]
+2025-03-07 20:42:31.404  INFO 20816 --- [main] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [public org.springframework.http.ResponseEntity<springfox.documentation.spring.web.json.Json> springfox.documentation.swagger2.web.Swagger2Controller.getDocumentation(java.lang.String,jakarta.servlet.http.HttpServletRequest)]
 2025-03-07 20:42:31.698  INFO 20816 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@16612a51: startup date [Fri Mar 07 20:42:25 CET 2025]; root of context hierarchy
 2025-03-07 20:42:31.785  INFO 20816 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
 2025-03-07 20:42:31.786  INFO 20816 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
@@ -3698,7 +3698,7 @@ Caused by: org.hibernate.service.spi.ServiceException: Unable to create requeste
 	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.metadata(EntityManagerFactoryBuilderImpl.java:861) ~[hibernate-core-5.2.17.Final.jar:5.2.17.Final]
 	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:888) ~[hibernate-core-5.2.17.Final.jar:5.2.17.Final]
 	at org.hibernate.jpa.HibernatePersistenceProvider.createEntityManagerFactory(HibernatePersistenceProvider.java:58) ~[hibernate-core-5.2.17.Final.jar:5.2.17.Final]
-	at javax.persistence.Persistence.createEntityManagerFactory(Persistence.java:55) ~[hibernate-jpa-2.1-api-1.0.0.Final.jar:1.0.0.Final]
+	at jakarta.persistence.Persistence.createEntityManagerFactory(Persistence.java:55) ~[hibernate-jpa-2.1-api-1.0.0.Final.jar:1.0.0.Final]
 	at org.springframework.orm.jpa.LocalEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalEntityManagerFactoryBean.java:96) ~[spring-orm-4.3.25.RELEASE.jar:4.3.25.RELEASE]
 	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:384) ~[spring-orm-4.3.25.RELEASE.jar:4.3.25.RELEASE]
 	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:371) ~[spring-orm-4.3.25.RELEASE.jar:4.3.25.RELEASE]
@@ -3863,7 +3863,7 @@ Caused by: org.hibernate.service.spi.ServiceException: Unable to create requeste
 	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.metadata(EntityManagerFactoryBuilderImpl.java:861) ~[hibernate-core-5.2.17.Final.jar:5.2.17.Final]
 	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:888) ~[hibernate-core-5.2.17.Final.jar:5.2.17.Final]
 	at org.hibernate.jpa.HibernatePersistenceProvider.createEntityManagerFactory(HibernatePersistenceProvider.java:58) ~[hibernate-core-5.2.17.Final.jar:5.2.17.Final]
-	at javax.persistence.Persistence.createEntityManagerFactory(Persistence.java:55) ~[hibernate-jpa-2.1-api-1.0.0.Final.jar:1.0.0.Final]
+	at jakarta.persistence.Persistence.createEntityManagerFactory(Persistence.java:55) ~[hibernate-jpa-2.1-api-1.0.0.Final.jar:1.0.0.Final]
 	at org.springframework.orm.jpa.LocalEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalEntityManagerFactoryBean.java:96) ~[spring-orm-4.3.25.RELEASE.jar:4.3.25.RELEASE]
 	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:384) ~[spring-orm-4.3.25.RELEASE.jar:4.3.25.RELEASE]
 	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:371) ~[spring-orm-4.3.25.RELEASE.jar:4.3.25.RELEASE]
@@ -4028,7 +4028,7 @@ Caused by: org.hibernate.service.spi.ServiceException: Unable to create requeste
 	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.metadata(EntityManagerFactoryBuilderImpl.java:861) ~[hibernate-core-5.2.17.Final.jar:5.2.17.Final]
 	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:888) ~[hibernate-core-5.2.17.Final.jar:5.2.17.Final]
 	at org.hibernate.jpa.HibernatePersistenceProvider.createEntityManagerFactory(HibernatePersistenceProvider.java:58) ~[hibernate-core-5.2.17.Final.jar:5.2.17.Final]
-	at javax.persistence.Persistence.createEntityManagerFactory(Persistence.java:55) ~[hibernate-jpa-2.1-api-1.0.0.Final.jar:1.0.0.Final]
+	at jakarta.persistence.Persistence.createEntityManagerFactory(Persistence.java:55) ~[hibernate-jpa-2.1-api-1.0.0.Final.jar:1.0.0.Final]
 	at org.springframework.orm.jpa.LocalEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalEntityManagerFactoryBean.java:96) ~[spring-orm-4.3.25.RELEASE.jar:4.3.25.RELEASE]
 	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:384) ~[spring-orm-4.3.25.RELEASE.jar:4.3.25.RELEASE]
 	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:371) ~[spring-orm-4.3.25.RELEASE.jar:4.3.25.RELEASE]
@@ -4150,10 +4150,10 @@ Caused by: java.net.ConnectException: Connection refused: connect
 2025-03-16 18:14:57.282  INFO 18252 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/swagger-resources/configuration/ui]}" onto public org.springframework.http.ResponseEntity<springfox.documentation.swagger.web.UiConfiguration> springfox.documentation.swagger.web.ApiResourceController.uiConfiguration()
 2025-03-16 18:14:57.283  INFO 18252 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/swagger-resources]}" onto public org.springframework.http.ResponseEntity<java.util.List<springfox.documentation.swagger.web.SwaggerResource>> springfox.documentation.swagger.web.ApiResourceController.swaggerResources()
 2025-03-16 18:14:57.284  INFO 18252 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/swagger-resources/configuration/security]}" onto public org.springframework.http.ResponseEntity<springfox.documentation.swagger.web.SecurityConfiguration> springfox.documentation.swagger.web.ApiResourceController.securityConfiguration()
-2025-03-16 18:14:57.287  INFO 18252 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
-2025-03-16 18:14:57.288  INFO 18252 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2025-03-16 18:14:57.287  INFO 18252 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(jakarta.servlet.http.HttpServletRequest)
+2025-03-16 18:14:57.288  INFO 18252 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(jakarta.servlet.http.HttpServletRequest,jakarta.servlet.http.HttpServletResponse)
 2025-03-16 18:14:57.411  INFO 18252 --- [main] o.s.j.d.DriverManagerDataSource          : Loaded JDBC driver: com.mysql.jdbc.Driver
-2025-03-16 18:14:57.478  INFO 18252 --- [main] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [public org.springframework.http.ResponseEntity<springfox.documentation.spring.web.json.Json> springfox.documentation.swagger2.web.Swagger2Controller.getDocumentation(java.lang.String,javax.servlet.http.HttpServletRequest)]
+2025-03-16 18:14:57.478  INFO 18252 --- [main] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [public org.springframework.http.ResponseEntity<springfox.documentation.spring.web.json.Json> springfox.documentation.swagger2.web.Swagger2Controller.getDocumentation(java.lang.String,jakarta.servlet.http.HttpServletRequest)]
 2025-03-16 18:14:57.678  INFO 18252 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@731f8236: startup date [Sun Mar 16 18:14:52 CET 2025]; root of context hierarchy
 2025-03-16 18:14:57.759  INFO 18252 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
 2025-03-16 18:14:57.760  INFO 18252 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
