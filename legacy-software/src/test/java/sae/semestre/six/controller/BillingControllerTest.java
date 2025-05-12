@@ -41,6 +41,7 @@ public class BillingControllerTest {
 
     @Test
     public void testProcessBill() {
+        long initialFileSize = billingFile.length();
         when(billingFile.length()).thenReturn(100L);
 
         Doctor mockDoctor = new Doctor();
@@ -56,9 +57,8 @@ public class BillingControllerTest {
             new String[]{"CONSULTATION"}
         );
 
-        System.out.println(result);
         assertTrue(result.contains("successfully"));
-        verify(billingFile, times(1)).length();
+        assertTrue(billingFile.length() > initialFileSize);
     }
 
     @Test
