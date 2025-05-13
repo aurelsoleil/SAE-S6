@@ -7,6 +7,8 @@ import sae.semestre.six.patient.PatientDao;
 import sae.semestre.six.doctor.Doctor;
 import sae.semestre.six.patient.Patient;
 import sae.semestre.six.email.EmailService;
+
+import java.io.FileWriter;
 import java.util.*;
 
 import org.hibernate.Hibernate;
@@ -16,7 +18,7 @@ import org.hibernate.Hibernate;
 public class BillingController {
     
     private static volatile BillingController instance;
-    private Map<String, Double> priceList = new HashMap<>();
+    private Map<BillingType, Double> priceList = new HashMap<>();
     private double totalRevenue = 0.0;
     private List<String> pendingBills = new ArrayList<>();
     
@@ -28,13 +30,16 @@ public class BillingController {
     
     @Autowired
     private DoctorDao doctorDao;
+
+    @Autowired
+    private BillingService billingService;
     
     private final EmailService emailService = EmailService.getInstance();
     
     private BillingController() {
-        priceList.put("CONSULTATION", 50.0);
-        priceList.put("XRAY", 150.0);
-        priceList.put("CHIRURGIE", 1000.0);
+        priceList.put(BillingType.CONSULTATION, 50.0);
+        priceList.put(BillingType.XRAY, 150.0);
+        priceList.put(BillingType.SURGERY, 1000.0);
     }
     
     public static BillingController getInstance() {
@@ -52,7 +57,7 @@ public class BillingController {
     public String processBill(
             @RequestParam String patientId,
             @RequestParam String doctorId,
-            @RequestParam String[] treatments) {
+            @RequestParam BillingType[] treatments) {
         try {
             Patient patient = patientDao.findById(Long.parseLong(patientId));
             Doctor doctor = doctorDao.findById(Long.parseLong(doctorId));
@@ -69,7 +74,7 @@ public class BillingController {
             double total = 0.0;
             Set<BillDetail> details = new HashSet<>();
             
-            for (String treatment : treatments) {
+            for (BillingType treatment : treatments) {
                 double price = priceList.get(treatment);
                 total += price;
                 
@@ -89,10 +94,8 @@ public class BillingController {
             bill.setTotalAmount(total);
             bill.setBillDetails(details);
             
-//            try (FileWriter fw = new FileWriter("C:\\hospital\\billing.txt", true)) {
-//                fw.write(bill.getBillNumber() + ": $" + total + "\n");
-//            }
-            
+            BillingFile.write(bill.getBillNumber() + ": $" + total + "\n");
+
             totalRevenue += total;
             billDao.save(bill);
             
@@ -104,13 +107,13 @@ public class BillingController {
             
             return "Bill processed successfully";
         } catch (Exception e) {
-            return "Error: " + e.getMessage();
+            throw new RuntimeException(e.getMessage());
         }
     }
     
     @PutMapping("/price")
     public String updatePrice(
-            @RequestParam String treatment,
+            @RequestParam BillingType treatment,
             @RequestParam double price) {
         priceList.put(treatment, price);
         recalculateAllPendingBills();
@@ -119,19 +122,20 @@ public class BillingController {
     
     private void recalculateAllPendingBills() {
         for (String billId : pendingBills) {
-            processBill(billId, "RECALC", new String[]{"CONSULTATION"});
+            processBill(billId, "RECALC", new BillingType[]{BillingType.CONSULTATION});
         }
     }
     
     @GetMapping("/prices")
-    public Map<String, Double> getPrices() {
+    public Map<BillingType, Double> getPrices() {
         return priceList;
     }
     
     @GetMapping("/insurance")
-    public String calculateInsurance(@RequestParam double amount) {
-        double coverage = amount;
-        return "Insurance coverage: $" + coverage;
+    public double calculateInsurance(@RequestParam double amount) {
+        double result = billingService.calculateInsurance(amount);
+
+        return result;
     }
     
     @GetMapping("/revenue")

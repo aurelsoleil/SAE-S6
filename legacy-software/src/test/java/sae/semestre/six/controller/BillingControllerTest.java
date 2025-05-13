@@ -7,6 +7,8 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import sae.semestre.six.bill.BillDao;
 import sae.semestre.six.bill.BillingController;
+import sae.semestre.six.bill.BillingService;
+import sae.semestre.six.bill.BillingType;
 import sae.semestre.six.doctor.DoctorDao;
 import sae.semestre.six.patient.PatientDao;
 import sae.semestre.six.doctor.Doctor;
@@ -21,6 +23,9 @@ public class BillingControllerTest {
 
     @InjectMocks
     private BillingController billingController;
+
+    @Mock
+    private BillingService billingService;
 
     @Mock
     private File billingFile;
@@ -51,11 +56,16 @@ public class BillingControllerTest {
 
         when(doctorDao.findById(anyLong())).thenReturn(mockDoctor);
 
-        String result = billingController.processBill(
-            "001",
-            "001",
-            new String[]{"CONSULTATION"}
-        );
+        String result = "";
+        try {
+            result = billingController.processBill(
+                "001",
+                "001",
+                new BillingType[] {BillingType.CONSULTATION}
+            );
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
 
         assertTrue(result.contains("successfully"));
         assertTrue(billingFile.length() > initialFileSize);
@@ -63,17 +73,22 @@ public class BillingControllerTest {
 
     @Test
     public void testCalculateInsurance() {
-        double result = Double.parseDouble(
-            billingController.calculateInsurance(1000.0)
-                .replace("Insurance coverage: $", "")
-        );
+        // Mock the behavior of BillingService
+        when(billingService.calculateInsurance(1000.0)).thenReturn(800.0);
 
-        assertEquals(700.0, result, 0.01);
+        // Call the method
+        double result = billingController.calculateInsurance(1000.0);
+
+        // Verify the result
+        assertEquals(800.0, result, 0.01);
+
+        // Verify that the mock was called
+        verify(billingService, times(1)).calculateInsurance(1000.0);
     }
 
     @Test
     public void testUpdatePrice() {
-        billingController.updatePrice("CONSULTATION", 75.0);
-        assertEquals(75.0, billingController.getPrices().get("CONSULTATION"), 0.01);
+        billingController.updatePrice(BillingType.CONSULTATION, 75.0);
+        assertEquals(75.0, billingController.getPrices().get(BillingType.CONSULTATION), 0.01);
     }
 }

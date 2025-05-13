@@ -1,7 +1,6 @@
 package sae.semestre.six.bill;
 
 import jakarta.persistence.*;
-import sae.semestre.six.bill.Bill;
 
 @Entity
 @Table(name = "bill_details")
@@ -16,7 +15,7 @@ public class BillDetail {
     private Bill bill;
     
     @Column(name = "treatment_name")
-    private String treatmentName;
+    private BillingType treatmentName;
     
     @Column(name = "quantity")
     private Integer quantity = 1;
@@ -39,8 +38,8 @@ public class BillDetail {
     public Bill getBill() { return bill; }
     public void setBill(Bill bill) { this.bill = bill; }
     
-    public String getTreatmentName() { return treatmentName; }
-    public void setTreatmentName(String treatmentName) { this.treatmentName = treatmentName; }
+    public BillingType getTreatmentName() { return treatmentName; }
+    public void setTreatmentName(BillingType treatmentName) { this.treatmentName = treatmentName; }
     
     public Integer getQuantity() { return quantity; }
     public void setQuantity(Integer quantity) { 
