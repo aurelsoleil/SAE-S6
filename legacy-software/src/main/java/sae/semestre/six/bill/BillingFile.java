@@ -7,7 +7,7 @@ public class BillingFile {
 
     private static final String FILE_PATH = "billing_records.txt";
 
-    private static final String DIRECTORY_PATH = "./legacy-software/bills/";
+    private static final String DIRECTORY_PATH = "./bills/";
 
     private static FileWriter fileWriter;
 

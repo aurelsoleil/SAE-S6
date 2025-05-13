@@ -61,7 +61,7 @@ public class BillingControllerTest {
             result = billingController.processBill(
                 "001",
                 "001",
-                new BillingType[] {BillingType.CONSULTATION}
+                new String[] {"CONSULTATION"}
             );
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -88,7 +88,7 @@ public class BillingControllerTest {
 
     @Test
     public void testUpdatePrice() {
-        billingController.updatePrice(BillingType.CONSULTATION, 75.0);
-        assertEquals(75.0, billingController.getPrices().get(BillingType.CONSULTATION), 0.01);
+        billingController.updatePrice("CONSULTATION", 75.0);
+        assertEquals(75.0, billingController.getPrices().get("CONSULTATION"), 0.01);
     }
 }

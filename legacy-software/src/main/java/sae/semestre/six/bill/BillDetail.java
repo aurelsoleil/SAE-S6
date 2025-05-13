@@ -15,7 +15,7 @@ public class BillDetail {
     private Bill bill;
     
     @Column(name = "treatment_name")
-    private BillingType treatmentName;
+    private String treatmentName;
     
     @Column(name = "quantity")
     private Integer quantity = 1;
@@ -38,8 +38,8 @@ public class BillDetail {
     public Bill getBill() { return bill; }
     public void setBill(Bill bill) { this.bill = bill; }
     
-    public BillingType getTreatmentName() { return treatmentName; }
-    public void setTreatmentName(BillingType treatmentName) { this.treatmentName = treatmentName; }
+    public String getTreatmentName() { return treatmentName; }
+    public void setTreatmentName(String treatmentName) { this.treatmentName = treatmentName; }
     
     public Integer getQuantity() { return quantity; }
     public void setQuantity(Integer quantity) { 

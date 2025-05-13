@@ -18,7 +18,7 @@ import org.hibernate.Hibernate;
 public class BillingController {
     
     private static volatile BillingController instance;
-    private Map<BillingType, Double> priceList = new HashMap<>();
+    private Map<String, Double> priceList = new HashMap<String, Double>();
     private double totalRevenue = 0.0;
     private List<String> pendingBills = new ArrayList<>();
     
@@ -37,9 +37,9 @@ public class BillingController {
     private final EmailService emailService = EmailService.getInstance();
     
     private BillingController() {
-        priceList.put(BillingType.CONSULTATION, 50.0);
-        priceList.put(BillingType.XRAY, 150.0);
-        priceList.put(BillingType.SURGERY, 1000.0);
+        priceList.put("CONSULTATION", 50.0);
+        priceList.put("XRAY", 150.0);
+        priceList.put("SURGERY", 1000.0);
     }
     
     public static BillingController getInstance() {
@@ -57,7 +57,7 @@ public class BillingController {
     public String processBill(
             @RequestParam String patientId,
             @RequestParam String doctorId,
-            @RequestParam BillingType[] treatments) {
+            @RequestParam String[] treatments) {
         try {
             Patient patient = patientDao.findById(Long.parseLong(patientId));
             Doctor doctor = doctorDao.findById(Long.parseLong(doctorId));
@@ -74,7 +74,7 @@ public class BillingController {
             double total = 0.0;
             Set<BillDetail> details = new HashSet<>();
             
-            for (BillingType treatment : treatments) {
+            for (String treatment : treatments) {
                 double price = priceList.get(treatment);
                 total += price;
                 
@@ -113,7 +113,7 @@ public class BillingController {
     
     @PutMapping("/price")
     public String updatePrice(
-            @RequestParam BillingType treatment,
+            @RequestParam String treatment,
             @RequestParam double price) {
         priceList.put(treatment, price);
         recalculateAllPendingBills();
@@ -122,12 +122,12 @@ public class BillingController {
     
     private void recalculateAllPendingBills() {
         for (String billId : pendingBills) {
-            processBill(billId, "RECALC", new BillingType[]{BillingType.CONSULTATION});
+            processBill(billId, "RECALC", new String[]{"CONSULTATION"});
         }
     }
     
     @GetMapping("/prices")
-    public Map<BillingType, Double> getPrices() {
+    public Map<String, Double> getPrices() {
         return priceList;
     }
     

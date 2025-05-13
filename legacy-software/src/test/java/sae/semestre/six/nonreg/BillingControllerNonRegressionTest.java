@@ -58,7 +58,7 @@ public class BillingControllerNonRegressionTest {
         String result = billingController.processBill(
             "1",
             "1",
-            new BillingType[] {BillingType.CONSULTATION}
+            new String[] {"CONSULTATION"}
         );
 
         // Verify the result
@@ -78,11 +78,11 @@ public class BillingControllerNonRegressionTest {
     @Test
     public void testUpdatePriceNonRegression() {
         // Update the price
-        billingController.updatePrice(BillingType.CONSULTATION, 75.0);
+        billingController.updatePrice("CONSULTATION", 75.0);
 
         // Verify the updated price
-        Map<BillingType, Double> prices = billingController.getPrices();
-        assertEquals(75.0, prices.get(BillingType.CONSULTATION), 0.01);
+        Map<String, Double> prices = billingController.getPrices();
+        assertEquals(75.0, prices.get("CONSULTATION"), 0.01);
     }
 
     @Test
