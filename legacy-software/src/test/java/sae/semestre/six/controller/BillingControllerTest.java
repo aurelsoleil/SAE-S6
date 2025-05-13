@@ -5,13 +5,13 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import sae.semestre.six.dao.BillDao;
-import sae.semestre.six.dao.DoctorDao;
-import sae.semestre.six.dao.PatientDao;
-import sae.semestre.six.model.Doctor;
+import sae.semestre.six.bill.BillDao;
+import sae.semestre.six.bill.BillingController;
+import sae.semestre.six.doctor.DoctorDao;
+import sae.semestre.six.patient.PatientDao;
+import sae.semestre.six.doctor.Doctor;
 
 import java.io.File;
-import java.util.Collections;
 import java.util.HashSet;
 
 import static org.junit.jupiter.api.Assertions.*;

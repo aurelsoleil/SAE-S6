@@ -5,9 +5,10 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import sae.semestre.six.dao.PatientDao;
-import sae.semestre.six.dao.PrescriptionDao;
-import sae.semestre.six.service.BillingService;
+import sae.semestre.six.patient.PatientDao;
+import sae.semestre.six.prescription.PrescriptionController;
+import sae.semestre.six.prescription.PrescriptionDao;
+import sae.semestre.six.bill.BillingService;
 
 import java.util.List;
 
