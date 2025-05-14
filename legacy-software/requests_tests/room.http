@@ -1,0 +1,8 @@
+### Assign a room to an appointment
+POST http://localhost:8045/rooms/assign
+Content-Type: application/x-www-form-urlencoded
+
+appointmentId=1&roomNumber=101
+
+### Get room availability
+GET http://localhost:8045/rooms/availability?roomNumber=101

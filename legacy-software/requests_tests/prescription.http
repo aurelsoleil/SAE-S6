@@ -1,0 +1,23 @@
+### Add a prescription
+POST http://localhost:8045/prescriptions/add
+Content-Type: application/x-www-form-urlencoded
+
+patientId=1&medicines=PARACETAMOL,ANTIBIOTICS&notes=Take after meals
+
+### Get prescriptions for a patient
+GET http://localhost:8045/prescriptions/patient/1
+
+### Get medicine inventory
+GET http://localhost:8045/prescriptions/inventory
+
+### Refill medicine
+POST http://localhost:8045/prescriptions/refill
+Content-Type: application/x-www-form-urlencoded
+
+medicine=PARACETAMOL&quantity=50
+
+### Calculate prescription cost
+GET http://localhost:8045/prescriptions/cost/RX1
+
+### Clear all prescription data
+DELETE http://localhost:8045/prescriptions/clear

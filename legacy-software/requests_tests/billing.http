@@ -1,0 +1,23 @@
+### Process a bill
+POST http://localhost:8045/billing/process
+Content-Type: application/x-www-form-urlencoded
+
+patientId=1&doctorId=1&treatments=CONSULTATION&XRAY
+
+### Update treatment price
+PUT http://localhost:8045/billing/price
+Content-Type: application/x-www-form-urlencoded
+
+treatment=CONSULTATION&price=75.0
+
+### Get all treatment prices
+GET http://localhost:8045/billing/prices
+
+### Calculate insurance
+GET http://localhost:8045/billing/insurance?amount=1000.0
+
+### Get total revenue
+GET http://localhost:8045/billing/revenue
+
+### Get pending bills
+GET http://localhost:8045/billing/pending

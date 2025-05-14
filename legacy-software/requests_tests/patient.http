@@ -1,0 +1,5 @@
+### Search patient history
+GET http://localhost:8045/patient-history/search?keyword=fever&startDate=2023-01-01&endDate=2023-12-31
+
+### Get patient summary
+GET http://localhost:8045/patient-history/patient/1/summary

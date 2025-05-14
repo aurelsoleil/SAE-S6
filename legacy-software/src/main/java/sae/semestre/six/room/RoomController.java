@@ -1,5 +1,6 @@
 package sae.semestre.six.room;
 
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import sae.semestre.six.appointment.AppointmentDao;
@@ -21,29 +22,27 @@ public class RoomController {
     
     
     @PostMapping("/assign")
+    @Transactional
     public String assignRoom(@RequestParam Long appointmentId, @RequestParam String roomNumber) {
         try {
             Room room = roomDao.findByRoomNumber(roomNumber);
             Appointment appointment = appointmentDao.findById(appointmentId);
-            
-            
-            if (room.getType().equals("SURGERY") && 
+
+            if (room.getType().equals("SURGERY") &&
                 !appointment.getDoctor().getSpecialization().equals("SURGEON")) {
                 return "Error: Only surgeons can use surgery rooms";
             }
-            
-            
+
             if (room.getCurrentPatientCount() >= room.getCapacity()) {
                 return "Error: Room is at full capacity";
             }
-            
-            
+
             room.setCurrentPatientCount(room.getCurrentPatientCount() + 1);
             appointment.setRoomNumber(roomNumber);
-            
+
             roomDao.update(room);
             appointmentDao.update(appointment);
-            
+
             return "Room assigned successfully";
         } catch (Exception e) {
             return "Error: " + e.getMessage();
