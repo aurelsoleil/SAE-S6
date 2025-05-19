@@ -26,11 +26,9 @@ public class BillDetail {
     @Column(name = "line_total")
     private Double lineTotal = 0.0;
     
-    
     public void calculateLineTotal() {
         this.lineTotal = this.quantity * this.unitPrice;
     }
-    
     
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
