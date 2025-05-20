@@ -2,7 +2,7 @@ package sae.semestre.six.prescription;
 
 import sae.semestre.six.patient.PatientDao;
 import sae.semestre.six.patient.Patient;
-import sae.semestre.six.bill.BillingService;
+import sae.semestre.six.bill.service.BillingService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

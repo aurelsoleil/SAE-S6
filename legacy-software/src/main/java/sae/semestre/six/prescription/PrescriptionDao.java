@@ -1,6 +1,6 @@
 package sae.semestre.six.prescription;
 
-import sae.semestre.six.dao.GenericDao;
+import sae.semestre.six.utils.dao.GenericDao;
 
 import java.util.List;
 

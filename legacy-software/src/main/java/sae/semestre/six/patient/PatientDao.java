@@ -1,7 +1,7 @@
 package sae.semestre.six.patient;
 
-import sae.semestre.six.dao.GenericDao;
-import sae.semestre.six.patient.Patient;
+import sae.semestre.six.utils.dao.GenericDao;
+
 import java.util.List;
 
 public interface PatientDao extends GenericDao<Patient, Long> {

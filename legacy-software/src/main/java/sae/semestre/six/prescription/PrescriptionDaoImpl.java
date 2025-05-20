@@ -1,6 +1,6 @@
 package sae.semestre.six.prescription;
 
-import sae.semestre.six.dao.AbstractHibernateDao;
+import sae.semestre.six.utils.dao.AbstractHibernateDao;
 import org.springframework.stereotype.Repository;
 import java.util.List;
 

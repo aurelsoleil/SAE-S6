@@ -1,7 +1,7 @@
 package sae.semestre.six.patient;
 
-import sae.semestre.six.dao.GenericDao;
-import sae.semestre.six.patient.PatientHistory;
+import sae.semestre.six.utils.dao.GenericDao;
+
 import java.util.List;
 import java.util.Date;
 
