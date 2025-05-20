@@ -1,8 +1,7 @@
 package sae.semestre.six.supplier;
 
 import jakarta.persistence.*;
-import sae.semestre.six.inventory.Inventory;
-import sae.semestre.six.supplier.SupplierInvoice;
+import sae.semestre.six.inventory.entity.Inventory;
 
 @Entity
 @Table(name = "supplier_invoice_details")

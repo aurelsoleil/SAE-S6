@@ -8,7 +8,7 @@ import org.mockito.MockitoAnnotations;
 import sae.semestre.six.patient.PatientDao;
 import sae.semestre.six.prescription.PrescriptionController;
 import sae.semestre.six.prescription.PrescriptionDao;
-import sae.semestre.six.bill.BillingService;
+import sae.semestre.six.bill.service.BillingService;
 
 import java.util.List;
 

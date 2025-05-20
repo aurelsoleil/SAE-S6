@@ -1,8 +1,8 @@
 package sae.semestre.six.patient;
 
 import jakarta.persistence.*;
-import sae.semestre.six.appointment.Appointment;
-import sae.semestre.six.bill.Bill;
+import sae.semestre.six.appointment.entity.Appointment;
+import sae.semestre.six.bill.entity.Bill;
 import sae.semestre.six.lab.LabResult;
 import sae.semestre.six.prescription.Prescription;
 

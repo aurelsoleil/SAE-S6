@@ -5,13 +5,12 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import sae.semestre.six.bill.BillDao;
-import sae.semestre.six.bill.BillingController;
-import sae.semestre.six.bill.BillingService;
-import sae.semestre.six.bill.BillingType;
-import sae.semestre.six.doctor.DoctorDao;
+import sae.semestre.six.bill.dao.IBillDao;
+import sae.semestre.six.bill.controller.BillingController;
+import sae.semestre.six.bill.service.BillingService;
+import sae.semestre.six.doctor.dao.IDoctorDao;
 import sae.semestre.six.patient.PatientDao;
-import sae.semestre.six.doctor.Doctor;
+import sae.semestre.six.doctor.entity.Doctor;
 
 import java.io.File;
 import java.util.HashSet;
@@ -34,10 +33,10 @@ public class BillingControllerTest {
     private PatientDao patientDao;
 
     @Mock
-    private DoctorDao doctorDao;
+    private IDoctorDao doctorDao;
 
     @Mock
-    private BillDao billDao;
+    private IBillDao billDao;
 
     @BeforeEach
     public void setUp() {

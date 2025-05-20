@@ -1,7 +1,7 @@
 package sae.semestre.six.patient;
 
 import jakarta.persistence.*;
-import sae.semestre.six.appointment.Appointment;
+import sae.semestre.six.appointment.entity.Appointment;
 
 import java.util.Date;
 import java.util.HashSet;
