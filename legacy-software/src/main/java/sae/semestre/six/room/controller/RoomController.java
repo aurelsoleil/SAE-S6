@@ -41,7 +41,7 @@ public class RoomController {
             appointment.setRoomNumber(roomNumber);
 
             roomDao.update(room);
-            appointmentDao.update(appointment);
+//            appointmentDao.update(appointment);
 
             return "Room assigned successfully";
         } catch (Exception e) {

@@ -3,6 +3,9 @@ package sae.semestre.six.doctor.entity;
 import jakarta.persistence.*;
 import sae.semestre.six.appointment.entity.Appointment;
 
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.Date;
 import java.util.Set;
 
 @Entity
@@ -112,5 +115,32 @@ public class Doctor {
 
     public void setAppointments(Set<Appointment> appointments) {
         this.appointments = appointments;
+    }
+
+
+    public void checkAppointmentAvailability(Appointment appointment) {
+        LocalDateTime appointmentDate = appointment.getAppointmentDate()
+                .toInstant()
+                .atZone(ZoneId.systemDefault())
+                .toLocalDateTime();
+
+        for (Appointment existing : appointments) {
+            Date existingDate = existing.getAppointmentDate();
+            ZoneId zoneId = ZoneId.systemDefault();
+            LocalDateTime existingDateTime = existingDate.toInstant()
+                    .atZone(zoneId)
+                    .toLocalDateTime();
+
+            if (existingDateTime.isEqual(appointmentDate) ||
+                (existingDateTime.isBefore(appointmentDate) && existingDateTime.plusHours(1).isAfter(appointmentDate)) ||
+                (appointmentDate.isBefore(existingDateTime) && appointmentDate.plusHours(1).isAfter(existingDateTime))) {
+                throw new IllegalArgumentException("Doctor is not available at this time");
+            }
+        }
+
+        int hour = appointmentDate.getHour();
+        if (hour < 9 || hour > 17) {
+            throw new IllegalArgumentException("Appointment time is outside of working hours");
+        }
     }
 } 

@@ -15,4 +15,7 @@ public interface IAppointmentService {
 
     List<Appointment> findByDateRange(Date startDate, Date endDate);
 
+    Appointment createAppointment(Long doctorId, Long patientId, String appointmentDate);
+
+    List<Appointment> findAvailable(Long doctorId, Long roomId, Integer duration);
 }
