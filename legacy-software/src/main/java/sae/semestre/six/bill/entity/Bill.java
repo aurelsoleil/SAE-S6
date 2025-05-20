@@ -52,31 +52,87 @@ public class Bill {
     private PatientHistory patientHistory;
     
     
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+    public Long getId() {
+        return id;
+    }
+    public void setId(Long id) {
+        this.id = id;
+    }
     
-    public String getBillNumber() { return billNumber; }
-
-    public void setBillNumber(String billNumber) { this.billNumber = billNumber; }
+    public String getBillNumber() {
+        return billNumber;
+    }
+    public void setBillNumber(String billNumber) {
+        this.billNumber = billNumber;
+    }
     
-    public Patient getPatient() { return patient; }
-    public void setPatient(Patient patient) { this.patient = patient; }
+    public Patient getPatient() {
+        return patient;
+    }
+    public void setPatient(Patient patient) {
+        this.patient = patient;
+    }
     
-    public Doctor getDoctor() { return doctor; }
-    public void setDoctor(Doctor doctor) { this.doctor = doctor; }
+    public Doctor getDoctor() {
+        return doctor;
+    }
+    public void setDoctor(Doctor doctor) {
+        this.doctor = doctor;
+    }
     
-    public Date getBillDate() { return billDate; }
-    public void setBillDate(Date billDate) { this.billDate = billDate; }
+    public Date getBillDate() {
+        return billDate;
+    }
+    public void setBillDate(Date billDate) {
+        this.billDate = billDate;
+    }
     
-    public Double getTotalAmount() { return totalAmount; }
-    public void setTotalAmount(Double totalAmount) { this.totalAmount = totalAmount; }
+    public Double getTotalAmount() {
+        return totalAmount;
+    }
+    public void setTotalAmount(Double totalAmount) {
+        this.totalAmount = totalAmount;
+    }
     
-    public String getStatus() { return status; }
+    public String getStatus() {
+        return status;
+    }
     public void setStatus(String status) { 
         this.status = status;
         this.lastModified = new Date(); 
     }
     
-    public Set<BillDetail> getBillDetails() { return billDetails; }
-    public void setBillDetails(Set<BillDetail> billDetails) { this.billDetails = billDetails; }
+    public Set<BillDetail> getBillDetails() {
+        return billDetails;
+    }
+    public void setBillDetails(Set<BillDetail> billDetails) {
+        this.billDetails = billDetails;
+    }
+
+    public void addBillDetails(String[] treatments) {
+        double total = 0.0;
+        Set<BillDetail> details = new HashSet<>();
+
+        for (String treatment : treatments) {
+            double price = BillingController.getTreatmentPrice(treatment);
+
+            total += price;
+
+            BillDetail detail = new BillDetail();
+            detail.setBill(this);
+            detail.setTreatmentName(treatment);
+            detail.setUnitPrice(price);
+            details.add(detail);
+
+        }
+
+        if (total > 500) {
+            total = total * 0.9;
+        }
+
+        this.setTotalAmount(total);
+        this.setBillDetails(details);
+
+        BillingFile.write(this.getBillNumber() + ": $" + total + "\n");
+    }
 } 

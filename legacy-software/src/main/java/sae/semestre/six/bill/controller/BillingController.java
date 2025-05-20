@@ -103,12 +103,12 @@ public class BillingController {
             totalRevenue += total;
             billDao.save(bill);
             
-            emailService.sendEmail(
-                "admin@hospital.com",
-                "New Bill Generated",
-                "Bill Number: " + bill.getBillNumber() + "\nTotal: $" + total
-            );
-            
+//            emailService.sendEmail(
+//                "admin@hospital.com",
+//                "New Bill Generated",
+//                "Bill Number: " + bill.getBillNumber() + "\nTotal: $" + total
+//            );
+//
             return "Bill processed successfully";
         } catch (Exception e) {
             throw new RuntimeException(e.getMessage());

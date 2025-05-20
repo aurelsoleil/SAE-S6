@@ -9,7 +9,7 @@ import java.util.List;
 
 @Repository
 public class AppointmentDao extends AbstractHibernateDao<Appointment, Long> implements IAppointmentDao {
-    
+
     @Override
     @SuppressWarnings("unchecked")
     public List<Appointment> findByPatientId(Long patientId) {
@@ -18,7 +18,7 @@ public class AppointmentDao extends AbstractHibernateDao<Appointment, Long> impl
                 .setParameter("patientId", patientId)
                 .getResultList();
     }
-    
+
     @Override
     @SuppressWarnings("unchecked")
     public List<Appointment> findByDoctorId(Long doctorId) {
@@ -27,7 +27,7 @@ public class AppointmentDao extends AbstractHibernateDao<Appointment, Long> impl
                 .setParameter("doctorId", doctorId)
                 .getResultList();
     }
-    
+
     @Override
     @SuppressWarnings("unchecked")
     public List<Appointment> findByDateRange(Date startDate, Date endDate) {
@@ -37,4 +37,14 @@ public class AppointmentDao extends AbstractHibernateDao<Appointment, Long> impl
                 .setParameter("endDate", endDate)
                 .getResultList();
     }
-} 
+
+    @Override
+    public List<Appointment> findByRoomNumberAndDoctorId(Long roomNumber, Long doctorId) {
+        return getEntityManager()
+                .createQuery("FROM Appointment WHERE room.roomNumber = :roomNumber AND doctor.id = :doctorId")
+                .setParameter("roomNumber", roomNumber)
+                .setParameter("doctorId", doctorId)
+                .getResultList();
+    }
+
+}

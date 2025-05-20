@@ -6,14 +6,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import sae.semestre.six.appointment.entity.Appointment;
 import sae.semestre.six.appointment.service.IAppointmentService;
-import sae.semestre.six.doctor.entity.Doctor;
 import sae.semestre.six.doctor.service.IDoctorService;
 import sae.semestre.six.utils.email.SMTPHelper;
-import sae.semestre.six.patient.IPatientService;
-import sae.semestre.six.patient.Patient;
 
-import java.time.LocalDateTime;
-import java.time.ZoneId;
 import java.util.*;
 
 @RestController
@@ -26,12 +21,8 @@ public class SchedulingController {
     @Autowired
     private IDoctorService doctorService;
 
-    @Autowired
-    private IPatientService patientService;
-
     private final SMTPHelper emailService = SMTPHelper.getInstance();
-    
-    
+
     @PostMapping("/appointment")
     public ResponseEntity<?> scheduleAppointment(
             @RequestParam Long doctorId,
@@ -44,53 +35,35 @@ public class SchedulingController {
         if (patientId == null) {
             return new ResponseEntity<>("Patient not found", HttpStatus.NOT_FOUND);
         }
-
-
-        Doctor doctor = doctorService.findDoctorById(doctorId);
-        Patient patient = patientService.findById(patientId);
-        if (doctor == null) {
-            return new ResponseEntity<>("Doctor not found", HttpStatus.NOT_FOUND);
+        if (appointmentDate == null || appointmentDate.isEmpty()) {
+            return new ResponseEntity<>("Appointment date is required", HttpStatus.BAD_REQUEST);
         }
 
-        if (patient == null) {
-            return new ResponseEntity<>("Patient not found", HttpStatus.NOT_FOUND);
-        }
 
-        LocalDateTime appointmentDateTime = LocalDateTime.parse(appointmentDate);
-
-        Appointment appointment = new Appointment();
-        appointment.setDoctor(doctor);
-        appointment.setPatient(patient);
-        appointment.setAppointmentDate(Date.from(appointmentDateTime.atZone(ZoneId.systemDefault()).toInstant()));
-
-        List<Appointment> doctorAppointments = appointmentService.findByDoctorId(doctorId);
-
-        for (Appointment existing : doctorAppointments) {
-            Date existingDate = existing.getAppointmentDate();
-            ZoneId zoneId = ZoneId.systemDefault();
-            LocalDateTime existingDateTime = existingDate.toInstant()
-                    .atZone(zoneId)
-                    .toLocalDateTime();
-
-            if (existingDateTime.equals(appointmentDateTime)) {
-                return new ResponseEntity<>("Doctor is not available at this time", HttpStatus.CONFLICT);
-            }
-        }
-
-        int hour = appointmentDateTime.getHour();
-        if (hour < 9 || hour > 17) {
-            return new ResponseEntity<>("Appointment time is outside of working hours", HttpStatus.BAD_REQUEST);
-        }
-
-        emailService.sendEmail(
-                doctor.getEmail(),
-                "New Appointment Scheduled",
-                "You have a new appointment on " + appointmentDateTime
-        );
+        Appointment appointment = appointmentService.createAppointment(doctorId, patientId, appointmentDate);
 
         return new ResponseEntity<>(appointment, HttpStatus.CREATED);
     }
-    
-    
 
-} 
+    @PostMapping("/available")
+    public ResponseEntity<?> availableAppointments(
+            @RequestParam Long doctorId,
+            @RequestParam Long roomId,
+            @RequestParam Integer duration) {
+        if (doctorId == null) {
+            return new ResponseEntity<>("Doctor not found", HttpStatus.NOT_FOUND);
+        }
+        if (roomId == null) {
+            return new ResponseEntity<>("Room not found", HttpStatus.NOT_FOUND);
+        }
+        if (duration == null || duration <= 0) {
+            return new ResponseEntity<>("Duration is required", HttpStatus.BAD_REQUEST);
+        }
+
+        // check when both doctor and room are available
+        List<Appointment> availableAppointments = appointmentService.findAvailable(doctorId, roomId, duration);
+
+        return new ResponseEntity<>(availableAppointments, HttpStatus.OK);
+
+    }
+}
