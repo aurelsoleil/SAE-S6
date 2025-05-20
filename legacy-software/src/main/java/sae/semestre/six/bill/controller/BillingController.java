@@ -56,6 +56,10 @@ public class BillingController {
         }
         return instance;
     }
+
+    public static Double getTreatmentPrice(String treatment) {
+        return getInstance().priceList.get(treatment);
+    }
     
     @PostMapping("/process")
     public String processBill(
@@ -65,8 +69,6 @@ public class BillingController {
         try {
             Patient patient = patientDao.findById(Long.parseLong(patientId));
             Doctor doctor = doctorDao.findById(Long.parseLong(doctorId));
-            
-            Hibernate.initialize(doctor.getAppointments());
             
             Bill bill = new Bill();
             bill.setBillNumber("BILL" + System.currentTimeMillis());
@@ -144,7 +146,8 @@ public class BillingController {
     
     @GetMapping("/revenue")
     public String getTotalRevenue() {
-        return "Total Revenue: $" + totalRevenue;
+        //TODO utiliser le DAO pour récupérer le total revenue
+        return "Total Revenue: $";
     }
     
     @GetMapping("/pending")

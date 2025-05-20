@@ -1,6 +1,7 @@
 package sae.semestre.six.bill.entity;
 
 import jakarta.persistence.*;
+import sae.semestre.six.bill.controller.BillingController;
 import sae.semestre.six.doctor.entity.Doctor;
 import sae.semestre.six.patient.Patient;
 import sae.semestre.six.patient.PatientHistory;
@@ -132,7 +133,5 @@ public class Bill {
 
         this.setTotalAmount(total);
         this.setBillDetails(details);
-
-        BillingFile.write(this.getBillNumber() + ": $" + total + "\n");
     }
 } 
