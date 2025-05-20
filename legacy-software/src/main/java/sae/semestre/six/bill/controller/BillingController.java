@@ -74,35 +74,11 @@ public class BillingController {
             bill.setBillNumber("BILL" + System.currentTimeMillis());
             bill.setPatient(patient);
             bill.setDoctor(doctor);
-            
-            Hibernate.initialize(bill.getBillDetails());
-            
-            double total = 0.0;
-            Set<BillDetail> details = new HashSet<>();
-            
-            for (String treatment : treatments) {
-                double price = priceList.get(treatment);
-                total += price;
-                
-                BillDetail detail = new BillDetail();
-                detail.setBill(bill);
-                detail.setTreatmentName(treatment);
-                detail.setUnitPrice(price);
-                details.add(detail);
-                
-                Hibernate.initialize(detail);
-            }
-            
-            if (total > 500) {
-                total = total * 0.9;
-            }
-            
-            bill.setTotalAmount(total);
-            bill.setBillDetails(details);
-            
-            BillingFile.write(bill.getBillNumber() + ": $" + total + "\n");
 
-            totalRevenue += total;
+            bill.addBillDetails(treatments);
+
+
+            BillingFile.write(bill.getBillNumber() + ": $" + bill.getTotalAmount() + "\n");
             billDao.save(bill);
             
 //            emailService.sendEmail(
