@@ -1,6 +1,7 @@
 package sae.semestre.six.room;
 
 import sae.semestre.six.appointment.AppointmentDTO;
+import sae.semestre.six.room.entity.Room;
 
 import java.util.HashSet;
 import java.util.Set;

@@ -1,7 +1,9 @@
-package sae.semestre.six.room;
+package sae.semestre.six.room.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import sae.semestre.six.room.dao.RoomDao;
+import sae.semestre.six.room.entity.Room;
 
 import java.util.List;
 

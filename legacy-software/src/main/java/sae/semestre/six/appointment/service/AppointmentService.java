@@ -4,9 +4,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import sae.semestre.six.appointment.dao.IAppointmentDao;
 import sae.semestre.six.appointment.entity.Appointment;
+import sae.semestre.six.doctor.entity.Doctor;
 import sae.semestre.six.doctor.service.IDoctorService;
 import sae.semestre.six.patient.IPatientService;
 import sae.semestre.six.patient.Patient;
+import sae.semestre.six.room.service.IRoomService;
+import sae.semestre.six.utils.email.SMTPHelper;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -30,7 +33,7 @@ public class AppointmentService implements IAppointmentService {
     @Autowired
     private IRoomService roomService;
 
-    private final EmailService emailService = EmailService.getInstance();
+    private final SMTPHelper smtpHelper = SMTPHelper.getInstance();
 
     public Appointment findById(Long id) {
         return appointmentDao.findById(id);
@@ -67,7 +70,7 @@ public class AppointmentService implements IAppointmentService {
 
         doctor.checkAppointmentAvailability(appointment);
 
-        emailService.sendEmail(
+        smtpHelper.sendEmail(
                 doctor.getEmail(),
                 "New Appointment Scheduled",
                 "You have a new appointment on " + appointmentDateTime

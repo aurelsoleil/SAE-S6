@@ -1,9 +1,10 @@
 package sae.semestre.six.appointment;
 
-import sae.semestre.six.doctor.Doctor;
+import sae.semestre.six.appointment.entity.AppointmentStatus;
+import sae.semestre.six.doctor.entity.Doctor;
 import sae.semestre.six.patient.Patient;
 import sae.semestre.six.patient.PatientHistory;
-import sae.semestre.six.room.Room;
+import sae.semestre.six.room.entity.Room;
 
 import java.util.Date;
 

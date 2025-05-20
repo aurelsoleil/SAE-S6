@@ -1,4 +1,6 @@
-package sae.semestre.six.room;
+package sae.semestre.six.room.service;
+
+import sae.semestre.six.room.entity.Room;
 
 import java.util.List;
 
