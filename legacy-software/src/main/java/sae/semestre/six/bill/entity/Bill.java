@@ -9,6 +9,8 @@ import sae.semestre.six.patient.entity.PatientHistory;
 import java.util.Date;
 import java.util.Set;
 import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "bills")
@@ -51,8 +53,10 @@ public class Bill {
 
     @ManyToOne
     private PatientHistory patientHistory;
-    
-    
+
+    @Column(name = "hash", length = 128, updatable = false)
+    private String hash;
+
     public Long getId() {
         return id;
     }
@@ -99,8 +103,12 @@ public class Bill {
         return status;
     }
     public void setStatus(String status) { 
+        // Empêcher la modification si la facture est déjà émise ou archivée
+        if (this.status != null && (this.status.equals("ISSUED") || this.status.equals("ARCHIVED"))) {
+            throw new IllegalStateException("Impossible de modifier une facture émise ou archivée.");
+        }
         this.status = status;
-        this.lastModified = new Date(); 
+        this.lastModified = new java.util.Date(); 
     }
     
     public Set<BillDetail> getBillDetails() {
@@ -134,4 +142,60 @@ public class Bill {
         setTotalAmount(total);
         setBillDetails(details);
     }
-} 
+
+    public String getHash() { return hash; }
+    public void setHash(String hash) { this.hash = hash; }
+
+    /**
+     * Calcule un hash unique qui garantit l'intégrité de la facture et de son historique.
+     * Le hash est calculé à partir :
+     * - du contenu de la facture
+     * - de la date de création (pour garantir l'ordre)
+     * - du hash de la facture précédente (si elle existe)
+     * - d'un sel secret
+     */
+    public String computeHash(String previousHash) {
+        StringBuilder sb = new StringBuilder();
+        // Informations temporelles (pour garantir l'ordre)
+        sb.append(createdDate.getTime());
+        
+        // Contenu de la facture
+        sb.append(billNumber)
+          .append(totalAmount)
+          .append(status)
+          .append(patient != null ? patient.getId() : "")
+          .append(doctor != null ? doctor.getId() : "");
+
+        // Détails des traitements (triés pour garantir la cohérence)
+        List<BillDetail> sortedDetails = new ArrayList<>(billDetails);
+        sortedDetails.sort((a, b) -> a.getTreatmentName().compareTo(b.getTreatmentName()));
+        for (BillDetail detail : sortedDetails) {
+            sb.append(detail.getTreatmentName())
+              .append(detail.getUnitPrice());
+        }
+
+        // Chaînage avec la facture précédente
+        sb.append(previousHash != null ? previousHash : "ROOT");
+
+        // Sel secret
+        String secretSalt = System.getenv("BILL_HASH_SECRET");
+        if (secretSalt == null) {
+            secretSalt = "default-secret";
+        }
+        sb.append(secretSalt);
+
+        try {
+            java.security.MessageDigest digest = java.security.MessageDigest.getInstance("SHA-256");
+            byte[] hashBytes = digest.digest(sb.toString().getBytes(java.nio.charset.StandardCharsets.UTF_8));
+            StringBuilder hexString = new StringBuilder();
+            for (byte b : hashBytes) {
+                String hex = Integer.toHexString(0xff & b);
+                if(hex.length() == 1) hexString.append('0');
+                hexString.append(hex);
+            }
+            return hexString.toString();
+        } catch (Exception e) {
+            throw new RuntimeException("Erreur lors du calcul du hash", e);
+        }
+    }
+}

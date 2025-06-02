@@ -1,5 +1,6 @@
 package sae.semestre.six.bill.controller;
 
+import jakarta.transaction.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import sae.semestre.six.bill.BillingFile;
@@ -33,7 +34,7 @@ public class BillingController {
 
     @Autowired
     private BillingService billingService;
-    
+
     private final SMTPHelper emailService = SMTPHelper.getInstance();
     
     private BillingController() {
@@ -58,7 +59,8 @@ public class BillingController {
     }
     
     @PostMapping("/process")
-    public String processBill(
+    @Transactional
+    public synchronized String processBill(
             @RequestParam String patientId,
             @RequestParam String doctorId,
             @RequestParam String[] treatments) {
@@ -70,22 +72,49 @@ public class BillingController {
             bill.setBillNumber("BILL" + System.currentTimeMillis());
             bill.setPatient(patient);
             bill.setDoctor(doctor);
-
             bill.addBillDetails(treatments);
+
+            // Récupération de la dernière facture pour le chaînage
+            Bill lastBill = billDao.findLastBill();
+            String previousHash = lastBill != null ? lastBill.getHash() : null;
+
+            // Calcul du hash incluant l'historique
+            bill.setHash(bill.computeHash(previousHash));
+            bill.setStatus("ISSUED");
 
             BillingFile.write(bill.getBillNumber() + ": $" + bill.getTotalAmount() + "\n");
             billDao.save(bill);
-
-//            emailService.sendEmail(
-//                "admin@hospital.com",
-//                "New Bill Generated",
-//                "Bill Number: " + bill.getBillNumber() + "\nTotal: $" + total
-//            );
 
             return "Bill processed successfully";
         } catch (Exception e) {
             throw new RuntimeException(e.getMessage());
         }
+    }
+
+    /**
+     * Vérifie l'intégrité de toutes les factures.
+     */
+    @GetMapping("/integrity-report")
+    public List<Map<String, Object>> getIntegrityReport() {
+        List<Bill> bills = billDao.findAllOrderByCreatedDateAsc();
+        List<Map<String, Object>> report = new ArrayList<>();
+        String previousHash = null;
+
+        for (Bill bill : bills) {
+            String expectedHash = bill.computeHash(previousHash);
+            boolean integrityOk = expectedHash.equals(bill.getHash());
+
+            Map<String, Object> entry = new HashMap<>();
+            entry.put("billNumber", bill.getBillNumber());
+            entry.put("date", bill.getBillDate());
+            entry.put("status", bill.getStatus());
+            entry.put("integrityOk", integrityOk);
+            report.add(entry);
+
+            // Si cette facture est invalide, on arrête la validation de la chaîne
+            previousHash = integrityOk ? bill.getHash() : null;
+        }
+        return report;
     }
     
     @PutMapping("/price")
@@ -122,4 +151,4 @@ public class BillingController {
     public List<String> getPendingBills() {
         return pendingBills;
     }
-} 
+}
