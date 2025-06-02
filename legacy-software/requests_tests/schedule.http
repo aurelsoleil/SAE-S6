@@ -4,5 +4,8 @@ Content-Type: application/x-www-form-urlencoded
 
 doctorId=1&patientId=1&appointmentDate=2023-12-01T10:00:00
 
-### Get available slots for a doctor
-GET http://localhost:8045/scheduling/available-slots?doctorId=1&date=2023-12-01
+### Check available slots for a doctor and room
+POST http://localhost:8045/scheduling/available
+Content-Type: application/x-www-form-urlencoded
+
+doctorId=1&roomId=1&duration=1

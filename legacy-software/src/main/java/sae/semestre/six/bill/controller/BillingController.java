@@ -56,6 +56,10 @@ public class BillingController {
         }
         return instance;
     }
+
+    public static Double getTreatmentPrice(String treatment) {
+        return getInstance().priceList.get(treatment);
+    }
     
     @PostMapping("/process")
     public String processBill(
@@ -66,49 +70,23 @@ public class BillingController {
             Patient patient = patientDao.findById(Long.parseLong(patientId));
             Doctor doctor = doctorDao.findById(Long.parseLong(doctorId));
             
-            Hibernate.initialize(doctor.getAppointments());
-            
             Bill bill = new Bill();
             bill.setBillNumber("BILL" + System.currentTimeMillis());
             bill.setPatient(patient);
             bill.setDoctor(doctor);
-            
-            Hibernate.initialize(bill.getBillDetails());
-            
-            double total = 0.0;
-            Set<BillDetail> details = new HashSet<>();
-            
-            for (String treatment : treatments) {
-                double price = priceList.get(treatment);
-                total += price;
-                
-                BillDetail detail = new BillDetail();
-                detail.setBill(bill);
-                detail.setTreatmentName(treatment);
-                detail.setUnitPrice(price);
-                details.add(detail);
-                
-                Hibernate.initialize(detail);
-            }
-            
-            if (total > 500) {
-                total = total * 0.9;
-            }
-            
-            bill.setTotalAmount(total);
-            bill.setBillDetails(details);
-            
-            BillingFile.write(bill.getBillNumber() + ": $" + total + "\n");
 
-            totalRevenue += total;
+            bill.addBillDetails(treatments);
+
+
+            BillingFile.write(bill.getBillNumber() + ": $" + bill.getTotalAmount() + "\n");
             billDao.save(bill);
             
-            emailService.sendEmail(
-                "admin@hospital.com",
-                "New Bill Generated",
-                "Bill Number: " + bill.getBillNumber() + "\nTotal: $" + total
-            );
-            
+//            emailService.sendEmail(
+//                "admin@hospital.com",
+//                "New Bill Generated",
+//                "Bill Number: " + bill.getBillNumber() + "\nTotal: $" + total
+//            );
+//
             return "Bill processed successfully";
         } catch (Exception e) {
             throw new RuntimeException(e.getMessage());
@@ -144,7 +122,8 @@ public class BillingController {
     
     @GetMapping("/revenue")
     public String getTotalRevenue() {
-        return "Total Revenue: $" + totalRevenue;
+        //TODO utiliser le DAO pour récupérer le total revenue
+        return "Total Revenue: $";
     }
     
     @GetMapping("/pending")
