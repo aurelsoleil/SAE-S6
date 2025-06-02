@@ -1,7 +1,7 @@
 package sae.semestre.six.lab;
 
 import jakarta.persistence.*;
-import sae.semestre.six.patient.PatientHistory;
+import sae.semestre.six.patient.entity.PatientHistory;
 
 import java.util.Date;
 

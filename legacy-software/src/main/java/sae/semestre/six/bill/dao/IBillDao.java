@@ -12,4 +12,5 @@ public interface IBillDao extends GenericDao<Bill, Long> {
     List<Bill> findByDoctorId(Long doctorId);
     List<Bill> findByDateRange(Date startDate, Date endDate);
     List<Bill> findByStatus(String status);
+    double calculateTotalRevenue();
 } 

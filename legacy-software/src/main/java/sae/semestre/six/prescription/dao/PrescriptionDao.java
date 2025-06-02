@@ -1,11 +1,12 @@
-package sae.semestre.six.prescription;
+package sae.semestre.six.prescription.dao;
 
+import sae.semestre.six.prescription.entity.Prescription;
 import sae.semestre.six.utils.dao.AbstractHibernateDao;
 import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public class PrescriptionDaoImpl extends AbstractHibernateDao<Prescription, Long> implements PrescriptionDao {
+public class PrescriptionDao extends AbstractHibernateDao<Prescription, Long> implements IPrescriptionDao {
     
     @Override
     @SuppressWarnings("unchecked")

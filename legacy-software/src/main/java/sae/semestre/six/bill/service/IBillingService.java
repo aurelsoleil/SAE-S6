@@ -4,6 +4,6 @@ public interface IBillingService  {
 
     void processBill(String patientId, String source, String[] items);
 
-    public double calculateInsurance(double montant);
+    double calculateInsurance(double montant);
 
 }

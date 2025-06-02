@@ -3,8 +3,8 @@ package sae.semestre.six.bill.entity;
 import jakarta.persistence.*;
 import sae.semestre.six.bill.controller.BillingController;
 import sae.semestre.six.doctor.entity.Doctor;
-import sae.semestre.six.patient.Patient;
-import sae.semestre.six.patient.PatientHistory;
+import sae.semestre.six.patient.entity.Patient;
+import sae.semestre.six.patient.entity.PatientHistory;
 
 import java.util.Date;
 import java.util.Set;
@@ -131,7 +131,7 @@ public class Bill {
             total = total * 0.9;
         }
 
-        this.setTotalAmount(total);
-        this.setBillDetails(details);
+        setTotalAmount(total);
+        setBillDetails(details);
     }
 } 

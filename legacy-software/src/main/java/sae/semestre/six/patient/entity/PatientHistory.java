@@ -1,10 +1,10 @@
-package sae.semestre.six.patient;
+package sae.semestre.six.patient.entity;
 
 import jakarta.persistence.*;
 import sae.semestre.six.appointment.entity.Appointment;
 import sae.semestre.six.bill.entity.Bill;
 import sae.semestre.six.lab.LabResult;
-import sae.semestre.six.prescription.Prescription;
+import sae.semestre.six.prescription.entity.Prescription;
 
 import java.util.*;
 
