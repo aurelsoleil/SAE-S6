@@ -8,7 +8,7 @@ public class BillingService implements IBillingService {
     public static final double INSURANCE_RATE = 0.8;
 
     public void processBill(String patientId, String source, String[] items) {
-        
+
     }
 
     public double calculateInsurance(double montant) {
@@ -17,7 +17,6 @@ public class BillingService implements IBillingService {
         }
 
         System.out.println("Calculating insurance for montant: " + montant);
-
         return montant * INSURANCE_RATE;
     }
 } 

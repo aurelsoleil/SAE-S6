@@ -1,5 +1,6 @@
 package sae.semestre.six.bill.dao;
 
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import sae.semestre.six.bill.entity.Bill;
 import sae.semestre.six.utils.dao.AbstractHibernateDao;
@@ -9,7 +10,7 @@ import java.util.List;
 
 @Repository
 public class BillDao extends AbstractHibernateDao<Bill, Long> implements IBillDao {
-    
+
     @Override
     public Bill findByBillNumber(String billNumber) {
         return (Bill) getEntityManager()
@@ -53,5 +54,12 @@ public class BillDao extends AbstractHibernateDao<Bill, Long> implements IBillDa
                 .createQuery("FROM Bill WHERE status = :status")
                 .setParameter("status", status)
                 .getResultList();
+    }
+
+    public double calculateTotalRevenue() {
+        Double result = getEntityManager()
+                .createQuery("SELECT SUM(b.totalAmount) FROM Bill b", Double.class)
+                .getSingleResult();
+        return result != null ? result : 0.0;
     }
 } 

@@ -1,9 +1,9 @@
-package sae.semestre.six.patient;
+package sae.semestre.six.patient.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import sae.semestre.six.patient.PatientHistoryDao;
-import sae.semestre.six.patient.PatientHistory;
+import sae.semestre.six.patient.dao.IPatientHistoryDao;
+import sae.semestre.six.patient.entity.PatientHistory;
 
 import java.util.*;
 
@@ -12,7 +12,7 @@ import java.util.*;
 public class PatientHistoryController {
     
     @Autowired
-    private PatientHistoryDao patientHistoryDao;
+    private IPatientHistoryDao patientHistoryDao;
     
     
     @GetMapping("/search")

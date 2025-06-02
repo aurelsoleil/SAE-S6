@@ -6,8 +6,8 @@ import sae.semestre.six.appointment.dao.IAppointmentDao;
 import sae.semestre.six.appointment.entity.Appointment;
 import sae.semestre.six.doctor.entity.Doctor;
 import sae.semestre.six.doctor.service.IDoctorService;
-import sae.semestre.six.patient.IPatientService;
-import sae.semestre.six.patient.Patient;
+import sae.semestre.six.patient.entity.Patient;
+import sae.semestre.six.patient.service.IPatientService;
 import sae.semestre.six.room.service.IRoomService;
 import sae.semestre.six.utils.email.SMTPHelper;
 

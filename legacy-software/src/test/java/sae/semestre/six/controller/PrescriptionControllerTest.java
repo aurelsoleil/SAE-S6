@@ -5,9 +5,9 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import sae.semestre.six.patient.PatientDao;
-import sae.semestre.six.prescription.PrescriptionController;
-import sae.semestre.six.prescription.PrescriptionDao;
+import sae.semestre.six.patient.dao.IPatientDao;
+import sae.semestre.six.prescription.controller.PrescriptionController;
+import sae.semestre.six.prescription.dao.IPrescriptionDao;
 import sae.semestre.six.bill.service.BillingService;
 
 import java.util.List;
@@ -20,10 +20,10 @@ public class PrescriptionControllerTest {
     private PrescriptionController prescriptionController;
 
     @Mock
-    private PatientDao patientDao;
+    private IPatientDao patientDao;
 
     @Mock
-    private PrescriptionDao prescriptionDao;
+    private IPrescriptionDao prescriptionDao;
 
     @Mock
     private BillingService billingService;

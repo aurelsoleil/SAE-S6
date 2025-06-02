@@ -6,31 +6,27 @@ import sae.semestre.six.bill.BillingFile;
 import sae.semestre.six.bill.service.BillingService;
 import sae.semestre.six.bill.dao.IBillDao;
 import sae.semestre.six.bill.entity.Bill;
-import sae.semestre.six.bill.entity.BillDetail;
 import sae.semestre.six.doctor.dao.IDoctorDao;
-import sae.semestre.six.patient.PatientDao;
+import sae.semestre.six.patient.dao.IPatientDao;
 import sae.semestre.six.doctor.entity.Doctor;
-import sae.semestre.six.patient.Patient;
+import sae.semestre.six.patient.entity.Patient;
 import sae.semestre.six.utils.email.SMTPHelper;
 
 import java.util.*;
-
-import org.hibernate.Hibernate;
 
 @RestController
 @RequestMapping("/billing")
 public class BillingController {
     
     private static volatile BillingController instance;
-    private Map<String, Double> priceList = new HashMap<String, Double>();
-    private double totalRevenue = 0.0;
+    private Map<String, Double> priceList = new HashMap<>();
     private List<String> pendingBills = new ArrayList<>();
     
     @Autowired
     private IBillDao billDao;
     
     @Autowired
-    private PatientDao patientDao;
+    private IPatientDao patientDao;
     
     @Autowired
     private IDoctorDao doctorDao;
@@ -69,7 +65,7 @@ public class BillingController {
         try {
             Patient patient = patientDao.findById(Long.parseLong(patientId));
             Doctor doctor = doctorDao.findById(Long.parseLong(doctorId));
-            
+
             Bill bill = new Bill();
             bill.setBillNumber("BILL" + System.currentTimeMillis());
             bill.setPatient(patient);
@@ -77,16 +73,15 @@ public class BillingController {
 
             bill.addBillDetails(treatments);
 
-
             BillingFile.write(bill.getBillNumber() + ": $" + bill.getTotalAmount() + "\n");
             billDao.save(bill);
-            
+
 //            emailService.sendEmail(
 //                "admin@hospital.com",
 //                "New Bill Generated",
 //                "Bill Number: " + bill.getBillNumber() + "\nTotal: $" + total
 //            );
-//
+
             return "Bill processed successfully";
         } catch (Exception e) {
             throw new RuntimeException(e.getMessage());
@@ -115,15 +110,12 @@ public class BillingController {
     
     @GetMapping("/insurance")
     public double calculateInsurance(@RequestParam double amount) {
-        double result = billingService.calculateInsurance(amount);
-
-        return result;
+        return billingService.calculateInsurance(amount);
     }
     
     @GetMapping("/revenue")
     public String getTotalRevenue() {
-        //TODO utiliser le DAO pour récupérer le total revenue
-        return "Total Revenue: $";
+        return "Total Revenue: $" + billDao.calculateTotalRevenue();
     }
     
     @GetMapping("/pending")

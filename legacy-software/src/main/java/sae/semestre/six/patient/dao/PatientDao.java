@@ -1,11 +1,12 @@
-package sae.semestre.six.patient;
+package sae.semestre.six.patient.dao;
 
+import sae.semestre.six.patient.entity.Patient;
 import sae.semestre.six.utils.dao.AbstractHibernateDao;
 import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public class PatientDaoImpl extends AbstractHibernateDao<Patient, Long> implements PatientDao {
+public class PatientDao extends AbstractHibernateDao<Patient, Long> implements IPatientDao {
     
     @Override
     public Patient findByPatientNumber(String patientNumber) {

@@ -9,7 +9,7 @@ import sae.semestre.six.bill.dao.IBillDao;
 import sae.semestre.six.bill.controller.BillingController;
 import sae.semestre.six.bill.service.BillingService;
 import sae.semestre.six.doctor.dao.IDoctorDao;
-import sae.semestre.six.patient.PatientDao;
+import sae.semestre.six.patient.dao.IPatientDao;
 import sae.semestre.six.doctor.entity.Doctor;
 
 import java.io.File;
@@ -30,7 +30,7 @@ public class BillingControllerTest {
     private File billingFile;
 
     @Mock
-    private PatientDao patientDao;
+    private IPatientDao patientDao;
 
     @Mock
     private IDoctorDao doctorDao;

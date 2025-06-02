@@ -1,12 +1,13 @@
-package sae.semestre.six.patient;
+package sae.semestre.six.patient.dao;
 
+import sae.semestre.six.patient.entity.PatientHistory;
 import sae.semestre.six.utils.dao.AbstractHibernateDao;
 import org.springframework.stereotype.Repository;
 import jakarta.persistence.Query;
 import java.util.*;
 
 @Repository
-public class PatientHistoryDaoImpl extends AbstractHibernateDao<PatientHistory, Long> implements PatientHistoryDao {
+public class PatientHistoryDao extends AbstractHibernateDao<PatientHistory, Long> implements IPatientHistoryDao {
     
     @Override
     @SuppressWarnings("unchecked")

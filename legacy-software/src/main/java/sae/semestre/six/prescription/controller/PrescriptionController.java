@@ -1,11 +1,14 @@
-package sae.semestre.six.prescription;
+package sae.semestre.six.prescription.controller;
 
-import sae.semestre.six.patient.PatientDao;
-import sae.semestre.six.patient.Patient;
+import sae.semestre.six.patient.dao.IPatientDao;
+import sae.semestre.six.patient.entity.Patient;
 import sae.semestre.six.bill.service.BillingService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import sae.semestre.six.prescription.dao.IPrescriptionDao;
+import sae.semestre.six.prescription.entity.Prescription;
+
 import java.util.*;
 
 @RestController
@@ -31,10 +34,10 @@ public class PrescriptionController {
     
     
     @Autowired
-    private PatientDao patientDao;
+    private IPatientDao patientDao;
     
     @Autowired
-    private PrescriptionDao prescriptionDao;
+    private IPrescriptionDao prescriptionDao;
     
     @PostMapping("/add")
     public String addPrescription(

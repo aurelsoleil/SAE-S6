@@ -2,8 +2,8 @@ package sae.semestre.six.appointment.entity;
 
 import jakarta.persistence.*;
 import sae.semestre.six.doctor.entity.Doctor;
-import sae.semestre.six.patient.Patient;
-import sae.semestre.six.patient.PatientHistory;
+import sae.semestre.six.patient.entity.Patient;
+import sae.semestre.six.patient.entity.PatientHistory;
 import sae.semestre.six.room.entity.Room;
 
 import java.util.Date;
