@@ -149,20 +149,19 @@ public class Bill {
     /**
      * Calcule un hash unique qui garantit l'intégrité de la facture et de son historique.
      * Le hash est calculé à partir :
-     * - du contenu de la facture
-     * - de la date de création (pour garantir l'ordre)
-     * - du hash de la facture précédente (si elle existe)
+     * - contenu de la facture
+     * - la date de création (pour garantir l'ordre)
+     * - hash de la facture précédente (si elle existe)
      * - d'un sel secret
      */
     public String computeHash(String previousHash) {
         StringBuilder sb = new StringBuilder();
         // Informations temporelles (pour garantir l'ordre)
-        sb.append(createdDate.getTime());
+        sb.append(createdDate.toString());
         
         // Contenu de la facture
         sb.append(billNumber)
           .append(totalAmount)
-          .append(status)
           .append(patient != null ? patient.getId() : "")
           .append(doctor != null ? doctor.getId() : "");
 
