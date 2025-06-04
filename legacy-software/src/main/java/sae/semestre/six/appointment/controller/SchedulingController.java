@@ -28,7 +28,7 @@ public class SchedulingController {
             @RequestParam Long doctorId,
             @RequestParam Long patientId,
             @RequestParam String appointmentDate,
-            @RequestParam(required = false) Long insuranceId // Ajout du paramètre
+            @RequestParam(required = false) Long insuranceId
     ) {
 
         if (doctorId == null) {
