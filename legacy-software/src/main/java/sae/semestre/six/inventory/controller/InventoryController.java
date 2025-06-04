@@ -18,6 +18,9 @@ public class InventoryController {
     
     @Autowired
     private InventoryDao inventoryDao;
+
+    @Autowired
+    private StockMovementDao stockMovementDao;
     
     private final SMTPHelper emailService = SMTPHelper.getInstance();
     
@@ -25,22 +28,25 @@ public class InventoryController {
     @PostMapping("/supplier-invoice")
     public String processSupplierInvoice(@RequestBody SupplierInvoice invoice) {
         try {
-            
             for (SupplierInvoiceDetail detail : invoice.getDetails()) {
                 Inventory inventory = detail.getInventory();
-                
-                
+
                 inventory.setQuantity(inventory.getQuantity() + detail.getQuantity());
                 inventory.setUnitPrice(detail.getUnitPrice());
                 inventory.setLastRestocked(new Date());
-                
-                
                 inventoryDao.update(inventory);
+
+                // Enregistrer le mouvement d'entrée
+                StockMovement movement = new StockMovement();
+                movement.setInventory(inventory);
+                movement.setMovementType("IN");
+                movement.setQuantity(detail.getQuantity());
+                movement.setMovementDate(new Date());
+                movement.setComment("Réception fournisseur");
+                stockMovementDao.save(movement);
             }
-            
             return "Supplier invoice processed successfully";
         } catch (Exception e) {
-            
             return "Error: " + e.getMessage();
         }
     }
@@ -79,4 +85,17 @@ public class InventoryController {
         
         return "Reorder requests sent for " + lowStockItems.size() + " items";
     }
-} 
+    
+    @GetMapping("/{id}/quantity")
+    public Map<String, Object> getProductQuantity(@PathVariable Long id) {
+        Inventory inventory = inventoryDao.findById(id);
+        if (inventory == null) {
+            throw new NoSuchElementException("Produit non trouvé avec l'id : " + id);
+        }
+        Map<String, Object> result = new HashMap<>();
+        result.put("id", inventory.getId());
+        result.put("name", inventory.getName());
+        result.put("quantity", inventory.getQuantity());
+        return result;
+    }
+}
