@@ -36,7 +36,7 @@ public class AppointmentService implements IAppointmentService {
     private IRoomService roomService;
 
     @Autowired
-    private IInsuranceService insuranceService; // À injecter
+    private IInsuranceService insuranceService;
 
     private final SMTPHelper smtpHelper = SMTPHelper.getInstance();
 
