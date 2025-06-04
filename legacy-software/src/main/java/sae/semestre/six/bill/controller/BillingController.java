@@ -37,7 +37,7 @@ public class BillingController {
 
     private final SMTPHelper emailService = SMTPHelper.getInstance();
     
-    private BillingController() {
+    public BillingController() {
         priceList.put("CONSULTATION", 50.0);
         priceList.put("XRAY", 150.0);
         priceList.put("SURGERY", 1000.0);
@@ -84,6 +84,13 @@ public class BillingController {
 
             BillingFile.write(bill.getBillNumber() + ": $" + bill.getTotalAmount() + "\n");
             billDao.save(bill);
+
+            // Envoi de l'email de confirmation
+            emailService.sendEmail(
+                "admin@hospital.com",
+                "New Bill Generated",
+                "Bill Number: " + bill.getBillNumber() + "\nTotal: $" + bill.getTotalAmount()
+            );
 
             return "Bill processed successfully";
         } catch (Exception e) {

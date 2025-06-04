@@ -157,7 +157,9 @@ public class Bill {
     public String computeHash(String previousHash) {
         StringBuilder sb = new StringBuilder();
         // Informations temporelles (pour garantir l'ordre)
-        sb.append(createdDate.toString());
+        sb.append(createdDate.toString())
+            .append(lastModified.toString())
+            .append(billDate.toString());
         
         // Contenu de la facture
         sb.append(billNumber)
