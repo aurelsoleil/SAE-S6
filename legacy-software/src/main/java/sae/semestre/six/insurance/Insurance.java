@@ -19,6 +19,14 @@ public class Insurance {
     @ManyToOne
     @JoinColumn(name = "patient_id")
     private Patient patient;
+
+    public Patient getPatient() {
+        return patient;
+    }
+
+    public void setPatient(Patient patient) {
+        this.patient = patient;
+    }
     
     @Column(name = "provider")
     private String provider;
