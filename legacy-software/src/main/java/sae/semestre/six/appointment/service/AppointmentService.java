@@ -33,11 +33,8 @@ public class AppointmentService implements IAppointmentService {
     private IPatientService patientService;
 
     @Autowired
-    private IRoomService roomService;
-
-    @Autowired
     private IInsuranceService insuranceService;
-
+  
     private final SMTPHelper smtpHelper = SMTPHelper.getInstance();
 
     public Appointment findById(Long id) {
@@ -66,7 +63,7 @@ public class AppointmentService implements IAppointmentService {
         Date date = Date.from(appointmentDateTime.atZone(ZoneId.systemDefault()).toInstant());
 
         Appointment appointment = new Appointment(doctor, patient, date);
-
+      
         // Vérification et association de l'assurance
         if (insuranceId != null) {
             Insurance insurance = insuranceService.findById(insuranceId);
@@ -74,15 +71,52 @@ public class AppointmentService implements IAppointmentService {
             if (!insurance.isValidForDate(date)) throw new IllegalArgumentException("Insurance is not valid for the appointment date");
             appointment.setInsurance(insurance);
         }
-
+      
         doctor.checkAppointmentAvailability(appointment);
 
-        smtpHelper.sendEmail(
-                doctor.getEmail(),
-                "New Appointment Scheduled",
-                "You have a new appointment on " + appointmentDateTime
-        );
-        
+        // Notification email au médecin
+        if (doctor.getEmail() != null) {
+            smtpHelper.sendEmail(
+                    doctor.getEmail(),
+                    "New Appointment Scheduled",
+                    String.format("You have a new appointment with patient %s %s on %s",
+                        patient.getFirstName(),
+                        patient.getLastName(),
+                        appointmentDateTime)
+            );
+        }
+
+        // Notification email au patient
+        if (patient.getEmail() != null) {
+            String emailBody = String.format("""
+                    Dear %s %s,
+                    
+                    Your appointment has been successfully scheduled:
+                    
+                    Date: %s
+                    Time: %s
+                    Doctor: Dr. %s %s
+                    
+                    Please arrive 10 minutes before your appointment.
+                    If you need to cancel or reschedule, please contact us at least 24 hours in advance.
+                    
+                    Best regards,
+                    Hospital Team""",
+                    patient.getFirstName(),
+                    patient.getLastName(),
+                    appointmentDateTime.toLocalDate(),
+                    appointmentDateTime.toLocalTime(),
+                    doctor.getFirstName(),
+                    doctor.getLastName()
+            );
+
+            smtpHelper.sendEmail(
+                    patient.getEmail(),
+                    "Appointment Confirmation",
+                    emailBody
+            );
+        }
+      
         appointmentDao.save(appointment);
         return appointment;
     }
