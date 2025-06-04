@@ -63,33 +63,39 @@ public class BillingController {
     public synchronized String processBill(
             @RequestParam String patientId,
             @RequestParam String doctorId,
-            @RequestParam String[] treatments) {
+            @RequestParam String[] treatments,
+            @RequestParam(required = false) Long insuranceId
+    ) {
         try {
             Patient patient = patientDao.findById(Long.parseLong(patientId));
             Doctor doctor = doctorDao.findById(Long.parseLong(doctorId));
+            Insurance insurance = null;
+            if (insuranceId != null) {
+                insurance = insuranceService.findById(insuranceId);
+            }
 
             Bill bill = new Bill();
             bill.setBillNumber("BILL" + System.currentTimeMillis());
             bill.setPatient(patient);
             bill.setDoctor(doctor);
+            bill.setInsurance(insurance);
             bill.addBillDetails(treatments);
 
-            // Récupération de la dernière facture pour le chaînage
+            // Application de la couverture d'assurance
+            bill.applyInsuranceCoverage();
+
             Bill lastBill = billDao.findLastBill();
             String previousHash = lastBill != null ? lastBill.getHash() : null;
-
-            // Calcul du hash incluant l'historique
             bill.setHash(bill.computeHash(previousHash));
             bill.setStatus("ISSUED");
 
-            BillingFile.write(bill.getBillNumber() + ": $" + bill.getTotalAmount() + "\n");
+            BillingFile.write(bill.getBillNumber() + ": $" + bill.getTotalAmount() + " | Assurance: $" + bill.getInsuranceCovered() + " | Patient: $" + bill.getPatientDue());
             billDao.save(bill);
 
-            // Envoi de l'email de confirmation
             emailService.sendEmail(
                 "admin@hospital.com",
                 "New Bill Generated",
-                "Bill Number: " + bill.getBillNumber() + "\nTotal: $" + bill.getTotalAmount()
+                "Bill Number: " + bill.getBillNumber() + "\nTotal: $" + bill.getTotalAmount() + "\nAssurance: $" + bill.getInsuranceCovered() + "\nPatient: $" + bill.getPatientDue()
             );
 
             return "Bill processed successfully";
