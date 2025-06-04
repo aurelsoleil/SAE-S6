@@ -6,8 +6,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import sae.semestre.six.appointment.entity.Appointment;
 import sae.semestre.six.appointment.service.IAppointmentService;
-import sae.semestre.six.doctor.service.IDoctorService;
-import sae.semestre.six.utils.email.SMTPHelper;
 
 import java.util.*;
 
@@ -17,11 +15,6 @@ public class SchedulingController {
 
     @Autowired
     private IAppointmentService appointmentService;
-
-    @Autowired
-    private IDoctorService doctorService;
-
-    private final SMTPHelper emailService = SMTPHelper.getInstance();
 
     @PostMapping("/appointment")
     public ResponseEntity<?> scheduleAppointment(

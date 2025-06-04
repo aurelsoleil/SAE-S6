@@ -37,13 +37,11 @@ public class Patient {
     @Column(name = "phone_number")
     private String phoneNumber;
 
+    @Column(name = "email")
+    private String email;
+
     @OneToMany(mappedBy = "patient")
     private Set<Appointment> appointments = new HashSet<>();
-
-    
-    public Patient() {
-    }
-
     
     public Long getId() {
         return id;
@@ -109,7 +107,15 @@ public class Patient {
         this.phoneNumber = phoneNumber;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public Set<Appointment> getAppointments() {
         return appointments;
     }
-} 
+}
