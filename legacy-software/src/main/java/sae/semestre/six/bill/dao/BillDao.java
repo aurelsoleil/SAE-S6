@@ -62,4 +62,21 @@ public class BillDao extends AbstractHibernateDao<Bill, Long> implements IBillDa
                 .getSingleResult();
         return result != null ? result : 0.0;
     }
-} 
+    
+    @Override
+    @SuppressWarnings("unchecked")
+    public List<Bill> findAllOrderByCreatedDateAsc() {
+        return getEntityManager()
+                .createQuery("FROM Bill ORDER BY createdDate ASC")
+                .getResultList();
+    }
+
+    @Override
+    public Bill findLastBill() {
+        List<Bill> result = getEntityManager()
+                .createQuery("FROM Bill ORDER BY createdDate DESC", Bill.class)
+                .setMaxResults(1)
+                .getResultList();
+        return result.isEmpty() ? null : result.get(0);
+    }
+}

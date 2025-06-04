@@ -13,4 +13,12 @@ public interface IBillDao extends GenericDao<Bill, Long> {
     List<Bill> findByDateRange(Date startDate, Date endDate);
     List<Bill> findByStatus(String status);
     double calculateTotalRevenue();
-} 
+    /**
+     * Retourne toutes les factures triées par date de création croissante (pour chaînage).
+     */
+    List<Bill> findAllOrderByCreatedDateAsc();
+    /**
+     * Retourne la dernière facture créée (par date de création décroissante).
+     */
+    Bill findLastBill();
+}
