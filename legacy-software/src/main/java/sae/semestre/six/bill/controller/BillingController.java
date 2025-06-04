@@ -7,6 +7,7 @@ import sae.semestre.six.bill.BillingFile;
 import sae.semestre.six.bill.service.BillingService;
 import sae.semestre.six.bill.dao.IBillDao;
 import sae.semestre.six.bill.entity.Bill;
+import sae.semestre.six.bill.entity.BillDetail;
 import sae.semestre.six.doctor.dao.IDoctorDao;
 import sae.semestre.six.patient.dao.IPatientDao;
 import sae.semestre.six.doctor.entity.Doctor;
@@ -157,5 +158,51 @@ public class BillingController {
     @GetMapping("/pending")
     public List<String> getPendingBills() {
         return pendingBills;
+    }
+
+    @PutMapping("/bill/{billNumber}/line")
+    public ResponseEntity<?> addOrUpdateLine(
+        @PathVariable String billNumber,
+        @RequestBody BillDetail detail
+    ) {
+        Bill bill = billDao.findByBillNumber(billNumber);
+        if (bill == null) return ResponseEntity.notFound().build();
+
+        // Ajout ou modification
+        Optional<BillDetail> existing = bill.getBillDetails().stream()
+            .filter(d -> d.getTreatmentName().equals(detail.getTreatmentName()))
+            .findFirst();
+        if (existing.isPresent()) {
+            BillDetail d = existing.get();
+            d.setQuantity(detail.getQuantity());
+            d.setUnitPrice(detail.getUnitPrice());
+            d.calculateLineTotal();
+        } else {
+            detail.setBill(bill);
+            detail.calculateLineTotal();
+            bill.getBillDetails().add(detail);
+        }
+        // Recalcul du total
+        double total = bill.getBillDetails().stream()
+            .mapToDouble(BillDetail::getLineTotal).sum();
+        bill.setTotalAmount(total);
+        billDao.save(bill);
+        return ResponseEntity.ok(bill);
+    }
+
+    @DeleteMapping("/bill/{billNumber}/line/{treatmentName}")
+    public ResponseEntity<?> deleteLine(
+        @PathVariable String billNumber,
+        @PathVariable String treatmentName
+    ) {
+        Bill bill = billDao.findByBillNumber(billNumber);
+        if (bill == null) return ResponseEntity.notFound().build();
+
+        bill.getBillDetails().removeIf(d -> d.getTreatmentName().equals(treatmentName));
+        double total = bill.getBillDetails().stream()
+            .mapToDouble(BillDetail::getLineTotal).sum();
+        bill.setTotalAmount(total);
+        billDao.save(bill);
+        return ResponseEntity.ok(bill);
     }
 }
