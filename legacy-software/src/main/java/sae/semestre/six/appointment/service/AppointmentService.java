@@ -76,6 +76,13 @@ public class AppointmentService implements IAppointmentService {
         }
 
         doctor.checkAppointmentAvailability(appointment);
+
+        smtpHelper.sendEmail(
+                doctor.getEmail(),
+                "New Appointment Scheduled",
+                "You have a new appointment on " + appointmentDateTime
+        );
+        
         appointmentDao.save(appointment);
         return appointment;
     }
