@@ -173,19 +173,17 @@ public class BillingController {
     
     @GetMapping("/export/insurance")
     public List<Map<String, Object>> exportBillsForInsurance(@RequestParam Long insuranceId) {
-        List<Bill> bills = billDao.findAllOrderByCreatedDateAsc();
+        List<Bill> bills = billDao.findByInsuranceIdOrderByCreatedDateAsc(insuranceId);
         List<Map<String, Object>> export = new ArrayList<>();
         for (Bill bill : bills) {
-            if (bill.getInsurance() != null && bill.getInsurance().getId().equals(insuranceId)) {
-                Map<String, Object> entry = new HashMap<>();
-                entry.put("billNumber", bill.getBillNumber());
-                entry.put("date", bill.getBillDate());
-                entry.put("totalAmount", bill.getTotalAmount());
-                entry.put("insuranceCovered", bill.getInsuranceCovered());
-                entry.put("patientDue", bill.getPatientDue());
-                entry.put("patient", bill.getPatient().getId());
-                export.add(entry);
-            }
+            Map<String, Object> entry = new HashMap<>();
+            entry.put("billNumber", bill.getBillNumber());
+            entry.put("date", bill.getBillDate());
+            entry.put("totalAmount", bill.getTotalAmount());
+            entry.put("insuranceCovered", bill.getInsuranceCovered());
+            entry.put("patientDue", bill.getPatientDue());
+            entry.put("patient", bill.getPatient().getId());
+            export.add(entry);
         }
         return export;
     }
