@@ -12,6 +12,9 @@ import sae.semestre.six.patient.dao.IPatientDao;
 import sae.semestre.six.doctor.entity.Doctor;
 import sae.semestre.six.patient.entity.Patient;
 import sae.semestre.six.utils.email.SMTPHelper;
+import sae.semestre.six.bill.service.AssuranceClient;
+import sae.semestre.six.inventory.entity.Inventory;
+import sae.semestre.six.insurance.entity.Insurance;
 
 import java.util.*;
 
@@ -34,6 +37,9 @@ public class BillingController {
 
     @Autowired
     private BillingService billingService;
+
+    @Autowired
+    private AssuranceClient assuranceClient;
 
     private final SMTPHelper emailService = SMTPHelper.getInstance();
     
@@ -182,5 +188,40 @@ public class BillingController {
             }
         }
         return export;
+    }
+
+    public Bill processBill(String patientId, String doctorId, String[] treatments) {
+        Patient patient = patientDao.findById(Long.parseLong(patientId));
+        Doctor doctor = doctorDao.findById(Long.parseLong(doctorId));
+        Bill bill = new Bill();
+        bill.setPatient(patient);
+        bill.setDoctor(doctor);
+
+        Insurance insurance = insuranceDao.findByPatientId(patient.getId());
+        String nomAssurance = insurance != null ? insurance.getProvider() : null;
+
+        double total = 0.0;
+        Set<BillDetail> details = new HashSet<>();
+        for (String treatment : treatments) {
+            Inventory item = inventoryDao.findByCode(treatment);
+            double unitPrice = getPrices().getOrDefault(treatment, 0.0);
+            BillDetail detail = new BillDetail();
+            detail.setTreatmentName(treatment);
+            detail.setUnitPrice(unitPrice);
+
+            if (item != null && item.isRemboursable() && nomAssurance != null) {
+                Double montantRembourse = assuranceClient.getMontantRembourse(item.getTypeMateriel(), nomAssurance);
+                detail.setPriseEnChargeAssurance(montantRembourse);
+                detail.setResteACharge(unitPrice - montantRembourse);
+            } else {
+                detail.setPriseEnChargeAssurance(0.0);
+                detail.setResteACharge(unitPrice);
+            }
+            total += detail.getResteACharge();
+            details.add(detail);
+        }
+        bill.setBillDetails(details);
+        bill.setTotalAmount(total);
+        return bill;
     }
 }
