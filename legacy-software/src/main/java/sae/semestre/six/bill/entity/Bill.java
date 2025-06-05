@@ -57,16 +57,6 @@ public class Bill {
     @Column(name = "hash", length = 128, updatable = false)
     private String hash;
 
-    @Column(name = "insurance_covered")
-    private Double insuranceCovered = 0.0;
-
-    @Column(name = "patient_due")
-    private Double patientDue = 0.0;
-
-    @ManyToOne
-    @JoinColumn(name = "insurance_id")
-    private Insurance insurance;
-
     public Long getId() {
         return id;
     }
@@ -156,15 +146,6 @@ public class Bill {
     public String getHash() { return hash; }
     public void setHash(String hash) { this.hash = hash; }
 
-    public Double getInsuranceCovered() { return insuranceCovered; }
-    public void setInsuranceCovered(Double insuranceCovered) { this.insuranceCovered = insuranceCovered; }
-
-    public Double getPatientDue() { return patientDue; }
-    public void setPatientDue(Double patientDue) { this.patientDue = patientDue; }
-
-    public Insurance getInsurance() { return insurance; }
-    public void setInsurance(Insurance insurance) { this.insurance = insurance; }
-
     /**
      * Calcule un hash unique qui garantit l'intégrité de la facture et de son historique.
      * Le hash est calculé à partir :
@@ -216,17 +197,6 @@ public class Bill {
             return hexString.toString();
         } catch (Exception e) {
             throw new RuntimeException("Erreur lors du calcul du hash", e);
-        }
-    }
-
-    // Appliquer la couverture d'assurance
-    public void applyInsuranceCoverage() {
-        if (insurance != null) {
-            this.insuranceCovered = insurance.calculateCoverage(this.totalAmount);
-            this.patientDue = this.totalAmount - this.insuranceCovered;
-        } else {
-            this.insuranceCovered = 0.0;
-            this.patientDue = this.totalAmount;
         }
     }
 }
