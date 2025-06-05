@@ -137,9 +137,6 @@ public class AppointmentService implements IAppointmentService {
 
         List<TimeSlot> availableSlots = findAvailableTimeSlots(doctorBusySlots, roomBusySlots, now, duration);
 
-        if (availableSlots.isEmpty()) {
-            throw new IllegalArgumentException("No available appointments for the given duration");
-        }
 
         // Convert available slots to appointments
         return convertToAppointments(availableSlots);
