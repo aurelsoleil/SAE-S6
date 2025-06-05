@@ -3,7 +3,6 @@ package sae.semestre.six.patient.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import sae.semestre.six.patient.dao.IPatientHistoryDao;
-import sae.semestre.six.patient.entity.Patient;
 import sae.semestre.six.patient.entity.PatientHistory;
 
 import java.util.*;
@@ -43,11 +42,6 @@ public class PatientHistoryController {
             .sum();
             
         summary.put("totalBilled", totalBilled);
-
-        Patient patient = histories.isEmpty() ? null : histories.get(0).getPatient();
-        if (patient != null) {
-            summary.put("insurances", patient.getInsurances());
-        }
         return summary;
     }
-}
+} 

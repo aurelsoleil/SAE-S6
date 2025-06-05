@@ -21,8 +21,4 @@ public interface IBillDao extends GenericDao<Bill, Long> {
      * Retourne la dernière facture créée (par date de création décroissante).
      */
     Bill findLastBill();
-    /**
-     * Retourne toutes les factures pour une assurance donnée, triées par date de création.
-     */
-    List<Bill> findByInsuranceIdOrderByCreatedDateAsc(Long insuranceId);
 }

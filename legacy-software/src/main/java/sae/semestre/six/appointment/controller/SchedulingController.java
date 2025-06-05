@@ -20,9 +20,7 @@ public class SchedulingController {
     public ResponseEntity<?> scheduleAppointment(
             @RequestParam Long doctorId,
             @RequestParam Long patientId,
-            @RequestParam String appointmentDate,
-            @RequestParam(required = false) Long insuranceId
-    ) {
+            @RequestParam String appointmentDate) {
 
         if (doctorId == null) {
             return new ResponseEntity<>("Doctor not found", HttpStatus.NOT_FOUND);
@@ -35,7 +33,7 @@ public class SchedulingController {
         }
 
 
-        Appointment appointment = appointmentService.createAppointment(doctorId, patientId, appointmentDate, insuranceId);
+        Appointment appointment = appointmentService.createAppointment(doctorId, patientId, appointmentDate);
 
         return new ResponseEntity<>(appointment, HttpStatus.CREATED);
     }

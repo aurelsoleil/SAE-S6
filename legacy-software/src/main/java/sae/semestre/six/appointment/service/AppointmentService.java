@@ -10,8 +10,6 @@ import sae.semestre.six.patient.entity.Patient;
 import sae.semestre.six.patient.service.IPatientService;
 import sae.semestre.six.room.service.IRoomService;
 import sae.semestre.six.utils.email.SMTPHelper;
-import sae.semestre.six.insurance.entity.Insurance;
-import sae.semestre.six.insurance.service.IInsuranceService;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -32,9 +30,6 @@ public class AppointmentService implements IAppointmentService {
     @Autowired
     private IPatientService patientService;
 
-    @Autowired
-    private IInsuranceService insuranceService;
-  
     private final SMTPHelper smtpHelper = SMTPHelper.getInstance();
 
     public Appointment findById(Long id) {
@@ -53,25 +48,22 @@ public class AppointmentService implements IAppointmentService {
         return appointmentDao.findByDateRange(startDate, endDate);
     }
 
-    public Appointment createAppointment(Long doctorId, Long patientId, String appointmentDate, Long insuranceId) {
+    public Appointment createAppointment(Long doctorId, Long patientId, String appointmentDate) {
+
         Doctor doctor = doctorService.findDoctorById(doctorId);
         Patient patient = patientService.findById(patientId);
-        if (doctor == null) throw new IllegalArgumentException("Doctor not found");
-        if (patient == null) throw new IllegalArgumentException("Patient not found");
+        if (doctor == null) {
+            throw new IllegalArgumentException("Doctor not found");
+        }
+
+        if (patient == null) {
+            throw new IllegalArgumentException("Patient not found");
+        }
 
         LocalDateTime appointmentDateTime = LocalDateTime.parse(appointmentDate);
         Date date = Date.from(appointmentDateTime.atZone(ZoneId.systemDefault()).toInstant());
 
         Appointment appointment = new Appointment(doctor, patient, date);
-      
-        // Vérification et association de l'assurance
-        if (insuranceId != null) {
-            Insurance insurance = insuranceService.findById(insuranceId);
-            if (insurance == null) throw new IllegalArgumentException("Insurance not found");
-            if (!insurance.isValidForDate(date)) throw new IllegalArgumentException("Insurance is not valid for the appointment date");
-            appointment.setInsurance(insurance);
-        }
-      
         doctor.checkAppointmentAvailability(appointment);
 
         // Notification email au médecin
@@ -116,7 +108,7 @@ public class AppointmentService implements IAppointmentService {
                     emailBody
             );
         }
-      
+
         appointmentDao.save(appointment);
         return appointment;
     }
