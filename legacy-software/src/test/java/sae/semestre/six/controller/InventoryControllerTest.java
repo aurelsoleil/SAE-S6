@@ -1,4 +1,4 @@
-package sae.semestre.six.inventory.controller;
+package sae.semestre.six.controller;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -6,6 +6,8 @@ import org.mockito.ArgumentCaptor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+
+import sae.semestre.six.inventory.controller.InventoryController;
 import sae.semestre.six.inventory.dao.InventoryDao;
 import sae.semestre.six.inventory.dao.StockMovementDao;
 import sae.semestre.six.inventory.entity.Inventory;

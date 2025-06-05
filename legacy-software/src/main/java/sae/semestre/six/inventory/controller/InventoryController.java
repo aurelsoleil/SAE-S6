@@ -13,6 +13,10 @@ import java.util.*;
 import java.util.stream.Collectors;
 import java.io.FileWriter;
 import java.io.IOException;
+import sae.semestre.six.inventory.entity.PriceHistory;
+import sae.semestre.six.inventory.dao.PriceHistoryDao;
+import jakarta.servlet.http.HttpServletResponse;
+import java.io.PrintWriter;
 
 @RestController
 @RequestMapping("/inventory")
@@ -24,6 +28,9 @@ public class InventoryController {
     @Autowired
     private StockMovementDao stockMovementDao;
     
+    @Autowired
+    private PriceHistoryDao priceHistoryDao;
+
     private final SMTPHelper emailService = SMTPHelper.getInstance();
     
     
@@ -99,5 +106,53 @@ public class InventoryController {
         result.put("name", inventory.getName());
         result.put("quantity", inventory.getQuantity());
         return result;
+    }
+
+    @GetMapping("/{id}/price-history")
+    public List<Map<String, Object>> getPriceHistory(
+            @PathVariable Long id,
+            @RequestParam(required = false) Date startDate,
+            @RequestParam(required = false) Date endDate) {
+        List<PriceHistory> history = priceHistoryDao.findByInventoryIdAndDateRange(id, startDate, endDate);
+        List<Map<String, Object>> result = new ArrayList<>();
+        for (PriceHistory ph : history) {
+            Map<String, Object> entry = new HashMap<>();
+            entry.put("date", ph.getChangeDate());
+            entry.put("oldPrice", ph.getOldPrice());
+            entry.put("newPrice", ph.getNewPrice());
+            entry.put("variation", ph.getPriceIncrease());
+            entry.put("variationPercent", ph.getPercentageChange());
+            entry.put("supplier", ph.getSupplierName());
+            result.add(entry);
+        }
+        return result;
+    }
+
+    @GetMapping("/{id}/price-history/export")
+    public void exportPriceHistory(
+            @PathVariable Long id,
+            @RequestParam(required = false) Date startDate,
+            @RequestParam(required = false) Date endDate,
+            HttpServletResponse response) throws IOException {
+        List<PriceHistory> history = priceHistoryDao.findByInventoryIdAndDateRange(id, startDate, endDate);
+
+        response.setContentType("application/json");
+        response.setHeader("Content-Disposition", "attachment; filename=\"price_history.json\"");
+
+        List<Map<String, Object>> result = new ArrayList<>();
+        for (PriceHistory ph : history) {
+            Map<String, Object> entry = new HashMap<>();
+            entry.put("date", ph.getChangeDate());
+            entry.put("oldPrice", ph.getOldPrice());
+            entry.put("newPrice", ph.getNewPrice());
+            entry.put("variation", ph.getPriceIncrease());
+            entry.put("variationPercent", ph.getPercentageChange());
+            entry.put("supplier", ph.getSupplierName());
+            result.add(entry);
+        }
+
+        PrintWriter writer = response.getWriter();
+        writer.print(new com.fasterxml.jackson.databind.ObjectMapper().writeValueAsString(result));
+        writer.flush();
     }
 }
