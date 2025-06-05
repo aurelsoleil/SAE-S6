@@ -8,9 +8,10 @@
 
 ### Vérification de l'intégrité des factures
 
-Le système de facturation utilise un mécanisme de chaînage et de hash pour garantir l'intégrité de toutes les factures. Chaque facture contient un hash calculé à partir de ses propres données, du hash de la facture précédente et d'un sel secret (salt). Cela permet de détecter toute modification frauduleuse ou corruption dans la chaîne de factures : si une facture est altérée, toutes les suivantes seront marquées comme non intègres dans le rapport d'intégrité.
+Le système de facturation utilise un mécanisme de chaînage et de hash pour garantir l'intégrité de toutes les factures. Chaque facture contient un hash calculé à partir de ses propres données et d'un sel secret (salt). 
+Cela permet de détecter toute modification frauduleuse ou corruption.
 
-Pour vérifier l'intégrité, utilisez l'endpoint `/billing/integrity-report` (voir Swagger). Le rapport indique pour chaque facture si l'intégrité est respectée (`integrityOk: true`) ou non.
+Pour vérifier l'intégrité, utilisez l'endpoint `/billing/integrity-report` Le rapport indique pour chaque facture si l'intégrité est respectée (`integrityOk: true`) ou non.
 
 #### Configuration du salt (BILL_HASH_SECRET)
 
