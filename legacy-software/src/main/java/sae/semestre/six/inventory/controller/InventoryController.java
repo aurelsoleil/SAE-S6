@@ -15,7 +15,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import sae.semestre.six.inventory.entity.PriceHistory;
 import sae.semestre.six.inventory.dao.PriceHistoryDao;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpServletResponse;
 import java.io.PrintWriter;
 
 @RestController
