@@ -2,6 +2,7 @@ package sae.semestre.six.patient.entity;
 
 import jakarta.persistence.*;
 import sae.semestre.six.appointment.entity.Appointment;
+import sae.semestre.six.insurance.entity.Insurance;
 
 import java.util.Date;
 import java.util.HashSet;
@@ -42,7 +43,10 @@ public class Patient {
 
     @OneToMany(mappedBy = "patient")
     private Set<Appointment> appointments = new HashSet<>();
-    
+
+    @OneToMany(mappedBy = "patient", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private Set<Insurance> insurances = new HashSet<>();
+
     public Long getId() {
         return id;
     }
@@ -117,5 +121,13 @@ public class Patient {
 
     public Set<Appointment> getAppointments() {
         return appointments;
+    }
+  
+    public Set<Insurance> getInsurances() {
+        return insurances;
+    }
+
+    public void setInsurances(Set<Insurance> insurances) {
+        this.insurances = insurances;
     }
 }

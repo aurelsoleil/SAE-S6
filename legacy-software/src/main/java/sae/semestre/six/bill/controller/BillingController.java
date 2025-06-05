@@ -12,6 +12,9 @@ import sae.semestre.six.patient.dao.IPatientDao;
 import sae.semestre.six.doctor.entity.Doctor;
 import sae.semestre.six.patient.entity.Patient;
 import sae.semestre.six.utils.email.SMTPHelper;
+import sae.semestre.six.bill.service.AssuranceClient;
+import sae.semestre.six.inventory.entity.Inventory;
+import sae.semestre.six.insurance.entity.Insurance;
 
 import java.util.*;
 
@@ -34,6 +37,9 @@ public class BillingController {
 
     @Autowired
     private BillingService billingService;
+
+    @Autowired
+    private AssuranceClient assuranceClient;
 
     private final SMTPHelper emailService = SMTPHelper.getInstance();
     
@@ -63,33 +69,39 @@ public class BillingController {
     public synchronized String processBill(
             @RequestParam String patientId,
             @RequestParam String doctorId,
-            @RequestParam String[] treatments) {
+            @RequestParam String[] treatments,
+            @RequestParam(required = false) Long insuranceId
+    ) {
         try {
             Patient patient = patientDao.findById(Long.parseLong(patientId));
             Doctor doctor = doctorDao.findById(Long.parseLong(doctorId));
+            Insurance insurance = null;
+            if (insuranceId != null) {
+                insurance = insuranceService.findById(insuranceId);
+            }
 
             Bill bill = new Bill();
             bill.setBillNumber("BILL" + System.currentTimeMillis());
             bill.setPatient(patient);
             bill.setDoctor(doctor);
+            bill.setInsurance(insurance);
             bill.addBillDetails(treatments);
 
-            // Récupération de la dernière facture pour le chaînage
+            // Application de la couverture d'assurance
+            bill.applyInsuranceCoverage();
+
             Bill lastBill = billDao.findLastBill();
             String previousHash = lastBill != null ? lastBill.getHash() : null;
-
-            // Calcul du hash incluant l'historique
             bill.setHash(bill.computeHash(previousHash));
             bill.setStatus("ISSUED");
 
-            BillingFile.write(bill.getBillNumber() + ": $" + bill.getTotalAmount() + "\n");
+            BillingFile.write(bill.getBillNumber() + ": $" + bill.getTotalAmount() + " | Assurance: $" + bill.getInsuranceCovered() + " | Patient: $" + bill.getPatientDue());
             billDao.save(bill);
 
-            // Envoi de l'email de confirmation
             emailService.sendEmail(
                 "admin@hospital.com",
                 "New Bill Generated",
-                "Bill Number: " + bill.getBillNumber() + "\nTotal: $" + bill.getTotalAmount()
+                "Bill Number: " + bill.getBillNumber() + "\nTotal: $" + bill.getTotalAmount() + "\nAssurance: $" + bill.getInsuranceCovered() + "\nPatient: $" + bill.getPatientDue()
             );
 
             return "Bill processed successfully";
@@ -157,5 +169,57 @@ public class BillingController {
     @GetMapping("/pending")
     public List<String> getPendingBills() {
         return pendingBills;
+    }
+    
+    @GetMapping("/export/insurance")
+    public List<Map<String, Object>> exportBillsForInsurance(@RequestParam Long insuranceId) {
+        List<Bill> bills = billDao.findByInsuranceIdOrderByCreatedDateAsc(insuranceId);
+        List<Map<String, Object>> export = new ArrayList<>();
+        for (Bill bill : bills) {
+            Map<String, Object> entry = new HashMap<>();
+            entry.put("billNumber", bill.getBillNumber());
+            entry.put("date", bill.getBillDate());
+            entry.put("totalAmount", bill.getTotalAmount());
+            entry.put("insuranceCovered", bill.getInsuranceCovered());
+            entry.put("patientDue", bill.getPatientDue());
+            entry.put("patient", bill.getPatient().getId());
+            export.add(entry);
+        }
+        return export;
+    }
+
+    public Bill processBill(String patientId, String doctorId, String[] treatments) {
+        Patient patient = patientDao.findById(Long.parseLong(patientId));
+        Doctor doctor = doctorDao.findById(Long.parseLong(doctorId));
+        Bill bill = new Bill();
+        bill.setPatient(patient);
+        bill.setDoctor(doctor);
+
+        Insurance insurance = insuranceDao.findByPatientId(patient.getId());
+        String nomAssurance = insurance != null ? insurance.getProvider() : null;
+
+        double total = 0.0;
+        Set<BillDetail> details = new HashSet<>();
+        for (String treatment : treatments) {
+            Inventory item = inventoryDao.findByCode(treatment);
+            double unitPrice = getPrices().getOrDefault(treatment, 0.0);
+            BillDetail detail = new BillDetail();
+            detail.setTreatmentName(treatment);
+            detail.setUnitPrice(unitPrice);
+
+            if (item != null && item.isRemboursable() && nomAssurance != null) {
+                Double montantRembourse = assuranceClient.getMontantRembourse(item.getTypeMateriel(), nomAssurance);
+                detail.setPriseEnChargeAssurance(montantRembourse);
+                detail.setResteACharge(unitPrice - montantRembourse);
+            } else {
+                detail.setPriseEnChargeAssurance(0.0);
+                detail.setResteACharge(unitPrice);
+            }
+            total += detail.getResteACharge();
+            details.add(detail);
+        }
+        bill.setBillDetails(details);
+        bill.setTotalAmount(total);
+        return bill;
     }
 }
