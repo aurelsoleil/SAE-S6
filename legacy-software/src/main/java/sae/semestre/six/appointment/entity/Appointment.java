@@ -5,6 +5,7 @@ import sae.semestre.six.doctor.entity.Doctor;
 import sae.semestre.six.patient.entity.Patient;
 import sae.semestre.six.patient.entity.PatientHistory;
 import sae.semestre.six.room.entity.Room;
+import sae.semestre.six.insurance.entity.Insurance;
 
 import java.util.Date;
 
@@ -33,13 +34,16 @@ public class Appointment {
     @ManyToOne
     private PatientHistory patientHistory;
 
+    @ManyToOne
+    @JoinColumn(name = "insurance_id")
+    private Insurance insurance;
+
     @Column(name = "appointment_date", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date appointmentDate;
 
 
     @Column(name = "status")
-//    @Enumerated(EnumType.STRING)
     private AppointmentStatus status;
 
     @Column(name = "description")
@@ -122,4 +126,11 @@ public class Appointment {
         this.roomNumber = roomNumber;
     }
 
+    public Insurance getInsurance() {
+        return insurance;
+    }
+
+    public void setInsurance(Insurance insurance) {
+        this.insurance = insurance;
+    }
 }

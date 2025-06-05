@@ -6,8 +6,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import sae.semestre.six.appointment.entity.Appointment;
 import sae.semestre.six.appointment.service.IAppointmentService;
-import sae.semestre.six.doctor.service.IDoctorService;
-import sae.semestre.six.utils.email.SMTPHelper;
 
 import java.util.*;
 
@@ -18,16 +16,13 @@ public class SchedulingController {
     @Autowired
     private IAppointmentService appointmentService;
 
-    @Autowired
-    private IDoctorService doctorService;
-
-    private final SMTPHelper emailService = SMTPHelper.getInstance();
-
     @PostMapping("/appointment")
     public ResponseEntity<?> scheduleAppointment(
             @RequestParam Long doctorId,
             @RequestParam Long patientId,
-            @RequestParam String appointmentDate) {
+            @RequestParam String appointmentDate,
+            @RequestParam(required = false) Long insuranceId
+    ) {
 
         if (doctorId == null) {
             return new ResponseEntity<>("Doctor not found", HttpStatus.NOT_FOUND);
@@ -40,7 +35,7 @@ public class SchedulingController {
         }
 
 
-        Appointment appointment = appointmentService.createAppointment(doctorId, patientId, appointmentDate);
+        Appointment appointment = appointmentService.createAppointment(doctorId, patientId, appointmentDate, insuranceId);
 
         return new ResponseEntity<>(appointment, HttpStatus.CREATED);
     }

@@ -39,11 +39,6 @@ public class Doctor {
 
     @OneToMany(mappedBy = "doctor", fetch = FetchType.LAZY)
     private Set<Appointment> appointments;
-
-    
-    public Doctor() {
-    }
-
     
     public Long getId() {
         return id;

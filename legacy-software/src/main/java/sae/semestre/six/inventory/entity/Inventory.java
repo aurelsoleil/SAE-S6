@@ -30,6 +30,12 @@ public class Inventory {
     @Temporal(TemporalType.TIMESTAMP)
     private Date lastRestocked;
     
+    @Column(name = "remboursable")
+    private boolean remboursable = false;
+
+    @Column(name = "type_materiel")
+    private String typeMateriel; // Ex: "RADIOLOGIE", "ANALYSES", etc.
+    
     
     public Long getId() {
         return id;
@@ -91,6 +97,21 @@ public class Inventory {
         this.lastRestocked = lastRestocked;
     }
     
+    public boolean isRemboursable() {
+        return remboursable;
+    }
+
+    public void setRemboursable(boolean remboursable) {
+        this.remboursable = remboursable;
+    }
+
+    public String getTypeMateriel() {
+        return typeMateriel;
+    }
+
+    public void setTypeMateriel(String typeMateriel) {
+        this.typeMateriel = typeMateriel;
+    }
     
     public boolean needsRestock() {
         return quantity <= reorderLevel;
@@ -103,4 +124,4 @@ public class Inventory {
             System.out.println("WARNING: Item " + itemCode + " needs restock!");
         }
     }
-} 
+}

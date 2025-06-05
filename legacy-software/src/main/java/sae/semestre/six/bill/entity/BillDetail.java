@@ -26,6 +26,12 @@ public class BillDetail {
     @Column(name = "line_total")
     private Double lineTotal = 0.0;
     
+    // Montant pris en charge par l'assurance pour ce matériel
+    private Double priseEnChargeAssurance = 0.0;
+
+    // Montant restant à charge du patient pour ce matériel
+    private Double resteACharge = 0.0;
+
     public void calculateLineTotal() {
         this.lineTotal = this.quantity * this.unitPrice;
     }
@@ -53,4 +59,20 @@ public class BillDetail {
     
     public Double getLineTotal() { return lineTotal; }
     public void setLineTotal(Double lineTotal) { this.lineTotal = lineTotal; }
-} 
+
+    public Double getPriseEnChargeAssurance() {
+        return priseEnChargeAssurance;
+    }
+
+    public void setPriseEnChargeAssurance(Double priseEnChargeAssurance) {
+        this.priseEnChargeAssurance = priseEnChargeAssurance;
+    }
+
+    public Double getResteACharge() {
+        return resteACharge;
+    }
+
+    public void setResteACharge(Double resteACharge) {
+        this.resteACharge = resteACharge;
+    }
+}
