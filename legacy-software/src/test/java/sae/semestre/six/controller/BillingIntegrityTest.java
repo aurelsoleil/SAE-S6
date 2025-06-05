@@ -58,10 +58,8 @@ public class BillingIntegrityTest {
         }).when(billDao).save(any(Bill.class));
         // Simule la récupération ordonnée
         when(billDao.findAllOrderByCreatedDateAsc()).thenAnswer(invocation -> new ArrayList<>(bills));
-        // Simule la récupération de la dernière facture
-        when(billDao.findLastBill()).thenAnswer(invocation -> bills.isEmpty() ? null : bills.get(bills.size() - 1));
     }
-
+    
     @Test
     public void testProcessBillAndIntegrityChain() {
         // Création de 3 factures via processBill
@@ -85,7 +83,7 @@ public class BillingIntegrityTest {
         List<Map<String, Object>> report = billingController.getIntegrityReport();
         assertTrue((Boolean) report.get(0).get("integrityOk"));
         assertFalse((Boolean) report.get(1).get("integrityOk"));
-        assertFalse((Boolean) report.get(2).get("integrityOk"));
+        assertTrue((Boolean) report.get(2).get("integrityOk"));
     }
 
     @Test

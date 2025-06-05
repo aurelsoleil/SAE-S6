@@ -59,8 +59,7 @@ public class BillingController {
     }
     
     @PostMapping("/process")
-    @Transactional
-    public synchronized String processBill(
+    public String processBill(
             @RequestParam String patientId,
             @RequestParam String doctorId,
             @RequestParam String[] treatments) {
@@ -74,12 +73,8 @@ public class BillingController {
             bill.setDoctor(doctor);
             bill.addBillDetails(treatments);
 
-            // Récupération de la dernière facture pour le chaînage
-            Bill lastBill = billDao.findLastBill();
-            String previousHash = lastBill != null ? lastBill.getHash() : null;
-
             // Calcul du hash incluant l'historique
-            bill.setHash(bill.computeHash(previousHash));
+            bill.setHash(bill.computeHash());
             bill.setStatus("ISSUED");
 
             BillingFile.write(bill.getBillNumber() + ": $" + bill.getTotalAmount() + "\n");
@@ -105,10 +100,9 @@ public class BillingController {
     public List<Map<String, Object>> getIntegrityReport() {
         List<Bill> bills = billDao.findAllOrderByCreatedDateAsc();
         List<Map<String, Object>> report = new ArrayList<>();
-        String previousHash = null;
 
         for (Bill bill : bills) {
-            String expectedHash = bill.computeHash(previousHash);
+            String expectedHash = bill.computeHash();
             boolean integrityOk = expectedHash.equals(bill.getHash());
 
             Map<String, Object> entry = new HashMap<>();
@@ -117,9 +111,6 @@ public class BillingController {
             entry.put("status", bill.getStatus());
             entry.put("integrityOk", integrityOk);
             report.add(entry);
-
-            // Si cette facture est invalide, on arrête la validation de la chaîne
-            previousHash = integrityOk ? bill.getHash() : null;
         }
         return report;
     }
