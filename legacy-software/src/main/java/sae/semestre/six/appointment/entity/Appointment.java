@@ -39,7 +39,6 @@ public class Appointment {
 
 
     @Column(name = "status")
-//    @Enumerated(EnumType.STRING)
     private AppointmentStatus status;
 
     @Column(name = "description")
