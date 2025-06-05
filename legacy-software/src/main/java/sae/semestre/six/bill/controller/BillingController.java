@@ -3,6 +3,8 @@ package sae.semestre.six.bill.controller;
 import jakarta.transaction.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import sae.semestre.six.bill.service.BillPdfGenerator;
 import sae.semestre.six.bill.BillingFile;
 import sae.semestre.six.bill.service.BillingService;
 import sae.semestre.six.bill.dao.IBillDao;
@@ -91,6 +93,28 @@ public class BillingController {
                 "New Bill Generated",
                 "Bill Number: " + bill.getBillNumber() + "\nTotal: $" + bill.getTotalAmount()
             );
+
+            // Envoi de la facture par email au patient
+            try {
+                byte[] pdf = BillPdfGenerator.generatePdf(bill);
+                String body = String.format(
+                    "Dear %s %s,\n\nYour bill of %s is available in attachment.\nTotal amount : %.2f $\nBill number : %s\n\nThanks for choosing us.",
+                    bill.getPatient().getFirstName(),
+                    bill.getPatient().getLastName(),
+                    bill.getBillDate(),
+                    bill.getTotalAmount(),
+                    bill.getBillNumber()
+                );
+                emailService.sendEmailWithAttachment(
+                    patient.getEmail(),
+                    "Your medical bill",
+                    body,
+                    pdf,
+                    "Bill-" + bill.getBillNumber() + ".pdf"
+                );
+            } catch (Exception e) {
+                System.err.println("Erreur lors de la génération ou l'envoi du PDF : " + e.getMessage());
+            }
 
             return "Bill processed successfully";
         } catch (Exception e) {
