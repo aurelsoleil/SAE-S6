@@ -124,68 +124,86 @@ public class AppointmentService implements IAppointmentService {
             throw new IllegalArgumentException("Duration must be greater than 0");
         }
 
-        // Récupérer les rendez-vous pour le docteur et la salle
-        List<Appointment> roomAndDoctorAppointments = appointmentDao.findByRoomNumberAndDoctorId(roomId, doctorId);
+        // Get existing appointments for both doctor and room
+        List<Appointment> doctorAppointments = appointmentDao.findByDoctorId(doctorId);
+        List<Appointment> roomAppointments = appointmentDao.findByRoomId(roomId);
 
-        List<Appointment> availableAppointments = new ArrayList<>();
+        // Get current time
         Date now = new Date();
 
-        // Trier les rendez-vous par date
-        roomAndDoctorAppointments.sort(Comparator.comparing(Appointment::getAppointmentDate));
+        // Find slots where both doctor and room are available
+        List<TimeSlot> doctorBusySlots = convertToTimeSlots(doctorAppointments, duration);
+        List<TimeSlot> roomBusySlots = convertToTimeSlots(roomAppointments, duration);
 
-        // Vérifier les créneaux disponibles avant le premier rendez-vous
-        if (!roomAndDoctorAppointments.isEmpty()) {
-            Appointment firstAppointment = roomAndDoctorAppointments.get(0);
-            Date startTime = now;
-            Date endTime = firstAppointment.getAppointmentDate();
+        List<TimeSlot> availableSlots = findAvailableTimeSlots(doctorBusySlots, roomBusySlots, now, duration);
 
-            if (isDurationAvailable(startTime, endTime, duration)) {
-                availableAppointments.add(createAvailableSlot(startTime));
+
+        // Convert available slots to appointments
+        return convertToAppointments(availableSlots);
+    }
+
+    private static class TimeSlot {
+        private final Date start;
+        private final Date end;
+
+        public TimeSlot(Date start, Date end) {
+            this.start = start;
+            this.end = end;
+        }
+    }
+
+    private List<TimeSlot> convertToTimeSlots(List<Appointment> appointments, Integer duration) {
+        List<TimeSlot> slots = new ArrayList<>();
+        for (Appointment appointment : appointments) {
+            Date start = appointment.getAppointmentDate();
+            Date end = addDuration(start, duration);
+            slots.add(new TimeSlot(start, end));
+        }
+        return slots;
+    }
+
+    private List<TimeSlot> findAvailableTimeSlots(List<TimeSlot> doctorSlots, List<TimeSlot> roomSlots, Date now, Integer duration) {
+        List<TimeSlot> availableSlots = new ArrayList<>();
+        Date currentTime = now;
+
+        // Combine and sort all busy slots
+        List<TimeSlot> allBusySlots = new ArrayList<>();
+        allBusySlots.addAll(doctorSlots);
+        allBusySlots.addAll(roomSlots);
+        allBusySlots.sort((a, b) -> a.start.compareTo(b.start));
+
+        // Find gaps between busy slots
+        for (TimeSlot busySlot : allBusySlots) {
+            if (isDurationAvailable(currentTime, busySlot.start, duration)) {
+                availableSlots.add(new TimeSlot(currentTime, busySlot.start));
             }
+            currentTime = busySlot.end.after(currentTime) ? busySlot.end : currentTime;
         }
 
-        // Vérifier les créneaux entre les rendez-vous
-        for (int i = 0; i < roomAndDoctorAppointments.size() - 1; i++) {
-            Appointment current = roomAndDoctorAppointments.get(i);
-            Appointment next = roomAndDoctorAppointments.get(i + 1);
-
-            Date startTime = addDuration(current.getAppointmentDate(), duration);
-            Date endTime = next.getAppointmentDate();
-
-            if (isDurationAvailable(startTime, endTime, duration)) {
-                availableAppointments.add(createAvailableSlot(startTime));
-            }
+        // Add one more slot after the last busy slot
+        if (currentTime.after(now)) {
+            availableSlots.add(new TimeSlot(currentTime, addDuration(currentTime, duration)));
         }
 
-        // Vérifier les créneaux après le dernier rendez-vous
-        if (!roomAndDoctorAppointments.isEmpty()) {
-            Appointment lastAppointment = roomAndDoctorAppointments.get(roomAndDoctorAppointments.size() - 1);
-            Date startTime = addDuration(lastAppointment.getAppointmentDate(), duration);
+        return availableSlots;
+    }
 
-            if (startTime.after(now)) {
-                availableAppointments.add(createAvailableSlot(startTime));
-            }
+    private List<Appointment> convertToAppointments(List<TimeSlot> slots) {
+        List<Appointment> appointments = new ArrayList<>();
+        for (TimeSlot slot : slots) {
+            Appointment appointment = new Appointment();
+            appointment.setAppointmentDate(slot.start);
+            appointments.add(appointment);
         }
-
-        if (availableAppointments.isEmpty()) {
-            throw new IllegalArgumentException("No available appointments for the given duration");
-        }
-
-        return availableAppointments;
+        return appointments;
     }
 
     private boolean isDurationAvailable(Date startTime, Date endTime, Integer duration) {
         long availableTime = endTime.getTime() - startTime.getTime();
-        return availableTime >= duration * 60 * 1000; // Convertir la durée en millisecondes
-    }
-
-    private Appointment createAvailableSlot(Date startTime) {
-        Appointment availableSlot = new Appointment();
-        availableSlot.setAppointmentDate(startTime);
-        return availableSlot;
+        return availableTime >= duration * 60 * 1000;
     }
 
     private Date addDuration(Date date, Integer duration) {
-        return new Date(date.getTime() + duration * 60 * 1000); // Ajouter la durée en millisecondes
+        return new Date(date.getTime() + duration * 60 * 1000);
     }
 }

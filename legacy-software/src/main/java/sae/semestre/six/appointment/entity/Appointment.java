@@ -39,7 +39,6 @@ public class Appointment {
 
 
     @Column(name = "status")
-//    @Enumerated(EnumType.STRING)
     private AppointmentStatus status;
 
     @Column(name = "description")
@@ -121,4 +120,5 @@ public class Appointment {
     public void setRoomNumber(String roomNumber) {
         this.roomNumber = roomNumber;
     }
-} 
+
+}
