@@ -147,38 +147,28 @@ public class Bill {
     public void setHash(String hash) { this.hash = hash; }
 
     /**
-     * Calcule un hash unique qui garantit l'intégrité de la facture et de son historique.
-     * Le hash est calculé à partir :
-     * - contenu de la facture
-     * - la date de création (pour garantir l'ordre)
-     * - hash de la facture précédente (si elle existe)
-     * - d'un sel secret
+     * Calcule un hash cryptographique (SHA-256) pour la facture, en gardant le sel.
+     * Le hash ne dépend que du contenu de la facture (pas de chaînage),
+     * ce qui permet de détecter exactement quelle facture est altérée.
      */
-    public String computeHash(String previousHash) {
+    public String computeHash() {
         StringBuilder sb = new StringBuilder();
-        // Informations temporelles (pour garantir l'ordre)
         sb.append(createdDate.toString())
-            .append(lastModified.toString())
-            .append(billDate.toString());
-        
-        // Contenu de la facture
+          .append(lastModified.toString())
+          .append(billDate.toString());
+
         sb.append(billNumber)
           .append(totalAmount)
           .append(patient != null ? patient.getId() : "")
           .append(doctor != null ? doctor.getId() : "");
 
-        // Détails des traitements (triés pour garantir la cohérence)
         List<BillDetail> sortedDetails = new ArrayList<>(billDetails);
         sortedDetails.sort((a, b) -> a.getTreatmentName().compareTo(b.getTreatmentName()));
         for (BillDetail detail : sortedDetails) {
             sb.append(detail.getTreatmentName())
               .append(detail.getUnitPrice());
         }
-
-        // Chaînage avec la facture précédente
-        sb.append(previousHash != null ? previousHash : "ROOT");
-
-        // Sel secret
+        
         String secretSalt = System.getenv("BILL_HASH_SECRET");
         if (secretSalt == null) {
             secretSalt = "default-secret";
