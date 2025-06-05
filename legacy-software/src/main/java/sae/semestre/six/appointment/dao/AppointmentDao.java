@@ -29,6 +29,14 @@ public class AppointmentDao extends AbstractHibernateDao<Appointment, Long> impl
     }
 
     @Override
+    public List<Appointment> findByRoomId(Long roomId) {
+        return getEntityManager()
+                .createQuery("FROM Appointment WHERE room.id = :roomId")
+                .setParameter("roomId", roomId)
+                .getResultList();
+    }
+
+    @Override
     @SuppressWarnings("unchecked")
     public List<Appointment> findByDateRange(Date startDate, Date endDate) {
         return getEntityManager()
