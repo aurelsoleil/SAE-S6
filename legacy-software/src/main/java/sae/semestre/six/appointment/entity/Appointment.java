@@ -121,4 +121,5 @@ public class Appointment {
     public void setRoomNumber(String roomNumber) {
         this.roomNumber = roomNumber;
     }
-} 
+
+}
