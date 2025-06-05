@@ -1,3 +1,17 @@
+package sae.semestre.six.inventory.entity;
+
+import java.util.Date;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
+
 @Entity
 @Table(name = "stock_movements")
 public class StockMovement {
@@ -9,7 +23,7 @@ public class StockMovement {
     private Inventory inventory;
 
     @Column(name = "movement_type")
-    private String movementType; // "IN" ou "OUT"
+    private String movementType;
 
     @Column(name = "quantity")
     private Integer quantity;

@@ -42,7 +42,10 @@ public class InventoryControllerTest {
     @Test
     public void testProcessSupplierInvoice_createsStockMovement() {
         Inventory inventory = new Inventory();
+        inventory.setReorderLevel(5);
         inventory.setQuantity(10);
+        inventory.setName("Test Product");
+        inventory.setItemCode("TEST001");
 
         SupplierInvoiceDetail detail = new SupplierInvoiceDetail();
         detail.setInventory(inventory);
@@ -50,9 +53,7 @@ public class InventoryControllerTest {
         detail.setUnitPrice(2.0);
 
         SupplierInvoice invoice = new SupplierInvoice();
-        invoice.setDetails(Collections.singletonList(detail));
-
-        when(inventoryDao.update(any(Inventory.class))).thenReturn(inventory);
+        invoice.setDetails(Collections.singleton(detail));
 
         String result = inventoryController.processSupplierInvoice(invoice);
 
@@ -72,10 +73,11 @@ public class InventoryControllerTest {
     public void testDecrementStock_createsStockMovementOut() {
         Inventory inventory = new Inventory();
         inventory.setId(1L);
+        inventory.setReorderLevel(3);
         inventory.setQuantity(10);
+        inventory.setName("Test Product");
 
         when(inventoryDao.findById(1L)).thenReturn(inventory);
-        when(inventoryDao.update(any(Inventory.class))).thenReturn(inventory);
 
         // Simuler une sortie de stock
         int qte = 3;
