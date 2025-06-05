@@ -5,6 +5,8 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.MimeMessageHelper;
+import jakarta.mail.internet.MimeMessage;
 
 import java.util.Properties;
 import java.util.Date;
@@ -89,6 +91,24 @@ public class SMTPHelper {
                 failedEmail.setLastRetry(new Date());
                 failedEmailDao.save(failedEmail);
             }
+        }
+    }
+
+    public void sendEmailWithAttachment(String to, String subject, String body, byte[] attachmentData, String attachmentName) {
+        try {
+            MimeMessage message = mailSender.createMimeMessage();
+            MimeMessageHelper helper = new MimeMessageHelper(message, true);
+            helper.setFrom("hospital.system@gmail.com");
+            helper.setTo(to);
+            helper.setSubject(subject);
+            helper.setText(body);
+
+            helper.addAttachment(attachmentName, new org.springframework.core.io.ByteArrayResource(attachmentData));
+            mailSender.send(message);
+            System.out.println("Email with attachment sent successfully");
+        } catch (Exception e) {
+            System.err.println("Failed to send email with attachment: " + e.getMessage());
+            saveFailedEmail(to, subject, body); // Optionnel : gérer les échecs avec pièce jointe
         }
     }
 }
