@@ -1,6 +1,6 @@
 import requests
 
-BASE_URL = "http://localhost:8080"
+BASE_URL = "http://localhost:8045"
 
 def wait():
     input("\nEntrée pour continuer...\n")
@@ -55,7 +55,7 @@ wait()
 # 2. Prescriptions
 print_step("2.a Création d’une prescription")
 resp = requests.post(f"{BASE_URL}/prescriptions/add", params={
-    "patientId": 1, "treatments": "PARACETAMOL", "notes": "Prendre 2x/jour"
+    "patientId": 1, "medicines": ["PARACETAMOL"], "notes": "Prendre 2x/jour"
 })
 show_response(resp)
 wait()
@@ -93,41 +93,6 @@ resp = requests.get(f"{BASE_URL}/inventory/1/quantity")
 show_response(resp)
 wait()
 
-print_step("3.b Traitement d’une facture fournisseur (entrée en stock)")
-payload = {
-    "details": [
-        {
-            "inventory": {"id": 1, "name": "Test Product"},
-            "quantity": 5,
-            "unitPrice": 2.0
-        }
-    ]
-}
-resp = requests.post(f"{BASE_URL}/inventory/supplier-invoice", json=payload)
-show_response(resp)
-wait()
 
-# 4. Rendez-vous
-print_step("4.a Création d’un rendez-vous")
-resp = requests.post(f"{BASE_URL}/appointments/create", params={
-    "doctorId": 2, "patientId": 1, "appointmentDate": "2025-06-07T10:00:00"
-})
-show_response(resp)
-wait()
-
-print_step("4.b Recherche de créneaux disponibles")
-resp = requests.get(f"{BASE_URL}/appointments/available", params={
-    "doctorId": 2, "roomId": 1, "duration": 30
-})
-show_response(resp)
-wait()
-
-# 5. Assurance
-print_step("5.a Recherche d’un remboursement par produit et assurance")
-resp = requests.get(f"{BASE_URL}/remboursement/search/remboursementByNomProduitAndNomAssurance", params={
-    "nomProduit": "CONSULTATION", "nomAssurance": "SECUREPLUS"
-})
-show_response(resp)
-wait()
 
 print("Scénario terminé")

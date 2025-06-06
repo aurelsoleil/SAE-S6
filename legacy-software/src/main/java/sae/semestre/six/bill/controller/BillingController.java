@@ -59,7 +59,8 @@ public class BillingController {
     public static Double getTreatmentPrice(String treatment) {
         return getInstance().priceList.get(treatment);
     }
-    
+
+    @Transactional
     @PostMapping("/process")
     public String processBill(
             @RequestParam String patientId,

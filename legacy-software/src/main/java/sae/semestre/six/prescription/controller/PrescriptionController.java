@@ -1,5 +1,6 @@
 package sae.semestre.six.prescription.controller;
 
+import jakarta.transaction.Transactional;
 import sae.semestre.six.patient.dao.IPatientDao;
 import sae.semestre.six.patient.entity.Patient;
 import sae.semestre.six.bill.service.BillingService;
@@ -38,7 +39,8 @@ public class PrescriptionController {
     
     @Autowired
     private IPrescriptionDao prescriptionDao;
-    
+
+    @Transactional
     @PostMapping("/add")
     public String addPrescription(
             @RequestParam String patientId,
